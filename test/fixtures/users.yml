@@ -1,0 +1,9 @@
+valid_one:
+  first_name: Name1
+  last_name: Last1
+  nickname: Dojo
+valid_two:
+  first_name: Name2
+  last_name: Last2
+  nickname: Kala
+
