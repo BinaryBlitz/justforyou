@@ -19,4 +19,9 @@ class UserTest < ActiveSupport::TestCase
     assert @user.invalid?
   end
 
+  test 'invalid phone number' do
+    @user.phone_number = '1345435456'
+    assert @user.invalid?
+  end
+
 end
