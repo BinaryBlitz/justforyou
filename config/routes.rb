@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :users, only: [:index, :show]
   end
+  namespace :admin do
+    resources :users, only: [:index, :show]
+  end
 end

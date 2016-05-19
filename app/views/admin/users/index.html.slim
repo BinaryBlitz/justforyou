@@ -1,0 +1,23 @@
+body
+  .container 
+    h1 Пользователи
+
+  .tab-content
+    .tab-pane.active
+      .container          
+        table.table.table-hover
+          thead
+            tr
+              th Firstname
+              th Lastname
+              th Phone number
+              th Email
+          tbody
+            -@users.each do |i|
+              tr
+                td=i.first_name
+                td=i.last_name
+                td=i.phone_number
+                td=i.email
+  .center
+    =paginate @users
