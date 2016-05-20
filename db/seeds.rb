@@ -4,4 +4,10 @@
              email: Faker::Internet.email,
              phone_number: "+#{Faker::Number.number(10)}")
 end
+Program.create(name: "Program",
+               description: "Description",
+               duration: 10,
+               first_price: 300,
+               second_price: 200,
+               preview: Faker::Placeholdit.image)
 Admin.create(email: "admin@admin.com", password: "12345678")
