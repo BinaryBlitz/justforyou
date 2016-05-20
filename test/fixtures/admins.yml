@@ -1,0 +1,3 @@
+valid_one:
+  email: test@test.com
+  encrypted_password: <%= Devise::Encryptor.digest(Admin, 'password') %>
