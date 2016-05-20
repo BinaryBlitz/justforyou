@@ -1,0 +1,7 @@
+program:
+  name: Program
+  description: Description
+  duration: 10
+  first_price: 300
+  second_price: 200
+  preview: "image"
