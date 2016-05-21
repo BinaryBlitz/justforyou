@@ -1,6 +1,0 @@
-Metrics/LineLength:
-  Max: 100
-Documentation:
-  Enabled: false
-NumericLiterals:
-  Enabled: false
