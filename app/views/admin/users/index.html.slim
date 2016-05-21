@@ -2,24 +2,23 @@ body
   .container 
     h1 Пользователи
 
-  .container          
-    table.table
-      thead
-        tr
-          th Имя
-          th Фамилия
-          th Телефон
-          th Почта
-          th Управление
-          th 
-            |&nbsp;
-      tbody
-        -@users.each do |user|
-          tr
-            td=link_to user.first_name, admin_user_path(user)
-            td=link_to user.last_name, admin_user_path(user)
-            td=user.phone_number
-            td=user.email
-            td= link_to 'Изменить', edit_admin_user_path(user), class: 'btn btn-warning'
-            td= link_to 'Удалить', admin_user_path(user), method: :delete, data: { confirm: 'Вы действительно хотите удалить пользователя из системы?' }, class: 'btn btn-danger'
-  =paginate @users
+  .tab-content
+    .tab-pane.active
+      .container          
+        table.table.table-hover
+          thead
+            tr
+              th Имя
+              th Фамилия
+              th Телефон
+              th Почта
+          tbody
+            -@users.each do |i|
+              tr
+                td=i.first_name
+                td=i.last_name
+                td=i.phone_number
+                td=i.email
+  .center
+    =paginate @users
+
