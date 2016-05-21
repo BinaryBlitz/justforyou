@@ -1,13 +1,18 @@
-h1 Пользователь: #{@user.full_name}
-.form-group
-  strong Имя: 
-  = @user.first_name
-.form-group
-  strong Фамилия: 
-  = @user.last_name
-.form-group
-  strong Телефон: 
-  = @user.phone_number
-.form-group
-  strong Почта: 
-  = @user.email
+html
+  head
+    title Show page
+
+  body
+    h1 Пользователь: #{@user.full_name}
+    .form-group
+      strong Имя: 
+      = @user.first_name
+    .form-group
+      strong Фамилия: 
+      = @user.last_name
+    .form-group
+      strong Телефон: 
+      = @user.phone_number
+    .form-group
+      strong Почта: 
+      = @user.email
