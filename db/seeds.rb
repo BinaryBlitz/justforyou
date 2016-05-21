@@ -7,7 +7,7 @@ end
 Program.create(name: "Program",
                description: "Description",
                duration: 10,
-               first_price: 300,
-               second_price: 200,
+               primary_price: 300,
+               secondary_price: 200,
                preview_image: Faker::Placeholdit.image("50x50"))
 Admin.create(email: "admin@admin.com", password: "12345678")
