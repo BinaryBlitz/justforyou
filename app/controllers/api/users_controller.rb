@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
-  
+
   def update
     if @user.update(user_params)
       render json: @user, status: 200, location: [:api, @user]
@@ -24,7 +24,7 @@ class Api::UsersController < ApplicationController
   private
 
   def find_user
-    @user = User.find(params[:id])    
+    @user = User.find(params[:id])
   end
 
   def user_params

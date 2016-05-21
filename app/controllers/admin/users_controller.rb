@@ -7,7 +7,7 @@ class Admin::UsersController < Admin::AdminController
   def show
   end
 
-  def edit 
+  def edit
   end
 
   def update
@@ -25,7 +25,7 @@ class Admin::UsersController < Admin::AdminController
   private
 
   def find_user
-    @user = User.find(params[:id])    
+    @user = User.find(params[:id])
   end
 
   def user_params
