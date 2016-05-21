@@ -29,12 +29,11 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise', '~> 4.1.0'
 gem 'devise-i18n'
 gem 'bootstrap-sass'
-gem 'slim-rails'
-gem 'kaminari', :git => "git://github.com/amatsuda/kaminari.git", :branch => 'master'
-gem 'phonelib'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rubocop', require: false
 end
 
 group :development do
@@ -44,6 +43,11 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rubocop'
+end
+
+group :test do
+  gem 'mocha', require: false
 end
 
 group :test do
