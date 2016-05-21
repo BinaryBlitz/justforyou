@@ -30,11 +30,12 @@ gem 'devise', '~> 4.1.0'
 gem 'devise-i18n'
 gem 'bootstrap-sass'
 gem 'slim-rails'
-gem 'kaminari', :git => "git://github.com/amatsuda/kaminari.git", :branch => 'master'
+gem 'kaminari', git: "git://github.com/amatsuda/kaminari.git"
 gem 'phonelib'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rubocop', require: false
 end
 
 group :development do
