@@ -1,7 +1,15 @@
 class Admin::UsersController < Admin::AdminController
   before_action :find_user, only: [:show, :edit, :update, :destroy]
+
   def index
-    @users = User.all.page(params[:page]).per(10)
+    if params[:search]
+      @users = User.where("first_name LIKE :search OR
+                           last_name LIKE :search OR
+                           concat(first_name,' ',last_name) LIKE :search",
+                           search: "%#{params[:search]}%")
+    else
+      @users = User.all.page(params[:page]).per(10)
+    end
   end
 
   def show
