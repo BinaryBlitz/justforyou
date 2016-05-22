@@ -14,17 +14,16 @@ html
             th Вторая цена
             th Длительность первой цены
             th Фотография меню
-            th Управление
             th
-              |&nbsp;
+            th
         tbody
           =form_for [:admin, Program.new] do |f|
             tr
               td=f.text_field :name, class: 'form-control'
               td=f.text_field :description, class: 'form-control'
-              td=f.text_field :first_price, class: 'form-control'
-              td=f.text_field :second_price, class: 'form-control'
-              td=f.text_field :duration, class: 'form-control'
+              td=f.number_field :first_price, class: 'form-control'
+              td=f.number_field :second_price, class: 'form-control'
+              td=f.number_field :duration, class: 'form-control'
               td=f.text_field :preview_img, class: 'form-control'
               td=f.submit "Добавить программу", class: 'btn btn-primary'
           -@programs.each do |program|
