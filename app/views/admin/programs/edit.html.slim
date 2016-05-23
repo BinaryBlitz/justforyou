@@ -16,16 +16,16 @@ html
         = f.label :description
         = f.text_field :description, class: 'form-control'
       .form-group
-        = f.label :first_price
-        = f.number_field :first_price, class: 'form-control'
+        = f.label :primary_price
+        = f.number_field :primary_price, class: 'form-control'
       .form-group
-        = f.label :second_price
-        = f.number_field :second_price, class: 'form-control'
+        = f.label :secondary_price
+        = f.number_field :secondary_price, class: 'form-control'
       .form-group
         = f.label :duration
         = f.number_field :duration, class: 'form-control'
       .form-group
-        = f.label :preview_img
-        = f.text_field :preview_img, class: 'form-control'
+        = f.label :preview_image
+        = f.text_field :preview_image, class: 'form-control'
       .actions
         = f.submit "Изменить программу", class: 'btn btn-default'
