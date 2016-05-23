@@ -6,3 +6,5 @@ ru:
       previous: "&lsaquo; Предыдущая"
       next: "Следющая &rsaquo;"
       truncate: "&hellip;"
+  errors:
+    format: "%{message}"

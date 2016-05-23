@@ -1,0 +1,21 @@
+html
+  body
+    h1 Программа: #{ @programm }
+    .form-group
+      strong Название: 
+      = @program.name
+    .form-group
+      strong Описание: 
+      = @program.description
+    .form-group
+      strong Первая цена: 
+      = @program.first_price
+    .form-group
+      strong Вторая цена: 
+      = @program.second_price
+    .form-group
+      strong Длительность первой цены: 
+      = @program.duration
+    .form-group
+      strong Фотография меню: 
+      = @program.preview_img
