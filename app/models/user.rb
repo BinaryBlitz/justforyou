@@ -8,12 +8,12 @@ class User < ApplicationRecord
 
   def self.search(search)
     if search
-      find(:all, conditions: ["first_name ILIKE :search OR
-                               last_name ILIKE :search OR
-                               concat(first_name,' ',last_name) ILIKE :search",
-                               search: "%#{params[:search]}%"])
+      where("first_name ILIKE :search OR
+             last_name ILIKE :search OR
+             concat(first_name,' ',last_name) ILIKE :search",
+             search: "%#{search}%")
     else
-      find(:all)
+      all
     end
   end
 end
