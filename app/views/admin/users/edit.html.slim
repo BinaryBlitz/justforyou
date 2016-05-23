@@ -6,11 +6,11 @@ html
     =form_for([:admin, @user]) do |f|
       -if @user.errors.any?
         .error_explanation
-          h2= pluralize(@user.errors.count, "error") 
-            |prohibited this user from being saved:
+          h2= pluralize(@user.errors.count, "error")
           ul
             -@user.errors.full_messages.each do |message|
-              =message
+              li
+                =message
       .form-group
         =f.label :first_name 
         =f.text_field :first_name, class: 'form-control'
@@ -22,6 +22,6 @@ html
         =f.text_field :phone_number, class: 'form-control'
       .form-group
         =f.label :email 
-        =f.text_field :email, class: 'form-control'
+        =f.email_field :email, class: 'form-control'
       .actions
         = f.submit "Изменить пользователя", class: 'btn btn-default'

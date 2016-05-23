@@ -7,7 +7,7 @@ class Admin::ProgramsController < Admin::AdminController
   def show
   end
 
-  def edit 
+  def edit
   end
 
   def create
@@ -29,12 +29,13 @@ class Admin::ProgramsController < Admin::AdminController
 
   def destroy
     @program.destroy
+    redirect_to admin_programs_url, notice: 'Программа была успешно удалена.'
   end
 
   private
 
   def find_program
-    @program = Program.find(params[:id])    
+    @program = Program.find(params[:id])
   end
 
   def program_params

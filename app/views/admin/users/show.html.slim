@@ -16,3 +16,6 @@ html
     .form-group
       strong Почта: 
       = @user.email
+    .form-group
+      strong Дата регистрации: 
+      = @user.created_at.strftime("%Y-%m-%d")
