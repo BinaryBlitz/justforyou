@@ -1,33 +1,31 @@
 html
-  head
-    title Edit page
-
   body
-    =form_for([:admin, @program]) do |f|
-      -if @program.errors.any?
+    = form_for([:admin, @program]) do |f|
+      - if @program.errors.any?
         .error_explanation
-          h2= pluralize(@program.errors.count, "error")
+          h2 = pluralize(@program.errors.count, "error")
           ul
-            -@program.errors.full_messages.each do |message|
+            - @program.errors.full_messages.each do |message|
               li
-                =message
+                = message
+
       .form-group
-        =f.label :name
-        =f.text_field :name, class: 'form-control'
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
       .form-group
-        =f.label :description
-        =f.text_field :description, class: 'form-control'
+        = f.label :description
+        = f.text_field :description, class: 'form-control'
       .form-group
-        =f.label :first_price
-        =f.number_field :first_price, class: 'form-control'
+        = f.label :first_price
+        = f.number_field :first_price, class: 'form-control'
       .form-group
-        =f.label :second_price
-        =f.number_field :second_price, class: 'form-control'
+        = f.label :second_price
+        = f.number_field :second_price, class: 'form-control'
       .form-group
-        =f.label :duration
-        =f.number_field :duration, class: 'form-control'
+        = f.label :duration
+        = f.number_field :duration, class: 'form-control'
       .form-group
-        =f.label :preview_img
-        =f.text_field :preview_img, class: 'form-control'
+        = f.label :preview_img
+        = f.text_field :preview_img, class: 'form-control'
       .actions
         = f.submit "Изменить программу", class: 'btn btn-default'
