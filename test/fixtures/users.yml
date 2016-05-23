@@ -1,11 +1,11 @@
-valid_one:
-  first_name: Name1
-  last_name: Last1
-  phone_number: '+79998887766'
-  email: test1@test.com
-valid_two:
-  first_name: Name2
-  last_name: Last2
-  phone_number: "+1245346552432"
-  email: test2@test.com
+foo:
+  first_name: Foo
+  last_name: Bar
+  phone_number: "+79998887766"
+  email: foo@bar.com
 
+baz:
+  first_name: Baz
+  last_name: Qux
+  phone_number: "+79991112233"
+  email: baz@qux.com

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   setup do
-    @user = users(:valid_one)
+    @user = users(:foo)
   end
 
   test 'valid' do
@@ -20,8 +20,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'invalid phone number' do
-    @user.phone_number = '1345435456'
+    @user.phone_number = '1234567890'
     assert @user.invalid?
   end
-
 end
