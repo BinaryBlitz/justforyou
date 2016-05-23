@@ -13,5 +13,4 @@ module Phonable
     return unless phone_number
     self.phone_number = Phonelib.parse(phone_number).e164
   end
-
 end
