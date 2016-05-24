@@ -9,6 +9,11 @@ class ProgramTest < ActiveSupport::TestCase
     assert @program.valid?
   end
 
+  test 'name length' do
+    @program.name = 'n' * 21
+    assert @program.invalid?
+  end
+
   test 'positive duration and price' do
     @program.duration = 0
     assert @program.invalid?

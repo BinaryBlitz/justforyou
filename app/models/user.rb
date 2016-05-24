@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  has_many :orders, dependent: :destroy
+  
   validates :first_name, :last_name, presence: true, length: { maximum: 20 }
   include Phonable
 

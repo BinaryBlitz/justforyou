@@ -1,0 +1,6 @@
+order:
+  address: Address
+  user: foo
+  phone_number: "+79998887766"
+  comment: Comment
+  user: foo
