@@ -16,6 +16,16 @@ class Admin::ProgramsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should create program' do
+    @program.destroy
+
+    assert_difference 'Program.count' do
+      post admin_programs_url(@program), params: { program: @program.attributes }
+    end
+
+    assert_redirected_to admin_programs_path
+  end
+
   test 'should update program' do
     patch admin_program_path(@program), params: { program: { primary_price: 1 } }
     assert_redirected_to admin_programs_path

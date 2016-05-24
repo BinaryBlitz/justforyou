@@ -1,6 +1,6 @@
 class Admin::ProgramsController < Admin::AdminController
   before_action :set_program, only: [:show, :edit, :update, :destroy]
-  
+
   def index
     @programs = Program.all.page(params[:page]).per(10)
   end
@@ -16,7 +16,7 @@ class Admin::ProgramsController < Admin::AdminController
     if @program.save
       redirect_to admin_programs_url, notice: 'Программа была успешно создана.'
     else
-      render :index
+      redirect_to admin_programs_url
     end
   end
 
@@ -42,6 +42,6 @@ class Admin::ProgramsController < Admin::AdminController
   def program_params
     params.require(:program)
           .permit(:name, :description, :duration,
-                  :primary_price, :secondary_price, :preview_img)
+                  :primary_price, :secondary_price, :preview_image)
   end
 end

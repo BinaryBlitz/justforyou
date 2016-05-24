@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :users, only: [:index, :show, :update]
     resources :programs, only: [:index, :show, :update]
+    resources :orders, except: [:new, :edit]
   end
 
   namespace :admin do
