@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::AdminController
-  before_action :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.search(params[:search]).page(params[:page]).per(10)
@@ -21,11 +21,12 @@ class Admin::UsersController < Admin::AdminController
 
   def destroy
     @user.destroy
+    redirect_to admin_users_url, notice: 'Пользователь был успешно удален.'
   end
 
   private
 
-  def find_user
+  def set_user
     @user = User.find(params[:id])
   end
 

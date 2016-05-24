@@ -1,5 +1,6 @@
 class Api::UsersController < ApplicationController
-  before_action :find_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: [:show, :update]
+  
   def index
     @users = User.all
   end
@@ -7,7 +8,7 @@ class Api::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
-  
+
   def update
     if @user.update(user_params)
       head :ok
@@ -16,15 +17,10 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def destroy
-    @user.destroy
-    head :no_content
-  end
-
   private
 
-  def find_user
-    @user = User.find(params[:id])    
+  def set_user
+    @user = User.find(params[:id])
   end
 
   def user_params
