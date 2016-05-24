@@ -1,5 +1,6 @@
 class Admin::ProgramsController < Admin::AdminController
-  before_action :find_program, only: [:show, :edit, :update, :destroy]
+  before_action :set_program, only: [:show, :edit, :update, :destroy]
+  
   def index
     @programs = Program.all.page(params[:page]).per(10)
   end
@@ -34,7 +35,7 @@ class Admin::ProgramsController < Admin::AdminController
 
   private
 
-  def find_program
+  def set_program
     @program = Program.find(params[:id])
   end
 
