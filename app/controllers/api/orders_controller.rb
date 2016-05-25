@@ -37,6 +37,6 @@ class API::OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:address, :comment, :phone_number)
+    params.require(:order).permit(:comment, :phone_number)
   end
 end

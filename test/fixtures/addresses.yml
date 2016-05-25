@@ -1,0 +1,5 @@
+address:
+  user: foo
+  content: Content
+  floor: 4
+  entrance: 1
