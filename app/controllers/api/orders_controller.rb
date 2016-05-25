@@ -2,14 +2,15 @@ class API::OrdersController < API::APIController
   before_action :set_order, only: [:show, :update, :destroy]
 
   def index
-    @orders = User.first.orders
+    @orders = current_user.orders
   end
 
   def show
   end
 
   def create
-    @order = User.first.orders.build(order_params)
+    @order = current_user.orders.build(order_params)
+
     if @order.save
       render :show, status: :created
     else

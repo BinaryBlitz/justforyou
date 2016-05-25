@@ -1,6 +1,6 @@
 class API::AddressesController < API::APIController
   def index
-    @addreses = User.first.addresses
+    @addreses = current_user.addresses
   end
 
   def show
@@ -8,7 +8,7 @@ class API::AddressesController < API::APIController
   end
 
   def create
-    @address = User.first.addresses.build(order_params)
+    @address = current_user.addresses.build(order_params)
 
     if @address.save
       render :show, status: :created
