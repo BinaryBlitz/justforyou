@@ -14,11 +14,6 @@ class OrderTest < ActiveSupport::TestCase
     assert @order.invalid?
   end
 
-  test 'address presence' do
-    @order.address = nil
-    assert @order.invalid?
-  end
-
   test 'phone presence' do
     @order.phone_number = nil
     assert @order.invalid?
