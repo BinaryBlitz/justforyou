@@ -1,1 +1,1 @@
-json.extract! address, :id, :content, :floor, :porch
+json.extract! address, :id, :content, :floor, :entrance

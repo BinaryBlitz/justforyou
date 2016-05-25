@@ -1,5 +1,4 @@
 class API::AddressesController < ApplicationController
-
   def index
     @addreses = User.first.addresses
   end
@@ -10,6 +9,7 @@ class API::AddressesController < ApplicationController
 
   def create
     @address = User.first.addresses.build(order_params)
+
     if @address.save
       render :show, status: :created
     else
@@ -20,6 +20,6 @@ class API::AddressesController < ApplicationController
   private
 
   def order_params
-    params.require(:address).permit(:content, :floor, :porch)
+    params.require(:address).permit(:content, :floor, :entrance)
   end
 end

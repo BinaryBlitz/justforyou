@@ -2,4 +2,4 @@ address:
   user: foo
   content: Content
   floor: 4
-  porch: 1
+  entrance: 1

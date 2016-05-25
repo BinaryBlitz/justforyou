@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20160525101721) do
 
   create_table "addresses", force: :cascade do |t|
     t.text     "content",    null: false
-    t.integer  "porch"
+    t.integer  "entrance"
     t.integer  "floor"
     t.integer  "user_id"
     t.datetime "created_at", null: false
