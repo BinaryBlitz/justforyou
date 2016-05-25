@@ -1,4 +1,4 @@
-class API::OrdersController < ApplicationController
+class API::OrdersController < API::APIController
   before_action :set_order, only: [:show, :update, :destroy]
 
   def index

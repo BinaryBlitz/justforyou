@@ -6,12 +6,12 @@ class API::AddressesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
-    get api_addresses_path
+    get api_addresses_path(api_token: api_token)
     assert_response :success
   end
 
   test 'should get show' do
-    get api_address_path(@address)
+    get api_address_path(@address, api_token: api_token)
     assert_response :success
   end
 
@@ -19,7 +19,9 @@ class API::AddressesControllerTest < ActionDispatch::IntegrationTest
     @address.destroy
 
     assert_difference 'Address.count' do
-      post api_addresses_url(@address), params: { address: @address.attributes }
+      post api_addresses_url(@address, api_token: api_token), params: {
+        address: @address.attributes
+      }
     end
 
     assert_response :created

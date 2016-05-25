@@ -1,4 +1,4 @@
-class API::ProgramsController < ApplicationController
+class API::ProgramsController < API::APIController
   before_action :set_program, only: [:show, :update]
 
   def index

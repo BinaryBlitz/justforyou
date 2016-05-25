@@ -1,4 +1,4 @@
-class API::AddressesController < ApplicationController
+class API::AddressesController < API::APIController
   def index
     @addreses = User.first.addresses
   end

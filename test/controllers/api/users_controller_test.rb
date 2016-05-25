@@ -6,18 +6,18 @@ class API::UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
-    get api_users_path
+    get api_users_path(api_token: api_token)
     assert_response :success
   end
 
   test 'should get show' do
-    get api_users_path(@user)
+    get api_users_path(@user, api_token: api_token)
     assert_response :success
   end
 
   test 'should update user' do
     new_name = 'Another name'
-    patch api_user_path(@user), params: { user: { first_name: new_name } }
+    patch api_user_path(@user, api_token: api_token), params: { user: { first_name: new_name } }
     assert_response :ok
     assert_equal new_name, @user.reload.first_name
   end
