@@ -1,4 +1,6 @@
 class Program < ApplicationRecord
+  has_many :products, dependent: :destroy
+
   validates :name, presence: true, length: { maximum: 20 }
   validates :preview_image, :description, presence: true
   validates :duration, numericality: { greater_than: 0 }

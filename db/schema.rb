@@ -52,6 +52,14 @@ ActiveRecord::Schema.define(version: 20160525115729) do
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "program_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["program_id"], name: "index_products_on_program_id", using: :btree
+  end
+
   create_table "programs", force: :cascade do |t|
     t.string   "name",            null: false
     t.text     "description",     null: false
@@ -76,4 +84,5 @@ ActiveRecord::Schema.define(version: 20160525115729) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "orders", "users"
+  add_foreign_key "products", "programs"
 end
