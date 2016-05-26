@@ -8,10 +8,6 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-# Indexes
-#
-#  index_products_on_program_id  (program_id)
-#
 
 class Product < ApplicationRecord
   belongs_to :program

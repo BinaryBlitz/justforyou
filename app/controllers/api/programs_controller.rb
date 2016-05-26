@@ -1,6 +1,6 @@
 class API::ProgramsController < API::APIController
-  before_action :set_program, only: [:show]
-  before_action :set_block, only: [:index, :update]
+  before_action :set_program, only: [:show, :update]
+  before_action :set_block, only: [:index]
 
   def index
     @programs = @block.programs.all
@@ -10,7 +10,7 @@ class API::ProgramsController < API::APIController
   end
 
   def update
-    if @block.programs.update(program_params)
+    if @program.update(program_params)
       head :ok
     else
       render json: @program.errors, status: 422

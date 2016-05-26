@@ -13,10 +13,6 @@
 #  updated_at      :datetime         not null
 #  block_id        :integer
 #
-# Indexes
-#
-#  index_programs_on_block_id  (block_id)
-#
 
 class Program < ApplicationRecord
   has_many :products, dependent: :destroy

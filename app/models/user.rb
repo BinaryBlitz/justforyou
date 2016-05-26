@@ -11,10 +11,6 @@
 #  updated_at   :datetime         not null
 #  api_token    :string
 #
-# Indexes
-#
-#  index_users_on_api_token  (api_token) UNIQUE
-#
 
 class User < ApplicationRecord
   has_many :orders, dependent: :destroy
