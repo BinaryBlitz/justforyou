@@ -1,4 +1,4 @@
-class API::BlocksController < ApplicationController
+class API::BlocksController < API::APIController
   def index
     @blocks = Block.all
   end

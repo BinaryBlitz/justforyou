@@ -12,10 +12,6 @@
 #
 #  index_products_on_program_id  (program_id)
 #
-# Foreign Keys
-#
-#  fk_rails_151169d3ea  (program_id => programs.id)
-#
 
 class Product < ApplicationRecord
   belongs_to :program

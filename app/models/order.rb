@@ -13,10 +13,6 @@
 #
 #  index_orders_on_user_id  (user_id)
 #
-# Foreign Keys
-#
-#  fk_rails_f868b47f6a  (user_id => users.id)
-#
 
 class Order < ApplicationRecord
   belongs_to :user

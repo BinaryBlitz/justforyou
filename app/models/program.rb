@@ -17,10 +17,6 @@
 #
 #  index_programs_on_block_id  (block_id)
 #
-# Foreign Keys
-#
-#  fk_rails_166e4b780a  (block_id => blocks.id)
-#
 
 class Program < ApplicationRecord
   has_many :products, dependent: :destroy
