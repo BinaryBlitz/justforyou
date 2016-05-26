@@ -6,6 +6,7 @@ html
         thead
           tr
             th Название
+            th Блок
             th Описание
             th Первая цена
             th Вторая цена
@@ -14,9 +15,11 @@ html
             th
             th
         tbody
-          = form_for [:admin, Program.new] do |f|
+          = form_for ([:admin, Program.new]) do |f|
             tr
               td = f.text_field :name, class: 'form-control'
+              td = f.collection_select :block_id, Block.all, :id, :title,
+                                       { include_blank: false }, { class: 'form-control' }
               td = f.text_field :description, class: 'form-control'
               td = f.number_field :primary_price, class: 'form-control'
               td = f.number_field :secondary_price, class: 'form-control'
@@ -26,6 +29,7 @@ html
           - @programs.each do |program|
             tr
               td = link_to program.name, admin_program_path(program)
+              td = program.block.title
               td = program.description
               td = program.primary_price
               td = program.secondary_price
