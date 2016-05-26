@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :users, only: [:index, :show, :update]
-    resources :programs, only: [:index, :show, :update]
+    resources :blocks, only: [:index, :show] do
+      resources :programs, only: [:index, :show, :update]
+    end
     resources :orders, except: [:new, :edit]
     resources :addresses, only: [:create, :index, :show]
   end

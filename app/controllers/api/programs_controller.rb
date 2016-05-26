@@ -1,8 +1,9 @@
 class API::ProgramsController < API::APIController
   before_action :set_program, only: [:show, :update]
+  before_action :set_block, only: [:index]
 
   def index
-    @programs = Program.all
+    @programs = @block.programs.all
   end
 
   def show
@@ -18,6 +19,10 @@ class API::ProgramsController < API::APIController
 
   private
 
+  def set_block
+    @block = Block.find(params[:block_id])
+  end
+
   def set_program
     @program = Program.find(params[:id])
   end
@@ -25,6 +30,6 @@ class API::ProgramsController < API::APIController
   def program_params
     params.require(:program)
           .permit(:name, :description, :duration,
-                  :primary_price, :secondary_price, :preview_img)
+                  :primary_price, :secondary_price, :preview_img, :block_id)
   end
 end

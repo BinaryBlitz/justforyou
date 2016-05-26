@@ -1,14 +1,14 @@
 # == Schema Information
 #
-# Table name: products
+# Table name: blocks
 #
 #  id         :integer          not null, primary key
-#  name       :string           not null
-#  program_id :integer
+#  title      :string           not null
+#  image      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-product:
-  program: program
-  name: Product
+block:
+  title: Block
+  image: Image

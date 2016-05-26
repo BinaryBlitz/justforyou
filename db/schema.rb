@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525115729) do
+ActiveRecord::Schema.define(version: 20160525140753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(version: 20160525115729) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "blocks", force: :cascade do |t|
+    t.string   "title",      null: false
+    t.string   "image",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string   "phone_number", null: false
     t.text     "comment"
@@ -69,6 +76,8 @@ ActiveRecord::Schema.define(version: 20160525115729) do
     t.string   "preview_image",   null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "block_id"
+    t.index ["block_id"], name: "index_programs_on_block_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -85,4 +94,5 @@ ActiveRecord::Schema.define(version: 20160525115729) do
   add_foreign_key "addresses", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "programs"
+  add_foreign_key "programs", "blocks"
 end

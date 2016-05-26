@@ -1,22 +1,22 @@
 # == Schema Information
 #
-# Table name: products
+# Table name: blocks
 #
 #  id         :integer          not null, primary key
-#  name       :string           not null
-#  program_id :integer
+#  title      :string           not null
+#  image      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 require 'test_helper'
 
-class ProductTest < ActiveSupport::TestCase
+class BlockTest < ActiveSupport::TestCase
   setup do
-    @product = products(:product)
+    @block = blocks(:block)
   end
 
   test 'valid' do
-    assert @product.valid?
+    assert @block.valid?
   end
 end
