@@ -9,4 +9,9 @@ class API::ProductTypesControllerTest < ActionDispatch::IntegrationTest
     get api_product_types_path(api_token: api_token)
     assert_response :success
   end
+
+  test 'should get show' do
+    get api_product_types_path(@product_type, api_token: api_token)
+    assert_response :success
+  end
 end

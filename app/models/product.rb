@@ -13,6 +13,7 @@
 class Product < ApplicationRecord
   belongs_to :program
   belongs_to :product_type
+  has_one    :substitution, dependent: :destroy
 
   validates :name, presence: true
 end
