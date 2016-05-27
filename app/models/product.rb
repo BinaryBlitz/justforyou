@@ -2,15 +2,17 @@
 #
 # Table name: products
 #
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  program_id :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :integer          not null, primary key
+#  name            :string           not null
+#  program_id      :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  product_type_id :integer
 #
 
 class Product < ApplicationRecord
   belongs_to :program
+  belongs_to :product_type
 
   validates :name, presence: true
 end

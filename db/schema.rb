@@ -59,11 +59,19 @@ ActiveRecord::Schema.define(version: 20160527164408) do
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
-  create_table "products", force: :cascade do |t|
+  create_table "product_types", force: :cascade do |t|
     t.string   "name",       null: false
-    t.integer  "program_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name",            null: false
+    t.integer  "program_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "product_type_id"
+    t.index ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
     t.index ["program_id"], name: "index_products_on_program_id", using: :btree
   end
 
@@ -103,6 +111,7 @@ ActiveRecord::Schema.define(version: 20160527164408) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "orders", "users"
+  add_foreign_key "products", "product_types"
   add_foreign_key "products", "programs"
   add_foreign_key "programs", "blocks"
 end

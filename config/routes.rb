@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
     resources :orders, except: [:new, :edit]
     resources :addresses, only: [:create, :index, :show]
+    resources :product_types, only: [:index]
   end
 
   namespace :admin do
