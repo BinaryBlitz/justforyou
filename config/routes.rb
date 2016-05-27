@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :admins, path: 'admin', skip: :registrations
 
   namespace :api do
+    resources :verification_tokens, only: [:create, :update], param: :token
     resources :users, only: [:index, :show, :update]
     resources :blocks, only: [:index, :show] do
       resources :programs, only: [:index, :show, :update]
