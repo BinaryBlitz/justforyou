@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :admins, path: 'admin', skip: :registrations
 
   devise_scope :admin do
-    get "/admin", to: "devise/sessions#new"
+    get '/admin', to: 'devise/sessions#new'
   end
 
   namespace :api do
