@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :admins, path: 'admin', skip: :registrations
 
+  devise_scope :admin do
+    get "/admin", to: "devise/sessions#new"
+  end
+
   namespace :api do
     resources :verification_tokens, only: [:create, :update], param: :token
     resources :users, only: [:index, :show, :update]
