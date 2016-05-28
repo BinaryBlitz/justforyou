@@ -5,13 +5,8 @@ class API::UsersControllerTest < ActionDispatch::IntegrationTest
     @user = users(:foo)
   end
 
-  test 'should get index' do
-    get api_users_path(api_token: api_token)
-    assert_response :success
-  end
-
   test 'should get show' do
-    get api_users_path(@user, api_token: api_token)
+    get api_user_path(@user, api_token: api_token)
     assert_response :success
   end
 

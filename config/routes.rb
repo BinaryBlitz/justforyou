@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :verification_tokens, only: [:create, :update], param: :token
-    resources :users, only: [:index, :show, :update]
+    resource :user, only: [:show, :update]
     resources :blocks, only: [:index, :show] do
       resources :programs, only: [:index, :show, :update]
     end
