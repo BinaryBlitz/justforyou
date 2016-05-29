@@ -1,6 +1,6 @@
 class API::ProductTypesController < ApplicationController
   def index
-    @product_types = ProductType.all
+    @product_types = ProductType.all.includes(:products)
   end
 
   def show
