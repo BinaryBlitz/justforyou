@@ -6,9 +6,8 @@ class API::SubstitutionsControllerTest < ActionDispatch::IntegrationTest
     @product = @substitution.product
   end
 
-  test "should get index" do
-    get api_product_substitutions_path(api_token: api_token,
-                                       product_id: @product.id)
+  test 'should get index' do
+    get api_product_substitutions_path(@product, api_token: api_token)
     assert_response :success
   end
 
@@ -16,10 +15,9 @@ class API::SubstitutionsControllerTest < ActionDispatch::IntegrationTest
     @substitution.destroy
 
     assert_difference 'Substitution.count' do
-      post api_product_substitutions_url(@substitution, 
-                                         api_token: api_token,
-                                         product_id: @product.id),
-                                         params: { substitution: @substitution.attributes }
+      post api_product_substitutions_url(@product, @substitution, api_token: api_token), params: {
+        substitution: @substitution.attributes
+      }
     end
 
     assert_response :created
@@ -27,8 +25,7 @@ class API::SubstitutionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should destroy substitution' do
     assert_difference 'Substitution.count', -1 do
-      delete api_product_substitution_url(@substitution, api_token: api_token,
-                                          product_id: @product.id)
+      delete api_substitution_url(@substitution, api_token: api_token)
     end
 
     assert_response :no_content

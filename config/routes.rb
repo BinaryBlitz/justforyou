@@ -11,13 +11,16 @@ Rails.application.routes.draw do
     resources :blocks, only: [:index, :show] do
       resources :programs, only: [:index, :show, :update]
     end
+
     resources :orders, except: [:new, :edit]
     resources :addresses, only: [:create, :index, :show]
+
     resources :product_types, only: [:index, :show] do
       resources :products, only: [:index]
     end
+
     resources :products, only: [:show] do
-      resources :substitutions, only: [:index, :create, :destroy]
+      resources :substitutions, only: [:index, :create, :destroy], shallow: true
     end
   end
 

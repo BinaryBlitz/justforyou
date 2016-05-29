@@ -1,11 +1,14 @@
 class API::SubstitutionsController < API::APIController
+  before_action :set_product, only: [:create]
+  before_action :set_substitution, only: [:destroy]
+
   def index
-    @substitution = current_user.substitutions
+    @substitutions = current_user.substitutions
   end
 
   def create
-    @substitution = current_user.substitutions.build(substitution_params)
-    @substitution.product = Product.find(params[:product_id])
+    @substitution = current_user.substitutions.build(product: @product)
+
     if @substitution.save
       render :show, status: :created
     else
@@ -14,14 +17,17 @@ class API::SubstitutionsController < API::APIController
   end
 
   def destroy
-    @substitution = Substitution.find(params[:id])
     @substitution.destroy
     head :no_content
   end
 
   private
 
-  def substitution_params
-    params.require(:substitution).permit(:product_id)
+  def set_product
+    @product = Product.find(params[:product_id])
+  end
+
+  def set_substitution
+    @substitution = Substitution.find(params[:id])
   end
 end
