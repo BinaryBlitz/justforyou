@@ -4,7 +4,7 @@ html
       h1 Пользователи
       form.navbar-form.navbar-left
         .form-group
-          = form_tag(api_users_path, method: "get") do
+          = form_tag(admin_users_path, method: "get") do
             = text_field_tag :search, params[:search], placeholder: "Поиск...", class: "form-control"
             = submit_tag "Поиск", :name => nil, class: "btn btn-default"
               span.glyphicon.glyphicon-search
