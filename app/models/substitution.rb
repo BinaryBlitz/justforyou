@@ -1,15 +1,15 @@
 # == Schema Information
 #
-# Table name: products
+# Table name: substitutions
 #
 #  id         :integer          not null, primary key
-#  name       :string           not null
-#  program_id :integer
+#  product_id :integer
+#  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-product:
-  product_type: product_type
-  program: program
-  name: Product
+class Substitution < ApplicationRecord
+  belongs_to :product
+  belongs_to :user
+end

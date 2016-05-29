@@ -8,11 +8,18 @@ Rails.application.routes.draw do
   namespace :api do
     resources :verification_tokens, only: [:create, :update], param: :token
     resource :user, only: [:show, :update]
+
+    resources :orders, except: [:new, :edit]
+    resources :addresses, only: [:create, :index, :show]
+    resources :product_types, only: [:index, :show]
+
     resources :blocks, only: [:index, :show] do
       resources :programs, only: [:index, :show, :update]
     end
-    resources :orders, except: [:new, :edit]
-    resources :addresses, only: [:create, :index, :show]
+
+    resources :products, only: [:show] do
+      resources :substitutions, only: [:index, :create, :destroy], shallow: true
+    end
   end
 
   namespace :admin do

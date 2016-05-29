@@ -1,15 +1,14 @@
 # == Schema Information
 #
-# Table name: products
+# Table name: product_types
 #
 #  id         :integer          not null, primary key
 #  name       :string           not null
-#  program_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-product:
-  product_type: product_type
-  program: program
-  name: Product
+class ProductType < ApplicationRecord
+  has_many :products, dependent: :destroy
+  validates :name, presence: true
+end

@@ -11,7 +11,7 @@ class API::BlocksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get show' do
-    get api_blocks_path(@block, api_token: api_token)
+    get api_block_path(@block, api_token: api_token)
     assert_response :success
   end
 end
