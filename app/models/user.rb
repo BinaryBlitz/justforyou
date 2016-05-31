@@ -21,6 +21,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true, length: { maximum: 20 }
   validates :email, email: true, uniqueness: { case_sensitive: false }
+  validates :phone_number, uniqueness: true
 
   has_secure_token :api_token
 

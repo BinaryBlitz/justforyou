@@ -11,8 +11,9 @@
 #
 
 class Order < ApplicationRecord
+  include Phonable
+
   belongs_to :user
 
   validates :comment, length: { maximum: 1000 }
-  include Phonable
 end
