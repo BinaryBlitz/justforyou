@@ -15,8 +15,10 @@ class Order < ApplicationRecord
 
   belongs_to :user
 
-  has_many :line_items, dependent: :destroy
+  has_many :line_items, dependent: :destroy, inverse_of: :order
 
   validates :comment, length: { maximum: 1000 }
   validates :line_items, presence: true
+
+  accepts_nested_attributes_for :line_items, allow_destroy: true
 end

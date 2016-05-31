@@ -15,12 +15,13 @@
 #
 
 class Program < ApplicationRecord
-  has_many :products, dependent: :destroy
   belongs_to :block
+
+  has_many :products, dependent: :destroy
+  has_many :line_items, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 20 }
   validates :preview_image, :description, :block, presence: true
   validates :duration, numericality: { greater_than: 0 }
-  validates :primary_price,
-            :secondary_price, numericality: { greater_than_or_equal_to: 0 }
+  validates :primary_price, :secondary_price, numericality: { greater_than: 0 }
 end

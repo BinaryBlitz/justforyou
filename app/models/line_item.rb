@@ -11,8 +11,9 @@
 #
 
 class LineItem < ApplicationRecord
-  belongs_to :order
+  belongs_to :order, inverse_of: :line_items
   belongs_to :program
 
   validates :number_of_days, numericality: { greater_than: 0 }
+  validates :program, uniqueness: { scope: :order }
 end

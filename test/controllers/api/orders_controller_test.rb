@@ -3,6 +3,7 @@ require 'test_helper'
 class API::OrdersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @order = orders(:order)
+    @line_item = @order.line_items.first
   end
 
   test 'should get index' do
@@ -14,7 +15,9 @@ class API::OrdersControllerTest < ActionDispatch::IntegrationTest
     @order.destroy
 
     assert_difference 'Order.count' do
-      post api_orders_url(@order, api_token: api_token), params: { order: @order.attributes }
+      post api_orders_url(@order, api_token: api_token), params: {
+        order: @order.attributes.merge(line_items_attributes: [@line_item.attributes])
+      }
     end
 
     assert_response :created

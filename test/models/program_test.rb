@@ -43,7 +43,7 @@ class ProgramTest < ActiveSupport::TestCase
 
     @program.primary_price = 0
     @program.secondary_price = 0
-    assert @program.valid?
+    assert @program.invalid?
 
     @program.primary_price = 1
     @program.secondary_price = 1
