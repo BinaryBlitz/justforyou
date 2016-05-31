@@ -14,7 +14,7 @@ html
         = f.text_field :name, class: 'form-control'
       .form-group
         = f.label :block
-        = f.collection_select :block_id, Block.all, :id, :title,
+        = f.collection_select :block_id, Block.all, :id, :name,
                                        { include_blank: false }, { class: 'form-control' }
       .form-group
         = f.label :description
