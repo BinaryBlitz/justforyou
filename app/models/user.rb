@@ -13,12 +13,14 @@
 #
 
 class User < ApplicationRecord
+  include Phonable
+
   has_many :orders, dependent: :destroy
   has_many :addresses, dependent: :destroy
   has_many :substitutions, dependent: :destroy
 
   validates :first_name, :last_name, presence: true, length: { maximum: 20 }
-  include Phonable
+  validates :email, email: true, uniqueness: { case_sensitive: false }
 
   has_secure_token :api_token
 

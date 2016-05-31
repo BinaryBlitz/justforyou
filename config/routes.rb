@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :verification_tokens, only: [:create, :update], param: :token
-    resource :user, only: [:show, :update]
+    resource :user, only: [:show, :create, :update]
 
     resources :orders, except: [:new, :edit]
     resources :addresses, only: [:create, :index, :show]
