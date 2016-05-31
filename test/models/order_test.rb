@@ -30,4 +30,9 @@ class OrderTest < ActiveSupport::TestCase
     @order.phone_number = nil
     assert @order.invalid?
   end
+
+  test 'invalid without line items' do
+    @order.line_items.destroy_all
+    assert @order.invalid?
+  end
 end

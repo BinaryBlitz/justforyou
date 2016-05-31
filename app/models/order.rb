@@ -15,5 +15,8 @@ class Order < ApplicationRecord
 
   belongs_to :user
 
+  has_many :line_items, dependent: :destroy
+
   validates :comment, length: { maximum: 1000 }
+  validates :line_items, presence: true
 end
