@@ -25,12 +25,12 @@ class User < ApplicationRecord
 
   has_secure_token :api_token
 
-  def full_name
-    "#{first_name} #{last_name}"
-  end
-
   def self.search(query)
     return all unless query.present?
     where("concat(first_name, ' ', last_name) ILIKE ?", "%#{query}%")
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 end
