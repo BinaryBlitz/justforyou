@@ -5,7 +5,7 @@
 #  id              :integer          not null, primary key
 #  name            :string           not null
 #  description     :text             not null
-#  duration        :integer          not null
+#  limit           :integer          not null
 #  primary_price   :integer          not null
 #  secondary_price :integer          not null
 #  preview_image   :string           not null

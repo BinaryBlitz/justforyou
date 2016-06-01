@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160531112746) do
+ActiveRecord::Schema.define(version: 20160601114129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20160531112746) do
   create_table "programs", force: :cascade do |t|
     t.string   "name",            null: false
     t.text     "description",     null: false
-    t.integer  "duration",        null: false
+    t.integer  "limit",           null: false
     t.integer  "primary_price",   null: false
     t.integer  "secondary_price", null: false
     t.string   "preview_image",   null: false
@@ -108,13 +108,14 @@ ActiveRecord::Schema.define(version: 20160531112746) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",   null: false
-    t.string   "last_name",    null: false
-    t.string   "phone_number", null: false
-    t.string   "email",        null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "first_name",               null: false
+    t.string   "last_name",                null: false
+    t.string   "phone_number",             null: false
+    t.string   "email",                    null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "api_token"
+    t.integer  "bonuses",      default: 0
     t.index ["api_token"], name: "index_users_on_api_token", unique: true, using: :btree
   end
 

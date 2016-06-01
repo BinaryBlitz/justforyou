@@ -10,6 +10,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  api_token    :string
+#  bonuses      :integer          default(0)
 #
 
 class User < ApplicationRecord
@@ -22,6 +23,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true, length: { maximum: 20 }
   validates :email, email: true, uniqueness: { case_sensitive: false }
   validates :phone_number, uniqueness: true
+  validates :bonuses, numericality: { greater_or_equal_than: 0 }
 
   has_secure_token :api_token
 
