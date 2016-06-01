@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20160531181017) do
   create_table "programs", force: :cascade do |t|
     t.string   "name",            null: false
     t.text     "description",     null: false
-    t.integer  "duration",        null: false
+    t.integer  "limit",           null: false
     t.integer  "primary_price",   null: false
     t.integer  "secondary_price", null: false
     t.string   "preview_image",   null: false

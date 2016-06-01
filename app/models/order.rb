@@ -21,4 +21,47 @@ class Order < ApplicationRecord
   validates :line_items, presence: true
 
   accepts_nested_attributes_for :line_items, allow_destroy: true
+
+  private
+
+  def total_price
+    @total_price ||=
+      if line_items.size > 1
+        multi_program_price
+      else
+        single_program_price
+      end
+  end
+
+  def single_program_price
+    number_of_days = line_items.first.number_of_days
+    program = line_items.first.program
+    price =
+      if program.limit > number_of_days
+        program.primary_price
+      else
+        program.secondary_price
+      end
+    number_of_days * price
+  end
+
+  def limit_sum
+    @limit_sum = line_items.inject(0) { |sum, e| sum + e.program.limit }
+  end
+
+  def max_number_of_days
+    @max_number_of_days = line_items.maximum(:number_of_days)
+  end
+
+  def multi_program_price
+    line_items.sum do |item|
+      price =
+        if limit_sum >= max_number_of_days
+          item.program.secondary_price
+        else
+          item.program.primary_price
+        end
+      item.number_of_days * price
+    end
+  end
 end
