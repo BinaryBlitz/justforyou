@@ -21,7 +21,9 @@ Rails.application.routes.draw do
       resources :substitutions, only: [:index, :create, :destroy], shallow: true
     end
 
-    resources :days, only: :show
+    resources :programs, only: [:index, :show, :update] do
+      resources :days, only: :show
+    end
   end
 
   namespace :admin do
