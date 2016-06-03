@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160531112746) do
+ActiveRecord::Schema.define(version: 20160531181017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(version: 20160531112746) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "days", force: :cascade do |t|
+    t.integer  "position",   null: false
+    t.integer  "program_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["program_id"], name: "index_days_on_program_id", using: :btree
+  end
+
   create_table "line_items", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "program_id"
@@ -77,12 +85,12 @@ ActiveRecord::Schema.define(version: 20160531112746) do
 
   create_table "products", force: :cascade do |t|
     t.string   "name",            null: false
-    t.integer  "program_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "product_type_id"
+    t.integer  "day_id"
+    t.index ["day_id"], name: "index_products_on_day_id", using: :btree
     t.index ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
-    t.index ["program_id"], name: "index_products_on_program_id", using: :btree
   end
 
   create_table "programs", force: :cascade do |t|
@@ -129,11 +137,12 @@ ActiveRecord::Schema.define(version: 20160531112746) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "days", "programs"
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "programs"
   add_foreign_key "orders", "users"
+  add_foreign_key "products", "days"
   add_foreign_key "products", "product_types"
-  add_foreign_key "products", "programs"
   add_foreign_key "programs", "blocks"
   add_foreign_key "substitutions", "products"
   add_foreign_key "substitutions", "users"

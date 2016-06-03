@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     resources :products, only: [:show] do
       resources :substitutions, only: [:index, :create, :destroy], shallow: true
     end
+
+    resources :programs, only: [:index, :show, :update] do
+      resources :days, only: :show
+    end
   end
 
   namespace :admin do

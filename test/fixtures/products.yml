@@ -11,5 +11,5 @@
 
 product:
   product_type: product_type
-  program: program
   name: Product
+  day: day

@@ -17,7 +17,7 @@
 class Program < ApplicationRecord
   belongs_to :block
 
-  has_many :products, dependent: :destroy
+  has_many :days, dependent: :destroy
   has_many :line_items, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 20 }
