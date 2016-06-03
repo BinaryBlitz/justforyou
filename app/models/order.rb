@@ -13,6 +13,14 @@
 class Order < ApplicationRecord
   include Phonable
 
+  SPECIAL_BONUS = 15_000
+  BONUS_DAY = 101
+  SMALL_BONUS = 0.05
+  BIG_BONUS = 0.1
+
+  before_save :set_bonuses
+  before_save :set_special_bonuses
+
   belongs_to :user
 
   has_many :line_items, dependent: :destroy, inverse_of: :order
@@ -63,5 +71,24 @@ class Order < ApplicationRecord
         end
       item.number_of_days * price
     end
+  end
+
+  def number_of_days_sum
+    @number_of_days_sum = line_items.sum(&:number_of_days)
+  end
+
+  def set_bonuses
+    if number_of_days_sum >= 31 && number_of_days_sum <= 100
+      user.bonuses += total_price * SMALL_BONUS
+    elsif number_of_days_sum >= BONUS_DAY
+      user.bonuses += total_price * BIG_BONUS
+    end
+    true
+  end
+
+  def set_special_bonuses
+    special_day = (number_of_days_sum - BONUS_DAY) / 100 + 1
+    user.bonuses += special_day * SPECIAL_BONUS if number_of_days_sum >= BONUS_DAY
+    true
   end
 end
