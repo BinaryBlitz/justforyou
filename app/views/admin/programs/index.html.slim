@@ -18,22 +18,22 @@ html
           = form_for ([:admin, Program.new]) do |f|
             tr
               td = f.text_field :name, class: 'form-control'
-              td = f.collection_select :block_id, Block.all, :id, :title,
+              td = f.collection_select :block_id, Block.all, :id, :name,
                                        { include_blank: false }, { class: 'form-control' }
               td = f.text_field :description, class: 'form-control'
               td = f.number_field :primary_price, class: 'form-control'
               td = f.number_field :secondary_price, class: 'form-control'
-              td = f.number_field :duration, class: 'form-control'
+              td = f.number_field :limit, class: 'form-control'
               td = f.text_field :preview_image, class: 'form-control'
               td = f.submit "Добавить программу", class: 'btn btn-primary'
           - @programs.each do |program|
             tr
               td = link_to program.name, admin_program_path(program)
-              td = program.block.title
+              td = program.block.name
               td = program.description
               td = program.primary_price
               td = program.secondary_price
-              td = program.duration
+              td = program.limit
               td = image_tag(program.preview_image)
               td = link_to 'Изменить', edit_admin_program_path(program), class: 'btn btn-warning'
               td = link_to 'Удалить', admin_program_path(program), method: :delete, data: { confirm: 'Вы действительно хотите удалить программу из системы?' }, class: 'btn btn-danger'

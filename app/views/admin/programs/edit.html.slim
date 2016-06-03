@@ -14,7 +14,7 @@ html
         = f.text_field :name, class: 'form-control'
       .form-group
         = f.label :block
-        = f.collection_select :block_id, Block.all, :id, :title,
+        = f.collection_select :block_id, Block.all, :id, :name,
                                        { include_blank: false }, { class: 'form-control' }
       .form-group
         = f.label :description
@@ -26,8 +26,8 @@ html
         = f.label :secondary_price
         = f.number_field :secondary_price, class: 'form-control'
       .form-group
-        = f.label :duration
-        = f.number_field :duration, class: 'form-control'
+        = f.label :limit
+        = f.number_field :limit, class: 'form-control'
       .form-group
         = f.label :preview_image
         = f.text_field :preview_image, class: 'form-control'

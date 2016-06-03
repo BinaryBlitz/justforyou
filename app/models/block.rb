@@ -12,5 +12,5 @@
 class Block < ApplicationRecord
   has_many :programs, dependent: :destroy
 
-  validates :title, :image, presence: true
+  validates :name, :image, presence: true
 end

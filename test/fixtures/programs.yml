@@ -17,7 +17,7 @@
 program:
   name: Program
   description: Description
-  duration: 10
+  limit: 10
   primary_price: 300
   secondary_price: 200
   preview_image: image

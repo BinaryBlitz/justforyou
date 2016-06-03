@@ -10,5 +10,5 @@
 #
 
 block:
-  title: Block
+  name: Block
   image: Image
