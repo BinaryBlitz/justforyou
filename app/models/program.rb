@@ -22,6 +22,6 @@ class Program < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 20 }
   validates :preview_image, :description, :block, presence: true
-  validates :duration, numericality: { greater_than: 0 }
+  validates :limit, numericality: { greater_than: 0 }
   validates :primary_price, :secondary_price, numericality: { greater_than: 0 }
 end
