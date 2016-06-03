@@ -1,1 +1,1 @@
-json.extract! day, :id, :order_of_days
+json.extract! day, :id, :position

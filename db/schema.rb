@@ -51,10 +51,10 @@ ActiveRecord::Schema.define(version: 20160531181017) do
   end
 
   create_table "days", force: :cascade do |t|
-    t.integer  "order_of_days", null: false
+    t.integer  "position",   null: false
     t.integer  "program_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["program_id"], name: "index_days_on_program_id", using: :btree
   end
 

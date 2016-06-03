@@ -10,10 +10,10 @@ class DayTest < ActiveSupport::TestCase
   end
 
   test 'number of days is positive' do
-    @day.order_of_days = -1
+    @day.position = -1
     assert @day.invalid?
 
-    @day.order_of_days = 0
+    @day.position = 0
     assert @day.invalid?
   end
 end
