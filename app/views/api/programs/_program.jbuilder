@@ -1,3 +1,3 @@
 json.extract! program,
-              :id, :name, :description, :duration,
+              :id, :name, :description, :threshold,
               :primary_price, :secondary_price, :preview_image

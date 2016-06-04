@@ -29,7 +29,7 @@ class API::ProgramsController < API::APIController
 
   def program_params
     params.require(:program)
-          .permit(:name, :description, :duration,
+          .permit(:name, :description, :threshold,
                   :primary_price, :secondary_price, :preview_img, :block_id)
   end
 end
