@@ -5,7 +5,7 @@
 #  id              :integer          not null, primary key
 #  name            :string           not null
 #  description     :text             not null
-#  limit           :integer          not null
+#  threshold       :integer          not null
 #  primary_price   :integer          not null
 #  secondary_price :integer          not null
 #  preview_image   :string           not null
@@ -22,6 +22,6 @@ class Program < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 20 }
   validates :preview_image, :description, :block, presence: true
-  validates :limit, numericality: { greater_than: 0 }
+  validates :threshold, numericality: { greater_than: 0 }
   validates :primary_price, :secondary_price, numericality: { greater_than: 0 }
 end

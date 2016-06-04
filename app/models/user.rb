@@ -10,6 +10,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  api_token    :string
+#  bonuses      :integer          default(0)
 #
 
 class User < ApplicationRecord

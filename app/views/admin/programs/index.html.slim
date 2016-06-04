@@ -23,7 +23,7 @@ html
               td = f.text_field :description, class: 'form-control'
               td = f.number_field :primary_price, class: 'form-control'
               td = f.number_field :secondary_price, class: 'form-control'
-              td = f.number_field :limit, class: 'form-control'
+              td = f.number_field :threshold, class: 'form-control'
               td = f.text_field :preview_image, class: 'form-control'
               td = f.submit "Добавить программу", class: 'btn btn-primary'
           - @programs.each do |program|
@@ -33,7 +33,7 @@ html
               td = program.description
               td = program.primary_price
               td = program.secondary_price
-              td = program.limit
+              td = program.threshold
               td = image_tag(program.preview_image)
               td = link_to 'Изменить', edit_admin_program_path(program), class: 'btn btn-warning'
               td = link_to 'Удалить', admin_program_path(program), method: :delete, data: { confirm: 'Вы действительно хотите удалить программу из системы?' }, class: 'btn btn-danger'

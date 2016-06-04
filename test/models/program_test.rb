@@ -30,11 +30,11 @@ class ProgramTest < ActiveSupport::TestCase
     assert @program.invalid?
   end
 
-  test 'positive limit and price' do
-    @program.limit = 0
+  test 'positive threshold and price' do
+    @program.threshold = 0
     assert @program.invalid?
 
-    @program.limit = 1
+    @program.threshold = 1
     assert @program.valid?
 
     @program.primary_price = -1

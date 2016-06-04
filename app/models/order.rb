@@ -37,7 +37,7 @@ class Order < ApplicationRecord
     number_of_days = line_items.first.number_of_days
     program = line_items.first.program
     price =
-      if program.limit > number_of_days
+      if program.threshold > number_of_days
         program.primary_price
       else
         program.secondary_price
@@ -45,8 +45,8 @@ class Order < ApplicationRecord
     number_of_days * price
   end
 
-  def limit_sum
-    @limit_sum = line_items.inject(0) { |sum, e| sum + e.program.limit }
+  def threshold_sum
+    @threshold_sum = line_items.inject(0) { |sum, e| sum + e.program.threshold }
   end
 
   def max_number_of_days
@@ -56,7 +56,7 @@ class Order < ApplicationRecord
   def multi_program_price
     line_items.sum do |item|
       price =
-        if limit_sum >= max_number_of_days
+        if threshold_sum >= max_number_of_days
           item.program.secondary_price
         else
           item.program.primary_price
