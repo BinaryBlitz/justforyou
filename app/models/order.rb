@@ -21,7 +21,7 @@ class Order < ApplicationRecord
 
   validates :comment, length: { maximum: 1000 }
   validates :line_items, presence: true
-  validates :pending_balance, numericality: { greater_or_equal_than: 0 }
+  validates :pending_balance, numericality: { greater_than_or_equal_to: 0 }
 
   after_save :set_pending_balance
   after_save :set_user_balance
@@ -41,6 +41,6 @@ class Order < ApplicationRecord
   end
 
   def set_user_balance
-    user.update_column(:balance, pending_balance) if paid
+    user.update_column(:balance, pending_balance) if paid?
   end
 end

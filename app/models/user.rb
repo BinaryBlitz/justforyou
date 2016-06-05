@@ -28,7 +28,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true, length: { maximum: 20 }
   validates :email, email: true, uniqueness: { case_sensitive: false }
   validates :phone_number, uniqueness: true
-  validates :balance, numericality: { greater_or_equal_than: 0 }
+  validates :balance, numericality: { greater_than_or_equal_to: 0 }
 
   has_secure_token :api_token
 
@@ -42,7 +42,7 @@ class User < ApplicationRecord
   end
 
   def number_of_days_sum
-    @number_of_days_sum = orders.inject(0) { |sum, e| sum + e.line_items.sum(:number_of_days) }
+    orders.inject(0) { |sum, item| sum + item.line_items.sum(:number_of_days) }
   end
 
   def bonus_percentage
