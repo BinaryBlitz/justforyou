@@ -5,7 +5,7 @@
 #  id              :integer          not null, primary key
 #  name            :string           not null
 #  description     :text             not null
-#  duration        :integer          not null
+#  threshold       :integer          not null
 #  primary_price   :integer          not null
 #  secondary_price :integer          not null
 #  preview_image   :string           not null
@@ -17,7 +17,7 @@
 program:
   name: Program
   description: Description
-  duration: 10
+  threshold: 10
   primary_price: 300
   secondary_price: 200
   preview_image: image
