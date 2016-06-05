@@ -21,4 +21,11 @@ class Order < ApplicationRecord
   validates :line_items, presence: true
 
   accepts_nested_attributes_for :line_items, allow_destroy: true
+
+  def total_price
+    @total_price ||= begin
+      threshold = line_items.joins(:program).maximum(:threshold)
+      line_items.inject(0) { |sum, item| sum + item.price_for_threshold(threshold) }
+    end
+  end
 end
