@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: line_items
+#
+#  id             :integer          not null, primary key
+#  order_id       :integer
+#  program_id     :integer
+#  number_of_days :integer          not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 require 'test_helper'
 
 class LineItemTest < ActiveSupport::TestCase
