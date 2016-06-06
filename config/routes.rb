@@ -24,6 +24,10 @@ Rails.application.routes.draw do
     resources :programs, only: [:index, :show, :update] do
       resources :days, only: :show
     end
+
+    resources :days, only: :show do
+      resources :items, only: :index
+    end
   end
 
   namespace :admin do
