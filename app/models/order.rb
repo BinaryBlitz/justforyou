@@ -41,6 +41,7 @@ class Order < ApplicationRecord
   end
 
   def set_user_balance
-    user.update_column(:balance, pending_balance) if paid?
+    return unless paid?
+    user.update_column(:balance, user.balance + pending_balance)
   end
 end
