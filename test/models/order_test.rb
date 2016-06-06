@@ -45,7 +45,7 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test 'order percentage' do
-    assert_equal 0.05, @order.user.bonus_percentage
+    assert_equal 0.05, @order.user.discount
   end
 
   test 'order total_price' do

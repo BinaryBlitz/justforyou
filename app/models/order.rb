@@ -36,7 +36,7 @@ class Order < ApplicationRecord
   end
 
   def set_pending_balance
-    pending_balance = total_price * user.bonus_percentage
+    pending_balance = total_price * user.discount
     update_column(:pending_balance, pending_balance)
   end
 

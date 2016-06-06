@@ -16,10 +16,10 @@
 class User < ApplicationRecord
   include Phonable
 
-  SMALL_BONUS = 0.05
-  BIG_BONUS = 0.1
-  SPECIAL_BONUS = 15_000
-  BONUS_DAY = 101
+  SMALL_DISCOUNT = 0.05
+  SMALL_DISCOUNT_THRESHOLD = 30
+  BIG_DISCOUNT = 0.1
+  BIG_DISCOUNT_THRESHOLD = 100
 
   has_many :orders, dependent: :destroy
   has_many :addresses, dependent: :destroy
@@ -41,15 +41,13 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def number_of_days_sum
+  def total_number_of_days
     orders.inject(0) { |sum, item| sum + item.line_items.sum(:number_of_days) }
   end
 
-  def bonus_percentage
-    if number_of_days_sum >= 31 && number_of_days_sum <= 100
-      SMALL_BONUS
-    elsif number_of_days_sum >= BONUS_DAY
-      BIG_BONUS
-    end
+  def discount
+    return BIG_DISCOUNT if total_number_of_days > BIG_DISCOUNT_THRESHOLD
+    return SMALL_DISCOUNT if total_number_of_days > SMALL_DISCOUNT_THRESHOLD
+    0.0
   end
 end
