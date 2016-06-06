@@ -48,4 +48,12 @@ class UserTest < ActiveSupport::TestCase
     assert @user.valid?
     assert_equal Phonelib.parse(phone_number).e164, @user.phone_number
   end
+
+  test 'balance is positive' do
+    @user.balance = -1
+    assert @user.invalid?
+
+    @user.balance = 0
+    assert @user.valid?
+  end
 end

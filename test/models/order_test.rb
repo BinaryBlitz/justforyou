@@ -35,4 +35,32 @@ class OrderTest < ActiveSupport::TestCase
     @order.line_items.destroy_all
     assert @order.invalid?
   end
+
+  test 'pending_balance is positive' do
+    @order.pending_balance = -1
+    assert @order.invalid?
+
+    @order.pending_balance = 0
+    assert @order.valid?
+  end
+
+  test 'order percentage' do
+    assert_equal 0.05, @order.user.discount
+  end
+
+  test 'order total_price' do
+    assert_equal 6200, @order.total_price
+  end
+
+  test 'order balance' do
+    @order.set_pending_balance
+    assert_equal 310, @order.pending_balance
+  end
+
+  test 'user balance' do
+    @order.set_pending_balance
+    @order.paid = true
+    @order.set_user_balance
+    assert_equal 310, @order.user.balance
+  end
 end

@@ -10,10 +10,16 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  api_token    :string
+#  balance      :integer          default(0)
 #
 
 class User < ApplicationRecord
   include Phonable
+
+  SMALL_DISCOUNT = 0.05
+  SMALL_DISCOUNT_THRESHOLD = 30
+  BIG_DISCOUNT = 0.1
+  BIG_DISCOUNT_THRESHOLD = 100
 
   has_many :orders, dependent: :destroy
   has_many :addresses, dependent: :destroy
@@ -22,6 +28,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true, length: { maximum: 20 }
   validates :email, email: true, uniqueness: { case_sensitive: false }
   validates :phone_number, uniqueness: true
+  validates :balance, numericality: { greater_than_or_equal_to: 0 }
 
   has_secure_token :api_token
 
@@ -32,5 +39,15 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def total_number_of_days
+    orders.inject(0) { |sum, item| sum + item.line_items.sum(:number_of_days) }
+  end
+
+  def discount
+    return BIG_DISCOUNT if total_number_of_days > BIG_DISCOUNT_THRESHOLD
+    return SMALL_DISCOUNT if total_number_of_days > SMALL_DISCOUNT_THRESHOLD
+    0.0
   end
 end

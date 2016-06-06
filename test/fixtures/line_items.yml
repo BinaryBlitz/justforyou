@@ -13,4 +13,4 @@
 line_item:
   order: order
   program: program
-  number_of_days: 1
+  number_of_days: 31
