@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
 
     resources :programs, only: [:index, :show, :update] do
-      resources :days, only: :show
+      resources :days, only: [:index]
     end
   end
 
