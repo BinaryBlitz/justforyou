@@ -59,11 +59,11 @@ ActiveRecord::Schema.define(version: 20160607090920) do
   end
 
   create_table "deliveries", force: :cascade do |t|
-    t.string   "status",       null: false
-    t.datetime "delivered_at", null: false
+    t.string   "status",        null: false
+    t.datetime "scheduled_for", null: false
     t.integer  "order_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["order_id"], name: "index_deliveries_on_order_id", using: :btree
   end
 

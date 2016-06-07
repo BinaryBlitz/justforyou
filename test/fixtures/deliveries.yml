@@ -1,4 +1,4 @@
 delivery:
   order: order
   status: Delivered
-  delivered_at: <%= DateTime.now %>
+  scheduled_for: <%= DateTime.now %>
