@@ -1,0 +1,4 @@
+delivery:
+  order: order
+  status: Delivered
+  delivered_at: <%= DateTime.now %>
