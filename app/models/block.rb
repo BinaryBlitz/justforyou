@@ -10,6 +10,8 @@
 #
 
 class Block < ApplicationRecord
+  mount_uploader :image, ImageUploader
+
   has_many :programs, dependent: :destroy
 
   validates :name, :image, presence: true

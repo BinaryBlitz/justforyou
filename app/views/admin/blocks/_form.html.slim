@@ -1,0 +1,19 @@
+html
+  body
+    = form_for [:admin, @block] do |f|
+      - if @block.errors.any?
+        .error_explanation
+          h2 = pluralize(@block.errors.count, "error")
+          ul
+            - @block.errors.full_messages.each do |message|
+              li
+                = message
+
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.label :image
+        = f.file_field :image
+      .actions
+        = f.submit class: 'btn btn-default'

@@ -1,0 +1,20 @@
+html
+  body
+    .container 
+      h1 Блоки
+      = link_to 'Добавить блок', new_admin_block_path, class: 'btn btn-primary'
+      table.table
+        thead
+          tr
+            th Название
+            th Изображение
+            th
+            th
+        tbody
+          - @blocks.each do |block|
+            tr
+              td = link_to block.name, admin_block_path(block)
+              td = image_tag(block.image)
+              td = link_to 'Изменить', edit_admin_block_path(block), class: 'btn btn-warning'
+              td = link_to 'Удалить', admin_block_path(block), method: :delete, data: { confirm: 'Вы действительно хотите удалить блок из системы?' }, class: 'btn btn-danger'
+    = paginate @blocks
