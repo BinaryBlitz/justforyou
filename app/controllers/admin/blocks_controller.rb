@@ -44,7 +44,6 @@ class Admin::BlocksController < Admin::AdminController
   end
 
   def block_params
-    params.require(:block)
-          .permit(:name, :image)
+    params.require(:block).permit(:name, :image)
   end
 end

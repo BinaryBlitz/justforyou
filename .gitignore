@@ -16,5 +16,8 @@
 # Ignore Byebug command history file.
 .byebug_history
 
+# Ignore uploads
+/public/uploads
+
 # OS X
 .DS_Store

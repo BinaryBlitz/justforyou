@@ -116,6 +116,8 @@ GEM
     pg (0.18.4)
     phonelib (0.6.0)
     puma (3.4.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.0.rc1)
       json
     rack-test (0.6.3)
@@ -229,6 +231,7 @@ DEPENDENCIES
   pg (~> 0.18)
   phonelib
   puma (~> 3.0)
+  pundit
   rails (>= 5.0.0.rc1, < 5.1)
   rails-i18n
   rails_12factor

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606181934) do
+ActiveRecord::Schema.define(version: 20160607090920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,15 @@ ActiveRecord::Schema.define(version: 20160606181934) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["program_id"], name: "index_days_on_program_id", using: :btree
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.string   "status",        null: false
+    t.datetime "scheduled_for", null: false
+    t.integer  "order_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["order_id"], name: "index_deliveries_on_order_id", using: :btree
   end
 
   create_table "items", force: :cascade do |t|
@@ -153,6 +162,7 @@ ActiveRecord::Schema.define(version: 20160606181934) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "days", "programs"
+  add_foreign_key "deliveries", "orders"
   add_foreign_key "items", "days"
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "programs"
