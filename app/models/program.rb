@@ -16,10 +16,14 @@
 #
 
 class Program < ApplicationRecord
+  mount_uploader :preview_image, PreviewImageUploader
+
   belongs_to :block
 
   has_many :days, dependent: :destroy
   has_many :line_items, dependent: :destroy
+
+  accepts_nested_attributes_for :days
 
   validates :name, presence: true, length: { maximum: 20 }
   validates :preview_image, :description, :block, presence: true

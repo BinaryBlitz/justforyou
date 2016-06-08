@@ -14,5 +14,7 @@ class Day < ApplicationRecord
   has_many :products, dependent: :destroy
   has_many :items, dependent: :destroy
 
+  accepts_nested_attributes_for :items
+
   validates :position, presence: true, numericality: { greater_than: 0 }
 end

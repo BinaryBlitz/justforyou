@@ -5,6 +5,12 @@ class Admin::ProgramsController < Admin::AdminController
     @programs = Program.all.page(params[:page]).per(10)
   end
 
+  def new
+    @program = Program.new
+    @days = @program.days.build
+    @items = @days.items.build
+  end
+
   def show
   end
 
@@ -42,6 +48,8 @@ class Admin::ProgramsController < Admin::AdminController
   def program_params
     params.require(:program)
           .permit(:name, :description, :threshold,
-                  :primary_price, :secondary_price, :preview_image, :block_id)
+                  :primary_price, :secondary_price, :preview_image, :block_id,
+                  days_attributes:[ item_attributes: [:content, :weight, :calories,
+                                                      :starts_at, :ends_at]])
   end
 end

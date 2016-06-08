@@ -1,0 +1,55 @@
+html
+  body
+    = form_for [:admin, @program] do |f|
+      - if @program.errors.any?
+        .error_explanation
+          h2 = pluralize(@program.errors.count, "error")
+          ul
+            - @program.errors.full_messages.each do |message|
+              li
+                = message
+
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.label :block
+        = f.collection_select :block_id, Block.all, :id, :name,
+                                       { include_blank: false }, { class: 'form-control' }
+      .form-group
+        = f.label :description
+        = f.text_field :description, class: 'form-control'
+      .form-group
+        = f.label :primary_price
+        = f.number_field :primary_price, class: 'form-control'
+      .form-group
+        = f.label :secondary_price
+        = f.number_field :secondary_price, class: 'form-control'
+      .form-group
+        = f.label :threshold
+        = f.number_field :threshold, class: 'form-control'
+      .form-group
+        = f.label :preview_image
+        = f.file_field :preview_image
+    
+      = f.fields_for :days do |d|
+        p Day 
+        = d.fields_for :items do |i|
+          .col-lg-11.pull-right
+            .form-group
+              = i.label :content
+              = i.text_field :content, class: 'form-control'
+            .form-group
+              = i.label :weight
+              = i.number_field :weight, class: 'form-control'
+            .form-group
+              = i.label :calories
+              = i.number_field :calories, class: 'form-control'
+            .form-group
+              = i.label :starts_at
+              = i.time_field :starts_at, class: 'form-control'
+            .form-group
+              = i.label :ends_at
+              = i.time_field :ends_at, class: 'form-control'
+      .actions
+        = f.submit class: 'btn btn-default'
