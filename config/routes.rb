@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, except: [:new, :create]
-    resources :programs, except: [:new]
+    resources :programs
     resources :blocks
   end
 end
