@@ -1,13 +1,7 @@
 html
   body
     = form_for [:admin, @program] do |f|
-      - if @program.errors.any?
-        .error_explanation
-          h2 = pluralize(@program.errors.count, "error")
-          ul
-            - @program.errors.full_messages.each do |message|
-              li
-                = message
+      = render 'shared/error_messages', object: @program
 
       .form-group
         = f.label :name
@@ -50,6 +44,7 @@ html
         = f.file_field :preview_image
 
       = f.nested_fields_for :days do |day|
+        = render 'shared/error_messages', object: day.object
         = render 'days_fields', f: day
 
       .form-group

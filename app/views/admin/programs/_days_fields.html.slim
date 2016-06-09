@@ -1,33 +1,35 @@
 .row
   .form-group.col-md-1
-    = f.label :day
+    = f.label :position
     = f.number_field :position, class: 'form-control'
 
-= f.nested_fields_for :items do |i|
+= f.nested_fields_for :items do |ff|
+
+  = render 'shared/error_messages', object: ff.object
 
   .col-lg-11.pull-right
     .form-group
-      = i.label :content
-      = i.text_field :content, class: 'form-control'
+      = ff.label :content
+      = ff.text_field :content, class: 'form-control'
 
     .form-group
-      = i.label :weight
-      = i.number_field :weight, class: 'form-control'
+      = ff.label :weight
+      = ff.number_field :weight, class: 'form-control'
 
     .form-group
-      = i.label :calories
-      = i.number_field :calories, class: 'form-control', step: 'any'
+      = ff.label :calories
+      = ff.number_field :calories, class: 'form-control', step: 'any'
 
     .form-group
-      = i.label :starts_at
-      = i.time_field :starts_at, class: 'form-control'
+      = ff.label :starts_at
+      = ff.time_field :starts_at, class: 'form-control'
 
     .form-group
-      = i.label :ends_at
-      = i.time_field :ends_at, class: 'form-control'
+      = ff.label :ends_at
+      = ff.time_field :ends_at, class: 'form-control'
 
     .form-group
-        = i.remove_nested_fields_link "Убрать меню", class: 'btn btn-danger'
+        = ff.remove_nested_fields_link "Убрать меню", class: 'btn btn-danger'
 
 .col-lg-11.pull-right
   .form-group

@@ -1,13 +1,7 @@
 html
   body
     = form_for [:admin, @block] do |f|
-      - if @block.errors.any?
-        .error_explanation
-          h2 = pluralize(@block.errors.count, "error")
-          ul
-            - @block.errors.full_messages.each do |message|
-              li
-                = message
+      = render 'shared/error_messages', object: @block
 
       .form-group
         = f.label :name
