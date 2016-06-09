@@ -1,4 +1,4 @@
-class DeliveryPolicy < ApplicationPolicy
+class API::DeliveryPolicy < ApplicationPolicy
   attr_reader :delivery
 
   def initialize(delivery)
