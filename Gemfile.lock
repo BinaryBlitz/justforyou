@@ -109,6 +109,7 @@ GEM
     minitest (5.9.0)
     multi_json (1.12.1)
     multi_xml (0.5.5)
+    nested_form (0.3.2)
     nio4r (1.2.1)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -228,6 +229,7 @@ DEPENDENCIES
   kaminari
   listen (~> 3.0.5)
   mini_magick
+  nested_form
   pg (~> 0.18)
   phonelib
   puma (~> 3.0)

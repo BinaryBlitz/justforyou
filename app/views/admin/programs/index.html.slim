@@ -20,7 +20,7 @@ html
             tr
               td = link_to program.name, admin_program_path(program)
               td = program.block.name
-              td = program.description
+              td = program.description.truncate(140)
               td = program.primary_price
               td = program.secondary_price
               td = program.threshold
