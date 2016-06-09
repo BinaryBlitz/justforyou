@@ -1,0 +1,37 @@
+.row
+  .form-group.col-md-1
+    = f.label :day
+    = f.number_field :position, class: 'form-control'
+
+= f.nested_fields_for :items do |i|
+
+  .col-lg-11.pull-right
+    .form-group
+      = i.label :content
+      = i.text_field :content, class: 'form-control'
+
+    .form-group
+      = i.label :weight
+      = i.number_field :weight, class: 'form-control'
+
+    .form-group
+      = i.label :calories
+      = i.number_field :calories, class: 'form-control', step: 'any'
+
+    .form-group
+      = i.label :starts_at
+      = i.time_field :starts_at, class: 'form-control'
+
+    .form-group
+      = i.label :ends_at
+      = i.time_field :ends_at, class: 'form-control'
+
+    .form-group
+        = i.remove_nested_fields_link "Убрать меню", class: 'btn btn-danger'
+
+.col-lg-11.pull-right
+  .form-group
+    = f.add_nested_fields_link :items, "Добавить меню", class: 'btn btn-primary'
+
+.form-group
+  = f.remove_nested_fields_link "Убрать день", class: 'btn btn-danger'

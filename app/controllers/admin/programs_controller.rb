@@ -47,9 +47,10 @@ class Admin::ProgramsController < Admin::AdminController
 
   def program_params
     params.require(:program)
-          .permit(:name, :description, :threshold,
-                  :primary_price, :secondary_price, :preview_image, :block_id,
-                  days_attributes:[ item_attributes: [:content, :weight, :calories,
-                                                      :starts_at, :ends_at]])
+          .permit(:name, :description, :threshold, :primary_price,
+                  :secondary_price, :preview_image, :block_id, prescription:[],
+                  days_attributes:[:id, :position, :_destroy,
+                  items_attributes: [:id, :content, :weight, :calories,
+                                     :starts_at, :ends_at, :_destroy]])
   end
 end
