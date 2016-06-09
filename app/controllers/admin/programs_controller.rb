@@ -22,7 +22,7 @@ class Admin::ProgramsController < Admin::AdminController
     if @program.save
       redirect_to admin_programs_url, notice: 'Программа была успешно создана.'
     else
-      redirect_to admin_programs_url
+      render 'new'
     end
   end
 
