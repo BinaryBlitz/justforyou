@@ -3,7 +3,7 @@
 # Table name: deliveries
 #
 #  id            :integer          not null, primary key
-#  status        :string           not null
+#  status        :integer          default("pending")
 #  scheduled_for :datetime         not null
 #  order_id      :integer
 #  created_at    :datetime         not null
@@ -15,5 +15,6 @@ class Delivery < ApplicationRecord
 
   validates :status, :scheduled_for, presence: true
 
-  enum status: %i(pending canceled delivered)
+  enum status: %i(pending delivered canceled)
+
 end
