@@ -1,4 +1,9 @@
+new_delivery:
+  order: order
+  status: pending
+  scheduled_for: <%= 3.days.from_now %>
+
 delivery:
   order: order
   status: pending
-  scheduled_for: <%= DateTime.now %>
+  scheduled_for: <%= 1.days.from_now %>

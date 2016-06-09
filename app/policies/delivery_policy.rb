@@ -1,7 +1,8 @@
-class API::DeliveryPolicy < ApplicationPolicy
+class DeliveryPolicy < ApplicationPolicy
   attr_reader :delivery
 
-  def initialize(delivery)
+  def initialize(current_user, delivery)
+    @current_user = current_user
     @delivery = delivery
   end
 

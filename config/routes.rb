@@ -28,6 +28,10 @@ Rails.application.routes.draw do
     resources :days, only: :show do
       resources :items, only: :index
     end
+
+    resources :deliveries, only: :cancel do
+      patch 'cancel', on: :member
+    end
   end
 
   namespace :admin do
