@@ -2,6 +2,7 @@ html
   body
     .container 
       h1 Программы
+      = link_to 'Добавить программу', new_admin_program_path, class: 'btn btn-primary'
       table.table
         thead
           tr
@@ -15,22 +16,11 @@ html
             th
             th
         tbody
-          = form_for ([:admin, Program.new]) do |f|
-            tr
-              td = f.text_field :name, class: 'form-control'
-              td = f.collection_select :block_id, Block.all, :id, :name,
-                                       { include_blank: false }, { class: 'form-control' }
-              td = f.text_field :description, class: 'form-control'
-              td = f.number_field :primary_price, class: 'form-control'
-              td = f.number_field :secondary_price, class: 'form-control'
-              td = f.number_field :threshold, class: 'form-control'
-              td = f.text_field :preview_image, class: 'form-control'
-              td = f.submit "Добавить программу", class: 'btn btn-primary'
           - @programs.each do |program|
             tr
               td = link_to program.name, admin_program_path(program)
               td = program.block.name
-              td = program.description
+              td = program.description.truncate(140)
               td = program.primary_price
               td = program.secondary_price
               td = program.threshold
