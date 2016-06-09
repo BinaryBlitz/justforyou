@@ -1,1 +1,1 @@
-json.extract! block, :id, :name, :image
+json.extract! block, :id, :name, :image_url
