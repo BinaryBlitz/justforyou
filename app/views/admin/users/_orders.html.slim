@@ -1,0 +1,21 @@
+.form-group
+  strong Заказы:
+  - @user.orders.each do |order|
+    ul
+      .form-group
+        strong Дата и время доставки:
+        = order.deliveries.first.scheduled_for
+      .form-group
+        strong Адрес:
+        = order.address.content
+        - if order.address.floor.present?
+          |, этаж #{ order.address.floor }
+        - if order.address.entrance.present?
+          |, подъезд #{ order.address.entrance }
+      - order.line_items.each do |item|
+        .form-group
+          strong Нахвание программ:
+          = item.program.name
+      .form-group
+        strong Комментарий:
+        = order.comment

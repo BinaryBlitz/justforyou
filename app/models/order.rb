@@ -19,6 +19,7 @@ class Order < ApplicationRecord
 
   has_many :line_items, dependent: :destroy, inverse_of: :order
   has_many :deliveries, dependent: :destroy
+  belongs_to :address
 
   validates :comment, length: { maximum: 1000 }
   validates :line_items, presence: true

@@ -1,26 +1,39 @@
 html
   body
     h1 Пользователь: #{ @user.full_name }
+
     .form-group
       strong Имя:
       = @user.first_name
+
     .form-group
       strong Фамилия:
       = @user.last_name
+
     .form-group
       strong Телефон:
       = @user.phone_number
+
     .form-group
-      strong Почта: 
+      strong Почта:
       = @user.email
+
     .form-group
       - if @user.substitutions.any?
         strong Замены:
+
         - @user.substitutions.each do |sub|
           ul
             li = sub.product.name
       - else
         strong Замены отсутсвуют
+
+    = render 'orders'
+
     .form-group
-      strong Дата регистрации: 
+      strong Бонусы:
+      = @user.balance
+
+    .form-group
+      strong Дата регистрации:
       = @user.created_at.strftime("%Y-%m-%d")
