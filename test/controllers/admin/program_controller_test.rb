@@ -20,7 +20,7 @@ class Admin::ProgramsControllerTest < ActionDispatch::IntegrationTest
     @program.destroy
 
     assert_difference 'Program.count' do
-      post admin_programs_url(@program), params: { 
+      post admin_programs_url(@program), params: {
         program: {
           name: @program.name,
           description: @program.description,
@@ -28,9 +28,8 @@ class Admin::ProgramsControllerTest < ActionDispatch::IntegrationTest
           threshold: @program.threshold,
           primary_price: @program.primary_price,
           secondary_price: @program.secondary_price,
-          preview_image: fixture_file_upload('public/blank.jpg'),
           block_id: @program.block_id
-        }
+        }.merge(preview_image: fixture_file_upload('public/blank.jpg'))
       }
     end
 
