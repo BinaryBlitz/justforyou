@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resource :user, only: [:show, :create, :update]
 
     resources :orders, except: [:new, :edit]
-    resources :addresses, only: [:create, :index, :show]
+    resources :addresses, except: [:new, :edit, :update]
     resources :product_types, only: [:index, :show]
 
     resources :blocks, only: [:index, :show] do

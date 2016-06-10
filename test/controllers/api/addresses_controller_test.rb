@@ -26,4 +26,12 @@ class API::AddressesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :created
   end
+
+  test 'should destroy address' do
+    assert_difference 'Address.count', -1 do
+      delete api_address_url(@address, api_token: api_token)
+    end
+
+    assert_response :no_content
+  end
 end

@@ -1,10 +1,11 @@
 class API::AddressesController < API::APIController
+  before_action :set_address, only: [:show, :destroy]
+
   def index
     @addreses = current_user.addresses
   end
 
   def show
-    @address = Address.find(params[:id])
   end
 
   def create
@@ -17,7 +18,16 @@ class API::AddressesController < API::APIController
     end
   end
 
+  def destroy
+    @address.destroy
+    head :no_content
+  end
+
   private
+
+  def set_address
+    @address = Address.find(params[:id])
+  end
 
   def order_params
     params.require(:address).permit(:content, :floor, :entrance)
