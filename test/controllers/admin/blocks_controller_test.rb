@@ -20,10 +20,13 @@ class Admin::BlocksControllerTest < ActionDispatch::IntegrationTest
     @block.destroy
 
     assert_difference 'Block.count' do
-      post admin_blocks_url(@block), params: { block: @block.attributes }
+      post admin_blocks_url(@block), params: {
+        block: {
+          name: @block.name,
+          image: fixture_file_upload('public/blank.jpg')
+        }
+      }
     end
-
-    assert_redirected_to admin_blocks_path
   end
 
   test 'should update block' do
