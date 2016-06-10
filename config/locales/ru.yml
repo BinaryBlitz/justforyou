@@ -1,4 +1,37 @@
 ru:
+  activerecord:
+    models:
+      program: Программа
+      block: Блок
+      order: Заказ
+      day: День
+      substitution: Замена
+    attributes:
+      user:
+        first_name: Имя
+        last_name: Фамилия
+        email: Почта
+        phone_number: Номер телефона
+      program:
+        name: Название
+        description: Описание
+        prescription: Описание "Для кого"
+        threshold: Пороговое значение
+        primary_price: Первая цена
+        secondary_price: Вторая цена
+        preview_image: Фотография меню
+        block: Блок
+      block:
+        name: Название
+        image: Изображение
+      day:
+        position: Пордок дня
+      item:
+        content: Продукты
+        weight: Вес
+        calories: Калории
+        starts_at: Время начала
+        ends_at: Время окончания
   views:
     pagination:
       first: "&laquo; Первая"
@@ -6,5 +39,3 @@ ru:
       previous: "&lsaquo; Предыдущая"
       next: "Следющая &rsaquo;"
       truncate: "&hellip;"
-  errors:
-    format: "%{message}"

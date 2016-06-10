@@ -1,24 +1,69 @@
 html
   body
-    h1 Программа: #{ @programm }
+    h1 Программа: #{ @program.name }
+
     .form-group
-      strong Название: 
+      strong Название:
       = @program.name
+
     .form-group
       strong Название блока:
       = @program.block.name
+
     .form-group
-      strong Описание: 
+      strong Описание:
       = @program.description
+
     .form-group
-      strong Первая цена: 
+      strong Описание "Для кого":
+      ul
+        - @program.prescription.each do |prescription|
+          li = prescription
+
+    .form-group
+      strong Первая цена:
       = @program.primary_price
+
     .form-group
-      strong Вторая цена: 
+      strong Вторая цена:
       = @program.secondary_price
+
     .form-group
-      strong Длительность первой цены: 
+      strong Пороговое значение:
       = @program.threshold
+
     .form-group
-      strong Фотография меню: 
-      = @program.preview_image
+      strong Фотография меню:
+      p = image_tag @program.preview_image
+
+    .form-group
+      strong Пример меню на #{ @program.days.count } дней:
+
+    .form-group
+      - @program.days.each do |day|
+
+        .form-group
+          strong
+            | День 
+            = day.position
+
+        - day.items.each do |item|
+
+          .col-lg-12.pull-right.well
+            .form-group
+              strong Время:
+              = item.starts_at.strftime("%H:%M") + ' - ' + item.ends_at.strftime("%H:%M")
+
+            .form-group
+              strong Ингридиенты:
+              = item.content
+
+            .form-group
+              strong Вес:
+              = item.weight
+              | гр.
+
+            .form-group
+              strong Калории:
+              = item.calories
+              | Ккал

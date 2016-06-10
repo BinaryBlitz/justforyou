@@ -20,7 +20,7 @@ class Admin::BlocksController < Admin::AdminController
     if @block.save
       redirect_to admin_blocks_url, notice: 'Блок был успешно создан.'
     else
-      redirect_to admin_blocks_url
+      render 'new'
     end
   end
 
