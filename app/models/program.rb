@@ -16,8 +16,6 @@
 #
 
 class Program < ApplicationRecord
-  mount_uploader :preview_image, PreviewImageUploader
-
   belongs_to :block
 
   has_many :days, dependent: :destroy, inverse_of: :program
@@ -29,4 +27,6 @@ class Program < ApplicationRecord
   validates :preview_image, :description, :prescription, :block, presence: true
   validates :threshold, numericality: { greater_than: 0 }
   validates :primary_price, :secondary_price, numericality: { greater_than: 0 }
+
+  mount_uploader :preview_image, PreviewImageUploader
 end
