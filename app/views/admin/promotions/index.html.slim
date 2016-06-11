@@ -1,20 +1,18 @@
-html
-  body
-    .container 
-      h1 Акции
-      = link_to 'Добавить акцию', new_admin_promotion_path, class: 'btn btn-primary'
-      table.table
-        thead
-          tr
-            th Название
-            th Описание
-            th
-            th
-        tbody
-          - @promotions.each do |promotion|
-            tr
-              td = link_to promotion.name, admin_promotion_path(promotion)
-              td = promotion.description
-              td = link_to 'Изменить', edit_admin_promotion_path(promotion), class: 'btn btn-warning'
-              td = link_to 'Удалить', admin_promotion_path(promotion), method: :delete, data: { confirm: 'Удалить акцию?' }, class: 'btn btn-danger'
-    = paginate @promotions
+.container 
+  h1 Акции
+  = link_to 'Добавить акцию', new_admin_promotion_path, class: 'btn btn-primary'
+  table.table
+    thead
+      tr
+        th Название
+        th Описание
+        th
+        th
+    tbody
+      - @promotions.each do |promotion|
+        tr
+          td = link_to promotion.name, admin_promotion_path(promotion)
+          td = promotion.description
+          td = link_to 'Изменить', edit_admin_promotion_path(promotion), class: 'btn btn-warning'
+          td = link_to 'Удалить', admin_promotion_path(promotion), method: :delete, data: { confirm: 'Удалить акцию?' }, class: 'btn btn-danger'
+= paginate @promotions
