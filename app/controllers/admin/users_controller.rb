@@ -13,7 +13,7 @@ class Admin::UsersController < Admin::AdminController
 
   def update
     if @user.update(user_params)
-      redirect_to admin_users_url, notice: 'Пользователь успешно обновлен.'
+      redirect_to admin_user_url(@user), notice: 'Пользователь успешно обновлен.'
     else
       render :edit
     end
@@ -31,6 +31,6 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :phone_number)
+    params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :balance)
   end
 end
