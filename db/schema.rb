@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611081508) do
+ActiveRecord::Schema.define(version: 20160611111529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,8 +111,6 @@ ActiveRecord::Schema.define(version: 20160611081508) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "product_type_id"
-    t.integer  "day_id"
-    t.index ["day_id"], name: "index_products_on_day_id", using: :btree
     t.index ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
   end
 
@@ -175,7 +173,6 @@ ActiveRecord::Schema.define(version: 20160611081508) do
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "programs"
   add_foreign_key "orders", "users"
-  add_foreign_key "products", "days"
   add_foreign_key "products", "product_types"
   add_foreign_key "programs", "blocks"
   add_foreign_key "substitutions", "products"

@@ -2,7 +2,7 @@ class API::DaysController < API::APIController
   before_action :set_program, only: [:index]
 
   def index
-    @days = @program.days.includes(:products)
+    @days = @program.days.includes(:items)
   end
 
   def show
