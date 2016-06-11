@@ -10,7 +10,6 @@
 #  updated_at      :datetime         not null
 #  paid            :boolean          default(FALSE)
 #  pending_balance :integer          default(0)
-#  address_id      :integer
 #
 
 class Order < ApplicationRecord

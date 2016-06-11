@@ -97,8 +97,6 @@ ActiveRecord::Schema.define(version: 20160611081508) do
     t.datetime "updated_at",                      null: false
     t.boolean  "paid",            default: false
     t.integer  "pending_balance", default: 0
-    t.integer  "address_id"
-    t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
@@ -176,7 +174,6 @@ ActiveRecord::Schema.define(version: 20160611081508) do
   add_foreign_key "items", "days"
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "programs"
-  add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "days"
   add_foreign_key "products", "product_types"
