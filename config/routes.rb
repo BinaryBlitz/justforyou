@@ -40,5 +40,6 @@ Rails.application.routes.draw do
     resources :users, except: [:new, :create]
     resources :programs
     resources :blocks
+    resources :promotions
   end
 end

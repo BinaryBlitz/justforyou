@@ -6,6 +6,7 @@ ru:
       order: Заказ
       day: День
       substitution: Замена
+      promotion: Акция
     attributes:
       user:
         first_name: Имя
@@ -25,13 +26,16 @@ ru:
         name: Название
         image: Изображение
       day:
-        position: Пордок дня
+        position: Порядок дня
       item:
         content: Продукты
         weight: Вес
         calories: Калории
         starts_at: Время начала
         ends_at: Время окончания
+      promotion:
+        name: Название
+        description: Описание
   views:
     pagination:
       first: "&laquo; Первая"
