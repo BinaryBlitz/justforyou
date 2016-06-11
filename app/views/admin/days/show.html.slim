@@ -1,0 +1,15 @@
+h1 = "День #{@day.position}"
+
+.form-group
+  = link_to 'Изменить', edit_admin_day_path(@day), class: 'btn btn-default'
+
+table.table
+  thead
+    th Наименование
+    th Вес
+    th Калории
+    th Начало
+    th Конец
+  tbody
+    - @day.items.each do |item|
+      = render item

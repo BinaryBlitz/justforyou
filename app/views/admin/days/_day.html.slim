@@ -1,0 +1,6 @@
+tr
+  td = link_to "День №#{day.position}", [:admin, day]
+  td
+    = link_to 'Изменить', edit_admin_day_path(day), class: 'btn btn-default'
+    | &nbsp;
+    = link_to 'Удалить', [:admin, day], method: :delete, class: 'btn btn-danger'

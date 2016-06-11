@@ -2,13 +2,11 @@ class Admin::ProgramsController < Admin::AdminController
   before_action :set_program, only: [:show, :edit, :update, :destroy]
 
   def index
-    @programs = Program.all.page(params[:page]).per(10)
+    @programs = Program.all.page(params[:page])
   end
 
   def new
     @program = Program.new
-    @days = @program.days.build
-    @items = @days.items.build
   end
 
   def show
@@ -19,6 +17,7 @@ class Admin::ProgramsController < Admin::AdminController
 
   def create
     @program = Program.new(program_params)
+
     if @program.save
       redirect_to admin_programs_url, notice: 'Программа была успешно создана.'
     else
@@ -49,11 +48,7 @@ class Admin::ProgramsController < Admin::AdminController
     params.require(:program)
       .permit(
         :name, :description, :threshold, :primary_price, :secondary_price,
-        :preview_image, :block_id, prescription: [],
-        days_attributes: [
-          :id, :position, :_destroy,
-          items_attributes: [:id, :content, :weight, :calories, :starts_at, :ends_at, :_destroy]
-        ]
+        :preview_image, :block_id, prescription: []
       )
   end
 end

@@ -38,7 +38,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, except: [:new, :create]
-    resources :programs
+
+    resources :programs do
+      resources :days, shallow: true
+    end
+
     resources :blocks
     resources :promotions
   end

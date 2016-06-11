@@ -21,8 +21,6 @@ class Program < ApplicationRecord
   has_many :days, dependent: :destroy, inverse_of: :program
   has_many :line_items, dependent: :destroy
 
-  accepts_nested_attributes_for :days, allow_destroy: true
-
   validates :name, presence: true, length: { maximum: 20 }
   validates :preview_image, :description, :prescription, :block, presence: true
   validates :threshold, numericality: { greater_than: 0 }

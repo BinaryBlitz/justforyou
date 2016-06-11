@@ -1,69 +1,51 @@
-html
-  body
-    h1 Программа: #{ @program.name }
+h1 Программа: #{@program.name}
 
-    .form-group
-      strong Название:
-      = @program.name
+.form-group
+  = link_to 'Изменить', edit_admin_program_path(@program), class: 'btn btn-default'
 
-    .form-group
-      strong Название блока:
-      = @program.block.name
+.form-group
+  strong Название:
+  = @program.name
 
-    .form-group
-      strong Описание:
-      = @program.description
+.form-group
+  strong Название блока:
+  = @program.block.name
 
-    .form-group
-      strong Описание "Для кого":
-      ul
-        - @program.prescription.each do |prescription|
-          li = prescription
+.form-group
+  strong Описание:
+  = @program.description
 
-    .form-group
-      strong Первая цена:
-      = @program.primary_price
+.form-group
+  strong Описание "Для кого":
+  ul
+    - @program.prescription.each do |prescription|
+      li = prescription
 
-    .form-group
-      strong Вторая цена:
-      = @program.secondary_price
+.form-group
+  strong Первая цена: 
+  = @program.primary_price
 
-    .form-group
-      strong Пороговое значение:
-      = @program.threshold
+.form-group
+  strong Вторая цена: 
+  = @program.secondary_price
 
-    .form-group
-      strong Фотография меню:
-      p = image_tag @program.preview_image
+.form-group
+  strong Пороговое значение: 
+  = @program.threshold
 
-    .form-group
-      strong Пример меню на #{ @program.days.count } дней:
+.form-group
+  strong Фотография меню:
+  p = image_tag @program.preview_image
 
-    .form-group
-      - @program.days.each do |day|
+.form-group
+  strong Пример меню на #{ @program.days.count } дней:
 
-        .form-group
-          strong
-            | День 
-            = day.position
+h2 Дни
 
-        - day.items.each do |item|
-
-          .col-lg-12.pull-right.well
-            .form-group
-              strong Время:
-              = item.starts_at.strftime("%H:%M") + ' - ' + item.ends_at.strftime("%H:%M")
-
-            .form-group
-              strong Ингридиенты:
-              = item.content
-
-            .form-group
-              strong Вес:
-              = item.weight
-              | гр.
-
-            .form-group
-              strong Калории:
-              = item.calories
-              | Ккал
+table.table
+  thead
+    th №
+    th Действия
+  tbody
+    - @program.days.each do |day|
+      = render day
