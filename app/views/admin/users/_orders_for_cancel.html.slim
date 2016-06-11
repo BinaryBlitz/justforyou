@@ -1,14 +1,15 @@
-.form-group
-  strong Заказы:
-  - @user.orders.each do |order|
-    ul
-      .form-group
-        strong Заказ № #{ order.id }
+- @user.orders.each do |order|
+  - if ((order.deliveries.first.scheduled_for - Time.zone.now) / 1.hour).round < 36
+    .well
+      .form-group.pull-right
+        = link_to "Отменить", cancel_admin_delivery_path(order.deliveries.first),
+                              method: :patch, class: 'btn btn-danger'
 
       .form-group
-        strong Дата и время доставки:
+        strong Дата и время доставок:
         - order.deliveries.each do |delivery|
           = delivery.scheduled_for.strftime('%Y-%m-%d %H:%M')
+        end
 
       .form-group
         strong Адрес:
@@ -23,6 +24,6 @@
           strong Программы:
           = item.program.name
 
-      .form-group
-        strong Комментарий:
-        = order.comment
+        .form-group
+          strong Блок:
+          = item.program.block.name

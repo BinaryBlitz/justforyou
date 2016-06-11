@@ -12,7 +12,7 @@
 #
 
 class Address < ApplicationRecord
-  has_many :orders
+  has_many :orders, dependent: :destroy
   belongs_to :user
 
   validates :content, presence: true

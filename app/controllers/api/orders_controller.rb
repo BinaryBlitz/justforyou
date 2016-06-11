@@ -40,7 +40,9 @@ class API::OrdersController < API::APIController
   def order_params
     params.require(:order)
       .permit(
-        :comment, :phone_number, line_items_attributes: [:order_id, :program_id, :number_of_days]
+        :address_id, :comment, :phone_number, line_items_attributes: [
+          :order_id, :program_id, :number_of_days
+        ]
       )
   end
 end
