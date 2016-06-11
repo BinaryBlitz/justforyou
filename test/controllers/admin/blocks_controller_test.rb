@@ -21,10 +21,7 @@ class Admin::BlocksControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference 'Block.count' do
       post admin_blocks_url(@block), params: {
-        block: {
-          name: @block.name,
-          image: fixture_file_upload('public/blank.jpg')
-        }
+        block: @block.attributes.merge(image: fixture_file_upload('public/blank.jpg'))
       }
     end
   end
