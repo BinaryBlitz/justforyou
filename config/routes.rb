@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     resources :deliveries, only: :cancel do
       patch 'cancel', on: :member
     end
+
+    resources :promotions, only: [:index, :show]
   end
 
   namespace :admin do
