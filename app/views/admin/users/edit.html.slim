@@ -1,18 +1,16 @@
-html
-  body
-    = form_for([:admin, @user]) do |f|
-      = render 'shared/error_messages', object: @user
-      .form-group
-        = f.label :first_name 
-        = f.text_field :first_name, class: 'form-control'
-      .form-group
-        = f.label :last_name 
-        = f.text_field :last_name, class: 'form-control'
-      .form-group
-        = f.label :phone_number 
-        = f.text_field :phone_number, class: 'form-control'
-      .form-group
-        = f.label :email 
-        = f.email_field :email, class: 'form-control'
-      .actions
-        = f.submit "Изменить пользователя", class: 'btn btn-default'
+= form_for([:admin, @user]) do |f|
+  = render 'shared/error_messages', object: @user
+  .form-group
+    = f.label :first_name 
+    = f.text_field :first_name, class: 'form-control'
+  .form-group
+    = f.label :last_name 
+    = f.text_field :last_name, class: 'form-control'
+  .form-group
+    = f.label :phone_number 
+    = f.text_field :phone_number, class: 'form-control'
+  .form-group
+    = f.label :email 
+    = f.email_field :email, class: 'form-control'
+  .actions
+    = f.submit "Изменить пользователя", class: 'btn btn-default'

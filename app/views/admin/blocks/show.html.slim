@@ -1,10 +1,8 @@
-html
-  body
-    h1 Блок: #{ @block.name }
-    .form-group
-      strong Название: 
-      = @block.name
-    .form-group
-      strong Изображение:
-      p = image_tag @block.image
+h1 Блок: #{ @block.name }
+.form-group
+  strong Название: 
+  = @block.name
+.form-group
+  strong Изображение:
+  p = image_tag @block.image
 
