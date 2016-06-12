@@ -1,30 +1,29 @@
-html
-  body
-    .container
-      h1 Пользователи
-      form.navbar-form.navbar-left
-        .form-group
-          = form_tag(admin_users_path, method: "get") do
-            = text_field_tag :search, params[:search], placeholder: "Поиск...", class: "form-control"
-            = submit_tag "Поиск", :name => nil, class: "btn btn-default"
-              span.glyphicon.glyphicon-search
-      table.table
-        thead
-          tr
-            th Имя
-            th Фамилия
-            th Телефон
-            th Почта
-            th Управление
-            th 
-              |&nbsp;
-        tbody
-          - @users.each do |user|
-            tr
-              td = link_to user.first_name, admin_user_path(user)
-              td = link_to user.last_name, admin_user_path(user)
-              td = user.phone_number
-              td = user.email
-              td = link_to 'Изменить', edit_admin_user_path(user), class: 'btn btn-warning'
-              td = link_to 'Удалить', admin_user_path(user), method: :delete, data: { confirm: 'Вы действительно хотите удалить пользователя из системы?' }, class: 'btn btn-danger'
-    =paginate @users
+.container
+  h1 Пользователи
+  form.navbar-form.navbar-left
+    .form-group
+      = form_tag(admin_users_path, method: "get") do
+        = text_field_tag :search, params[:search], placeholder: "Поиск...", class: "form-control"
+        = submit_tag "Поиск", :name => nil, class: "btn btn-default"
+          span.glyphicon.glyphicon-search
+  table.table
+    thead
+      tr
+        th Имя
+        th Фамилия
+        th Телефон
+        th Почта
+        th Управление
+        th 
+          |&nbsp;
+    tbody
+      - @users.each do |user|
+        tr
+          td = link_to user.first_name, admin_user_path(user)
+          td = link_to user.last_name, admin_user_path(user)
+          td = user.phone_number
+          td = user.email
+          td = link_to 'Изменить', edit_admin_user_path(user), class: 'btn btn-warning'
+          td = link_to 'Удалить', admin_user_path(user), method: :delete, data: { confirm: 'Вы действительно хотите удалить пользователя из системы?' }, class: 'btn btn-danger'
+
+= paginate @users

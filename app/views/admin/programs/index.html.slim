@@ -25,4 +25,5 @@
           td = image_tag(program.preview_image)
           td = link_to 'Изменить', edit_admin_program_path(program), class: 'btn btn-warning'
           td = link_to 'Удалить', admin_program_path(program), method: :delete, data: { confirm: 'Вы действительно хотите удалить программу из системы?' }, class: 'btn btn-danger'
+
 = paginate @programs
