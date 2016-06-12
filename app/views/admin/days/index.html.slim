@@ -1,0 +1,12 @@
+h1 #{@program.name}: дни
+
+.form-group
+  = link_to 'Новый день', new_admin_program_day_path(@program), class: 'btn btn-default'
+
+table.table
+  thead
+    th №
+    th Действия
+  tbody
+    - @days.each do |day|
+      = render day

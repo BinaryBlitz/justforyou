@@ -2,6 +2,8 @@ h1 Программа: #{@program.name}
 
 .form-group
   = link_to 'Изменить', edit_admin_program_path(@program), class: 'btn btn-default'
+  |  
+  = link_to 'Дни', admin_program_days_path(@program), class: 'btn btn-primary'
 
 .form-group
   strong Название:

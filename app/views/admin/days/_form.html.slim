@@ -1,4 +1,8 @@
-= form_for [:admin, @day] do |f|
+= form_for [:admin, @program, @day] do |f|
+  .form-group
+    = f.label :position
+    = f.number_field :position, class: 'form-control'
+
   = f.nested_fields_for :items do |ff|
     = render 'shared/error_messages', object: ff.object
     .form-group

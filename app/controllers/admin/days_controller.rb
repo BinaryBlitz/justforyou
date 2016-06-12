@@ -1,6 +1,10 @@
 class Admin::DaysController < Admin::AdminController
-  before_action :set_program, only: [:new, :create]
+  before_action :set_program, only: [:index, :new, :create]
   before_action :set_day, only: [:show, :edit, :update]
+
+  def index
+    @days = @program.days
+  end
 
   def show
   end
