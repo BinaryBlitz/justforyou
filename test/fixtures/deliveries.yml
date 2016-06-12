@@ -2,8 +2,10 @@ new_delivery:
   line_item: line_item
   status: 0
   scheduled_for: <%= 3.days.from_now %>
+  address: address
 
 delivery:
   line_item: line_item
   status: 0
   scheduled_for: <%= 1.day.from_now %>
+  address: address
