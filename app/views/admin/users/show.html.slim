@@ -1,7 +1,15 @@
 h1 Пользователь: #{ @user.full_name }
 
+.form-group.pull-right
+  = form_for([:admin, @user], url: admin_user_path(@user), method: :patch) do |f|
+    .form-group.col-sm-10
+      = f.label :balance
+      = f.number_field :balance, class: 'form-control'
+    .actions.col-sm-10
+      = f.submit "Начислить бонусы", class: 'btn btn-primary'
+
 .form-group
-  strong Имя: 
+  strong Имя:
   = @user.first_name
 
 .form-group
