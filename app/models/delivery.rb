@@ -5,13 +5,13 @@
 #  id            :integer          not null, primary key
 #  status        :integer          default("pending")
 #  scheduled_for :datetime         not null
-#  order_id      :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  line_item_id  :integer
 #
 
 class Delivery < ApplicationRecord
-  belongs_to :order
+  belongs_to :line_item
 
   validates :status, :scheduled_for, presence: true
 

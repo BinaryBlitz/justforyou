@@ -1,9 +1,9 @@
 new_delivery:
-  order: order
+  line_item: line_item
   status: 0
   scheduled_for: <%= 3.days.from_now %>
 
 delivery:
-  order: order
+  line_item: line_item
   status: 0
   scheduled_for: <%= 1.day.from_now %>
