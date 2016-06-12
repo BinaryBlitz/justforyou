@@ -24,9 +24,27 @@ class NullStorage
   end
 end
 
-if Rails.env.test?
-  CarrierWave.configure do |config|
-    config.storage NullStorage
+CarrierWave.configure do |config|
+  # Use local storage in development and test environment
+  if Rails.env.development?
+    config.storage = :file
+  end
+
+  if Rails.env.test?
+    config.storage = NullStorage
     config.enable_processing = false
+  end
+
+  # Use AWS storage if in production
+  if Rails.env.production?
+    config.storage = :fog
+
+    config.fog_credentials = {
+      provider: 'AWS',
+      aws_access_key_id: Rails.application.secrets.aws_access_key_id,
+      aws_secret_access_key: Rails.application.secrets.aws_secret_access_key,
+      region: 'eu-west-1'
+    }
+    config.fog_directory  = Rails.application.secrets.s3_bucket_name
   end
 end
