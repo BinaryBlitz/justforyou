@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/itsdn/payonline.git
+  revision: 2e4e8882d58367732b2b5aa4a191559630690c02
+  specs:
+    payonline (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -256,6 +262,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   mini_magick
   nested_form_fields
+  payonline!
   pg (~> 0.18)
   phonelib (= 0.6.0)
   puma (~> 3.0)
@@ -277,4 +284,4 @@ RUBY VERSION
    ruby 2.3.0p0
 
 BUNDLED WITH
-   1.12.4
+   1.12.5
