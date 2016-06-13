@@ -16,7 +16,7 @@
 #
 
 class Program < ApplicationRecord
-  belongs_to :block
+  belongs_to :block, counter_cache: true
 
   has_many :days, dependent: :destroy, inverse_of: :program
   has_many :items, through: :days
