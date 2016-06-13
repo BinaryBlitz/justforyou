@@ -22,6 +22,8 @@ class User < ApplicationRecord
   BIG_DISCOUNT_THRESHOLD = 100
 
   has_many :orders, dependent: :destroy
+  has_many :line_items, through: :orders
+  has_many :deliveries, through: :line_items
   has_many :addresses, dependent: :destroy
   has_many :substitutions, dependent: :destroy
 

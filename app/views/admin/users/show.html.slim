@@ -9,7 +9,7 @@ h1 Пользователь: #{ @user.full_name }
       = f.submit "Начислить бонусы", class: 'btn btn-primary'
 
 .form-group
-  strong Имя:
+  strong Имя: 
   = @user.first_name
 
 .form-group
@@ -33,8 +33,6 @@ h1 Пользователь: #{ @user.full_name }
   - else
     strong Замены отсутствуют
 
-= render 'orders'
-
 .form-group
   strong Бонусы: 
   = @user.balance
@@ -43,4 +41,14 @@ h1 Пользователь: #{ @user.full_name }
   strong Дата регистрации:
   = @user.created_at.strftime("%Y-%m-%d")
 
-= render 'orders_for_cancel'
+h2 Заказы
+
+table.table
+  thead
+    th Время
+    th Блок
+    th Программа
+    th Действия
+  tbody
+    - @user.deliveries.each do |delivery|
+      = render 'delivery', delivery: delivery
