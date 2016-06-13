@@ -19,6 +19,7 @@ class Program < ApplicationRecord
   belongs_to :block
 
   has_many :days, dependent: :destroy, inverse_of: :program
+  has_many :items, through: :days
   has_many :line_items, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 20 }
@@ -27,4 +28,8 @@ class Program < ApplicationRecord
   validates :primary_price, :secondary_price, numericality: { greater_than: 0 }
 
   mount_uploader :preview_image, PreviewImageUploader
+
+  def calories
+    items.sum(:calories)
+  end
 end
