@@ -19,12 +19,11 @@ h1 Пользователь: #{ @user.full_name }
 .form-group
   - if @user.substitutions.any?
     strong Замены:
-
     - @user.substitutions.each do |sub|
       ul
         li = sub.product.name
   - else
-    strong Замены отсутсвуют
+    strong Замены отсутствуют
 
 = render 'orders'
 
@@ -33,5 +32,8 @@ h1 Пользователь: #{ @user.full_name }
   = @user.balance
 
 .form-group
-  strong Дата регистрации: 
+  strong Дата регистрации:
   = @user.created_at.strftime("%Y-%m-%d")
+.form-group Cписок доставок до осущетсвления которых осталось мнее 36 часов:
+
+= render 'orders_for_cancel'

@@ -7,11 +7,10 @@
 #  scheduled_for :datetime         not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  line_item_id  :integer
-#
 
 class Delivery < ApplicationRecord
   belongs_to :line_item
+  belongs_to :address
 
   validates :status, :scheduled_for, presence: true
 

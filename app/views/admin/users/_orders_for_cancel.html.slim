@@ -1,0 +1,13 @@
+- @user.orders.each do |order|
+
+    .well
+      = render partial: 'deliveries_for_cancel', locals: { order: order }
+
+      - order.line_items.each do |item|
+        .form-group
+          strong Программы:
+          = item.program.name
+
+        .form-group
+          strong Блок:
+          = item.program.block.name

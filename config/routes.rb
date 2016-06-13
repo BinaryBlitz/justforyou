@@ -45,5 +45,9 @@ Rails.application.routes.draw do
 
     resources :blocks
     resources :promotions
+
+    resources :deliveries, only: :cancel do
+      patch 'cancel', on: :member
+    end
   end
 end
