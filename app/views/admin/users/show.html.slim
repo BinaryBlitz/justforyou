@@ -1,4 +1,13 @@
 h1 Пользователь: #{ @user.full_name }
+
+.form-group.pull-right
+  = form_for([:admin, @user], url: admin_user_path(@user), method: :patch) do |f|
+    .form-group.col-sm-10
+      = f.label :balance
+      = f.number_field :balance, class: 'form-control'
+    .actions.col-sm-10
+      = f.submit "Начислить бонусы", class: 'btn btn-primary'
+
 .form-group
   strong Имя: 
   = @user.first_name
@@ -16,5 +25,30 @@ h1 Пользователь: #{ @user.full_name }
   = @user.email
 
 .form-group
-  strong Дата регистрации: 
+  - if @user.substitutions.any?
+    strong Замены:
+    - @user.substitutions.each do |sub|
+      ul
+        li = sub.product.name
+  - else
+    strong Замены отсутствуют
+
+.form-group
+  strong Бонусы: 
+  = @user.balance
+
+.form-group
+  strong Дата регистрации:
   = @user.created_at.strftime("%Y-%m-%d")
+
+h2 Заказы
+
+table.table
+  thead
+    th Время
+    th Блок
+    th Программа
+    th Действия
+  tbody
+    - @user.deliveries.each do |delivery|
+      = render 'delivery', delivery: delivery

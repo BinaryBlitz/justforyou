@@ -19,7 +19,7 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
   test 'should update user' do
     new_name = 'Another name'
     patch admin_user_path(@user), params: { user: { first_name: new_name } }
-    assert_redirected_to admin_users_path
+    assert_redirected_to admin_user_path(@user)
     assert_equal new_name, @user.reload.first_name
   end
 

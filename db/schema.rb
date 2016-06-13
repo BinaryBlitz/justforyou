@@ -63,7 +63,9 @@ ActiveRecord::Schema.define(version: 20160612161836) do
     t.datetime "scheduled_for",             null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "address_id"
     t.integer  "line_item_id"
+    t.index ["address_id"], name: "index_deliveries_on_address_id", using: :btree
     t.index ["line_item_id"], name: "index_deliveries_on_line_item_id", using: :btree
   end
 
@@ -168,6 +170,7 @@ ActiveRecord::Schema.define(version: 20160612161836) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "days", "programs"
+  add_foreign_key "deliveries", "addresses"
   add_foreign_key "deliveries", "line_items"
   add_foreign_key "items", "days"
   add_foreign_key "line_items", "orders"

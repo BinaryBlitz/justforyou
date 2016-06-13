@@ -12,6 +12,7 @@
 #
 
 class Address < ApplicationRecord
+  has_many :deliveries, dependent: :destroy
   belongs_to :user
 
   validates :content, presence: true
