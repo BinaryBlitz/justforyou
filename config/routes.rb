@@ -54,4 +54,8 @@ Rails.application.routes.draw do
 
     resources :managers
   end
+
+  resources :payments, only: [] do
+    post 'success', 'fail', on: :collection
+  end
 end
