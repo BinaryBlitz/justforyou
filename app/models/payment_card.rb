@@ -16,6 +16,8 @@
 class PaymentCard < ApplicationRecord
   belongs_to :user
   validates :number, length: { in: 16..19 }
+  validates :month, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 12 }
+  validates :year, numericality: { greater_than_or_equal_to: 2016, less_than_or_equal_to: 2022 }
   validates :name, length: { maximum: 90 }
   validates :cvc , length: { maximum: 3 }
   validates :name, :number, :month, :year, :cvc, presence: true
