@@ -27,6 +27,6 @@ class API::PaymentCardsController < API::APIController
   end
 
   def payment_card_params
-    params.require(:payment_card).permit(:number, :name, :month, :year, :cvc)
+    params.require(:payment_card).permit(:number, :holder, :rebill_anchor)
   end
 end

@@ -1,1 +1,1 @@
-json.extract! payment_card, :id, :name, :number, :month, :year, :cvc
+json.extract! payment_card, :id, :holder, :number, :rebill_anchor

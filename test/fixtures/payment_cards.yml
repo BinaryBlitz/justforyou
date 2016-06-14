@@ -1,7 +1,5 @@
 payment_card:
-  name: Foo Bar
-  number: 1234567890123456
-  cvc: 123
-  month: 6
-  year: 2016
+  holder: Foo Bar
+  number: '************1111'
+  rebill_anchor: Rebill anchor
   user: foo

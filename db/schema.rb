@@ -104,14 +104,12 @@ ActiveRecord::Schema.define(version: 20160614195203) do
   end
 
   create_table "payment_cards", force: :cascade do |t|
-    t.bigint   "number",     null: false
-    t.string   "name",       null: false
-    t.integer  "month",      null: false
-    t.integer  "year",       null: false
-    t.integer  "cvc",        null: false
+    t.string   "number",        null: false
+    t.string   "holder",        null: false
+    t.string   "rebill_anchor", null: false
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["user_id"], name: "index_payment_cards_on_user_id", using: :btree
   end
 
