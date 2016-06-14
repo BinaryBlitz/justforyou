@@ -37,7 +37,9 @@
           <Data ss:Type="String">ФИО</Data>
         </Cell>
         <Cell><Data ss:Type="String">Замены</Data></Cell>
-        <Cell><Data ss:Type="String">Блок/День</Data></Cell>
+        <Cell ss:StyleID="horizontalAlign">
+          <Data ss:Type="String">Блок/День</Data>
+        </Cell>
         <Cell ss:StyleID="horizontalAlign">
           <Data ss:Type="String">Телефон</Data>
         </Cell>
@@ -72,31 +74,33 @@
       <% user.orders.each do |order| %>
         <% order.line_items.each do |line_item| %>
           <% line_item.deliveries.each do |delivery| %>
-          <Row>
-            <Cell></Cell>
-            <Cell></Cell>
-            <Cell></Cell>
-            <Cell ss:StyleID="verticalAlign">
-              <Data ss:Type="String">
-                <%= "#{ line_item.program.block.id }" + ' / ' %>
-              </Data>
-            </Cell>
-            <Cell></Cell>
-            <Cell ss:StyleID="doubleAlign" ss:MergeAcross="3">
-              <Data ss:Type="String">
-                <%= delivery.address.content + ', этаж ' +
-                  "#{ delivery.address.floor if delivery.address.floor.present? }" + ', подъезд ' +
-                  "#{ delivery.address.entrance if delivery.address.entrance.present? }"
-                %>
-              </Data>
-            </Cell>
-            <Cell ss:StyleID="horizontalAlign" ss:MergeAcross="1">
-              <Data ss:Type="String">
-                <%= delivery.scheduled_for.strftime('%Y-%m-%d %H:%M') %>
-              </Data>
-            </Cell>
-            <Cell><Data ss:Type="String"><%= order.comment %></Data></Cell>
-          </Row>
+            <Row>
+              <Cell></Cell>
+              <Cell></Cell>
+              <Cell></Cell>
+              <Cell ss:StyleID="doubleAlign">
+                <Data ss:Type="String">
+                  <%=
+                    "#{ delivery.line_item.program.block.id } / #{ delivery.day_position }"
+                  %>
+                </Data>
+              </Cell>
+              <Cell></Cell>
+              <Cell ss:StyleID="doubleAlign" ss:MergeAcross="3">
+                <Data ss:Type="String">
+                  <%= delivery.address.content
+                    ", этаж #{ delivery.address.floor if delivery.address.floor.present? }
+                     , подъезд #{ delivery.address.entrance if delivery.address.entrance.present? }"
+                  %>
+                </Data>
+              </Cell>
+              <Cell ss:StyleID="horizontalAlign" ss:MergeAcross="1">
+                <Data ss:Type="String">
+                  <%= delivery.scheduled_for.strftime('%Y-%m-%d %H:%M') %>
+                </Data>
+              </Cell>
+              <Cell><Data ss:Type="String"><%= order.comment %></Data></Cell>
+            </Row>
           <% end %>
         <% end %>
       <% end %>

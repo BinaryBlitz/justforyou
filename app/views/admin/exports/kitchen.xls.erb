@@ -11,6 +11,10 @@
     <Style ss:ID="horizontalAlign">
       <Alignment ss:Horizontal="Center"/>
     </Style>
+    <Style ss:ID="doubleAlign">
+      <Alignment ss:Vertical="Center"/>
+      <Alignment ss:Horizontal="Center"/>
+    </Style>
     <Style ss:ID="date">
       <Font ss:Size="11" ss:Bold="1"/>
       <Alignment ss:Horizontal="Center"/>
@@ -51,11 +55,24 @@
               <% end %>
             </Data>
         </Cell>
-        <Cell ss:StyleID="verticalAlign">
-          <Data ss:Type="String">
-          </Data>
+        <Cell>
+          <Data ss:Type="String"></Data>
         </Cell>
       </Row>
+      <% user.deliveries.each do |delivery| %>
+        <Row>
+          <Cell></Cell>
+          <Cell></Cell>
+          <Cell></Cell>
+          <Cell ss:StyleID="doubleAlign">
+            <Data ss:Type="String">
+              <%=
+                "#{ delivery.line_item.program.block.id } / #{ delivery.day_position }"
+              %>
+            </Data>
+          </Cell>
+        </Row>
+      <% end %>
     <% end %>
     </Table>
   </Worksheet>

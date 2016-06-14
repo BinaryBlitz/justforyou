@@ -49,5 +49,11 @@ Rails.application.routes.draw do
     resources :deliveries, only: :cancel do
       patch 'cancel', on: :member
     end
+
+    resources :exports, only: [] do
+      get 'kitchen', on: :collection
+      get 'courier', on: :collection
+      get 'manager', on: :collection
+    end
   end
 end
