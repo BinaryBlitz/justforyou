@@ -7,6 +7,7 @@
         th Название
         th Блок
         th Описание
+        th Короткое описание
         th Первая цена
         th Вторая цена
         th Длительность первой цены
@@ -19,6 +20,7 @@
           td = link_to program.name, admin_program_path(program)
           td = program.block.name
           td = program.description.truncate(140)
+          td = program.preview
           td = program.primary_price
           td = program.secondary_price
           td = program.threshold

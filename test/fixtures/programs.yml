@@ -22,4 +22,5 @@ program:
   primary_price: 300
   secondary_price: 200
   preview_image: image
+  preview: Preview
   block: block
