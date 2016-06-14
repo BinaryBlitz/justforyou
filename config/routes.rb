@@ -14,14 +14,14 @@ Rails.application.routes.draw do
     resources :product_types, only: [:index, :show]
 
     resources :blocks, only: [:index, :show] do
-      resources :programs, only: [:index, :show, :update]
+      resources :programs, only: [:index, :show]
     end
 
     resources :products, only: [:show] do
       resources :substitutions, only: [:index, :create, :destroy], shallow: true
     end
 
-    resources :programs, only: [:index, :show, :update] do
+    resources :programs, only: [:index, :show] do
       resources :days, only: [:index]
     end
 
