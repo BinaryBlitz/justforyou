@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Styles>
+    <Style ss:ID="verticalAlign">
+      <Alignment ss:Vertical="Center"/>
+    </Style>
+    <Style ss:ID="horizontalAlign">
+      <Alignment ss:Horizontal="Center"/>
+    </Style>
+    <Style ss:ID="doubleAlign">
+      <Alignment ss:Vertical="Center"/>
+      <Alignment ss:Horizontal="Center"/>
+    </Style>
+    <Style ss:ID="date">
+      <Font ss:Size="11" ss:Bold="1"/>
+      <Alignment ss:Horizontal="Center"/>
+    </Style>
+  </Styles>
+  <Worksheet ss:Name="Дня курьеров">
+    <Table>
+      <Row>
+        <Cell ss:StyleID="date" ss:MergeAcross="5">
+          <Data ss:Type="String">
+            <B>Отчет на <%= Time.zone.now.strftime('%m-%d-%Y') %></B>
+          </Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="horizontalAlign">
+          <Data ss:Type="String">№</Data>
+        </Cell>
+        <Cell ss:StyleID="horizontalAlign">
+          <Data ss:Type="String">ФИО</Data>
+        </Cell>
+        <Cell><Data ss:Type="String">Замены</Data></Cell>
+        <Cell ss:StyleID="horizontalAlign">
+          <Data ss:Type="String">Блок/День</Data>
+        </Cell>
+        <Cell ss:StyleID="horizontalAlign">
+          <Data ss:Type="String">Телефон</Data>
+        </Cell>
+        <Cell ss:StyleID="horizontalAlign" ss:MergeAcross="3">
+          <Data ss:Type="String">Адрес доставки</Data>
+        </Cell>
+        <Cell ss:StyleID="horizontalAlign" ss:MergeAcross="1">
+          <Data ss:Type="String">Время доставки</Data>
+        </Cell>
+        <Cell><Data ss:Type="String">Примечание</Data></Cell>
+      </Row>
+    <% @users.each do |user| %>
+      <Row>
+        <Cell ss:StyleID="horizontalAlign">
+          <Data ss:Type="Number"><%= user.id %></Data>
+        </Cell>
+        <Cell><Data ss:Type="String"><%= user.first_name + ' ' + user.last_name%></Data></Cell>
+        <Cell ss:StyleID="verticalAlign">
+            <Data ss:Type="String">
+              Исключить:
+              <% user.substitutions.each do |sub| %>
+                <%= sub.product.name -%>
+              <% end %>
+            </Data>
+        </Cell>
+        <Cell ss:StyleID="verticalAlign">
+          <Data ss:Type="String">
+          </Data>
+        </Cell>
+        <Cell><Data ss:Type="String"><%= user.phone_number %></Data></Cell>
+      </Row>
+      <% user.orders.each do |order| %>
+        <% order.line_items.each do |line_item| %>
+          <% line_item.deliveries.each do |delivery| %>
+            <Row>
+              <Cell></Cell>
+              <Cell></Cell>
+              <Cell></Cell>
+              <Cell ss:StyleID="doubleAlign">
+                <Data ss:Type="String">
+                  <%=
+                    "#{ delivery.line_item.program.block.id } / #{ delivery.day_position }"
+                  %>
+                </Data>
+              </Cell>
+              <Cell></Cell>
+              <Cell ss:StyleID="doubleAlign" ss:MergeAcross="3">
+                <Data ss:Type="String">
+                  <%= delivery.address.content
+                    ", этаж #{ delivery.address.floor if delivery.address.floor.present? }
+                     , подъезд #{ delivery.address.entrance if delivery.address.entrance.present? }"
+                  %>
+                </Data>
+              </Cell>
+              <Cell ss:StyleID="horizontalAlign" ss:MergeAcross="1">
+                <Data ss:Type="String">
+                  <%= delivery.scheduled_for.strftime('%Y-%m-%d %H:%M') %>
+                </Data>
+              </Cell>
+              <Cell><Data ss:Type="String"><%= order.comment %></Data></Cell>
+            </Row>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

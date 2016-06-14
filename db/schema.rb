@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20160614195203) do
     t.datetime "updated_at",                null: false
     t.integer  "address_id"
     t.integer  "line_item_id"
+    t.integer  "day_position"
     t.index ["address_id"], name: "index_deliveries_on_address_id", using: :btree
     t.index ["line_item_id"], name: "index_deliveries_on_line_item_id", using: :btree
   end
