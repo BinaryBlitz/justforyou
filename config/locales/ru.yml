@@ -21,6 +21,7 @@ ru:
         primary_price: Первая цена
         secondary_price: Вторая цена
         preview_image: Фотография меню
+        preview: Короткое описание
         block: Блок
       block:
         name: Название

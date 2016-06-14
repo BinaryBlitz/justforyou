@@ -13,6 +13,7 @@
 #  updated_at      :datetime         not null
 #  block_id        :integer
 #  prescription    :text             default([]), is an Array
+#  preview         :string
 #
 
 class Program < ApplicationRecord
@@ -23,7 +24,7 @@ class Program < ApplicationRecord
   has_many :line_items, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 20 }
-  validates :preview_image, :description, :prescription, :block, presence: true
+  validates :preview_image, :description, :prescription, :preview, :block, presence: true
   validates :threshold, numericality: { greater_than: 0 }
   validates :primary_price, :secondary_price, numericality: { greater_than: 0 }
 

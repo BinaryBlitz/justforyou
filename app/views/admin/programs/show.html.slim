@@ -18,6 +18,10 @@ h1 Программа: #{@program.name}
   = @program.description
 
 .form-group
+  strong Короткое описание: 
+  = @program.preview
+
+.form-group
   strong Описание "Для кого": 
   ul
     - @program.prescription.each do |prescription|
