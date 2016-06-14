@@ -1,0 +1,5 @@
+payment_card:
+  holder: Foo Bar
+  number: '************1111'
+  rebill_anchor: Rebill anchor
+  user: foo
