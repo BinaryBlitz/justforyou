@@ -9,6 +9,7 @@
 #  updated_at    :datetime         not null
 #  address_id    :integer
 #  line_item_id  :integer
+#  day_position  :integer
 #
 
 class Delivery < ApplicationRecord

@@ -1,12 +1,13 @@
 h1 Пользователь: #{ @user.full_name }
 
-.form-group.pull-right
-  = form_for([:admin, @user], url: admin_user_path(@user), method: :patch) do |f|
-    .form-group.col-sm-10
-      = f.label :balance
-      = f.number_field :balance, class: 'form-control'
-    .actions.col-sm-10
-      = f.submit "Начислить бонусы", class: 'btn btn-primary'
+- if current_admin.type == 'Admin'
+  .form-group.pull-right
+    = form_for([:admin, @user], url: admin_user_path(@user), method: :patch) do |f|
+      .form-group.col-sm-10
+        = f.label :balance
+        = f.number_field :balance, class: 'form-control'
+      .actions.col-sm-10
+        = f.submit "Начислить бонусы", class: 'btn btn-primary'
 
 .form-group
   strong Имя: 
@@ -48,7 +49,9 @@ table.table
     th Время
     th Блок
     th Программа
-    th Действия
+    th
+      - if current_admin.type == 'Admin'
+        | Действия
   tbody
     - @user.deliveries.each do |delivery|
       = render 'delivery', delivery: delivery

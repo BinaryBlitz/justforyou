@@ -1,4 +1,4 @@
-class Admin::DeliveriesController < ApplicationController
+class Admin::DeliveriesController < Admin::AdminController
   before_action :set_delivery, only: [:cancel]
 
   def cancel
