@@ -1,6 +1,6 @@
 h1 Пользователь: #{ @user.full_name }
 
-- unless current_admin.type == 'Manager'
+- if current_admin.type == 'Admin'
   .form-group.pull-right
     = form_for([:admin, @user], url: admin_user_path(@user), method: :patch) do |f|
       .form-group.col-sm-10
@@ -50,7 +50,7 @@ table.table
     th Блок
     th Программа
     th
-      - unless current_admin.type == 'Manager'
+      - if current_admin.type == 'Admin'
         | Действия
   tbody
     - @user.deliveries.each do |delivery|
