@@ -7,30 +7,36 @@ class ManagerPolicy < ApplicationPolicy
   end
 
   def index?
-    current_admin.type == 'Admin'
+    admin?
   end
 
   def new?
-    current_admin.type == 'Admin'
+    admin?
   end
 
   def edit?
-    current_admin.type == 'Admin'
+    admin?
   end
 
   def show?
-    current_admin.type == 'Admin'
+    admin?
   end
 
   def create?
-    current_admin.type == 'Admin'
+    new?
   end
 
   def update?
-    current_admin.type == 'Admin'
+    edit?
   end
 
   def destroy?
-    current_admin.type == 'Admin'
+    admin?
   end
+
+  private
+
+   def admin?
+      current_admin.type == 'Admin'
+   end
 end

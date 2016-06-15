@@ -7,14 +7,20 @@ class UserPolicy < ApplicationPolicy
   end
 
   def edit?
-    current_admin.type == 'Admin'
+    admin?
   end
 
   def update?
-    current_admin.type == 'Admin'
+    edit?
   end
 
   def destroy?
-    current_admin.type == 'Admin'
+    admin?
   end
+
+  private
+
+   def admin?
+      current_admin.type == 'Admin'
+   end
 end
