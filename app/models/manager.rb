@@ -18,7 +18,5 @@
 #  type                   :string           default("Admin")
 #
 
-class Admin < ApplicationRecord
-  devise :database_authenticatable,
-         :recoverable, :rememberable, :validatable
+class Manager < Admin
 end

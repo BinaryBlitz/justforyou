@@ -9,9 +9,11 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def edit
+    authorize @user
   end
 
   def update
+    authorize @user
     if @user.update(user_params)
       redirect_to admin_user_url(@user), notice: 'Пользователь успешно обновлен.'
     else

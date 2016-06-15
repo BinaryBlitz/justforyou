@@ -19,6 +19,7 @@
             <li><%= link_to 'Акции', admin_promotions_path %></li>
           </ul>
         </li>
+        <li><%= link_to 'Упрвление менеджерами', admin_managers_path unless current_admin.type == 'Manager' %></li>
       </ul>
     </div>
 

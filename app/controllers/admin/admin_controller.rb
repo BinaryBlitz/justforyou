@@ -8,4 +8,8 @@ class Admin::AdminController < ApplicationController
   def set_locale
     I18n.locale = :ru
   end
+
+  def pundit_user
+    current_admin
+  end
 end

@@ -3,5 +3,6 @@ tr
   td = delivery.line_item.program.block.name
   td = delivery.line_item.program.name
   td
-    = link_to 'Отменить', '#', data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger'
+    - unless current_admin.type == 'Manager'
+      = link_to 'Отменить', '#', data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger'
   

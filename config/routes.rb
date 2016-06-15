@@ -51,5 +51,7 @@ Rails.application.routes.draw do
     resources :deliveries, only: :cancel do
       patch 'cancel', on: :member
     end
+
+    resources :managers
   end
 end

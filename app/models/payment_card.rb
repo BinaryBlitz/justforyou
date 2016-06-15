@@ -3,7 +3,7 @@
 # Table name: payment_cards
 #
 #  id            :integer          not null, primary key
-#  number        :integer          not null
+#  number        :string           not null
 #  holder        :string           not null
 #  rebill_anchor :string           not null
 #  user_id       :integer
