@@ -23,17 +23,20 @@ class Payment < ApplicationRecord
 
   validates :amount, numericality: { greater_than: 0 }
 
+  delegate :user, to: :order
+
   def payment_url
     return if payment_card
     Payonline::PaymentGateway.new(payment_options).payment_url
   end
 
-  def paid!
+  def paid!(payment_card_params = {})
     logger.debug("Payment #{id}: paid")
 
     ActiveRecord::Base.transaction do
       update(paid: true)
       order.paid!
+      user.payment_cards.create(payment_card_params) if payment_card_params.present?
     end
   end
 

@@ -4,7 +4,7 @@ class PaymentsController < ApplicationController
 
   def success
     @payment = Payment.find_by!(order_id: @response.order_id)
-    @payment.paid! if @response.valid_payment?
+    @payment.paid!(payment_card_params) if @response.valid_payment?
 
     logger.debug("Payment #{@payment.id}: success callback")
 
@@ -20,5 +20,13 @@ class PaymentsController < ApplicationController
 
   def set_response
     @response = Payonline::PaymentResponse.new(params)
+  end
+
+  def payment_card_params
+    {
+      rebill_anchor: params['RebillAnchor'],
+      holder: params['CardHolder'],
+      number: params['CardNumber']
+    }
   end
 end
