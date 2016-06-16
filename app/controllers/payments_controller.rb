@@ -4,11 +4,9 @@ class PaymentsController < ApplicationController
 
   def success
     @payment = Payment.find_by!(order_id: @response.order_id)
+    @payment.paid! if @response.valid_payment?
 
-    if @response.valid_payment?
-      @payment.paid!
-      logger.debug("Payment: ")
-    end
+    logger.debug("Payment #{@payment.id}: success callback")
 
     head :ok
   end

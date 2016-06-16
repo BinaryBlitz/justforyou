@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/itsdn/payonline.git
-  revision: 2e4e8882d58367732b2b5aa4a191559630690c02
+  revision: 1e82968c1cbc0d7d5bfdb04a6dff69464eac8e02
   specs:
     payonline (0.1.0)
 
@@ -77,7 +77,7 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.0.1)
+    devise-i18n (1.1.0)
     email_validator (1.6.0)
       activemodel
     erubis (2.7.0)
@@ -234,7 +234,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     warden (1.2.6)
       rack (>= 1.0)
-    web-console (3.2.0)
+    web-console (3.3.0)
       activemodel (>= 4.2)
       debug_inspector
       railties (>= 4.2)
