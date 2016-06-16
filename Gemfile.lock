@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/itsdn/payonline.git
+  revision: 1e82968c1cbc0d7d5bfdb04a6dff69464eac8e02
+  specs:
+    payonline (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -71,7 +77,7 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.0.1)
+    devise-i18n (1.1.0)
     email_validator (1.6.0)
       activemodel
     erubis (2.7.0)
@@ -228,7 +234,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     warden (1.2.6)
       rack (>= 1.0)
-    web-console (3.2.0)
+    web-console (3.3.0)
       activemodel (>= 4.2)
       debug_inspector
       railties (>= 4.2)
@@ -256,6 +262,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   mini_magick
   nested_form_fields
+  payonline!
   pg (~> 0.18)
   phonelib (= 0.6.0)
   puma (~> 3.0)
@@ -277,4 +284,4 @@ RUBY VERSION
    ruby 2.3.0p0
 
 BUNDLED WITH
-   1.12.4
+   1.12.5

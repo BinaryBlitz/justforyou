@@ -9,9 +9,12 @@ Rails.application.routes.draw do
     resources :verification_tokens, only: [:create, :update], param: :token
     resource :user, only: [:show, :create, :update]
 
-    resources :orders, except: [:new, :edit]
     resources :addresses, except: [:new, :edit, :update]
     resources :product_types, only: [:index, :show]
+
+    resources :orders, except: [:new, :edit] do
+      resource :payment, only: [:create]
+    end
 
     resources :blocks, only: [:index, :show] do
       resources :programs, only: [:index, :show]
@@ -53,5 +56,9 @@ Rails.application.routes.draw do
     end
 
     resources :managers
+  end
+
+  resources :payments, only: [] do
+    post 'success', 'fail', on: :collection
   end
 end

@@ -17,6 +17,7 @@ class Order < ApplicationRecord
 
   belongs_to :user
 
+  has_one :payment
   has_many :line_items, dependent: :destroy, inverse_of: :order
 
   validates :comment, length: { maximum: 1000 }
@@ -27,6 +28,10 @@ class Order < ApplicationRecord
   after_save :set_user_balance
 
   accepts_nested_attributes_for :line_items, allow_destroy: true
+
+  def paid!
+    update(paid: true)
+  end
 
   def total_price
     @total_price ||= begin
