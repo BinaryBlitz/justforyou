@@ -16,7 +16,7 @@ class Payment < ApplicationRecord
   CURRENCY = 'RUB'
 
   before_validation :set_amount
-  after_create :pay, if: :payment_card
+  after_create :rebill, if: :payment_card
 
   belongs_to :order
   belongs_to :payment_card, optional: true
@@ -28,17 +28,26 @@ class Payment < ApplicationRecord
     Payonline::PaymentGateway.new(payment_options).payment_url
   end
 
+  def paid!
+    logger.debug("Payment #{id}: paid")
+
+    ActiveRecord::Base.transaction do
+      update(paid: true)
+      order.paid!
+    end
+  end
+
   private
 
   def set_amount
     self.amount = order.total_price
   end
 
-  def pay
-    logger.debug("Payment #{id}: refill")
+  def rebill
+    logger.debug("Payment #{id}: rebill")
 
-    # TODO: Make request
-    Payonline::RebillGateway.new(rebill_options).payment_url
+    return false unless Payonline::RebillGateway.new(rebill_options).rebill
+    paid!
   end
 
   def payment_options
@@ -50,6 +59,6 @@ class Payment < ApplicationRecord
   end
 
   def rebill_options
-    payment_options.merge(payment_card.rebill_anchor)
+    payment_options.merge(rebill_anchor: payment_card.rebill_anchor)
   end
 end

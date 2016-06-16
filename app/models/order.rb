@@ -29,6 +29,10 @@ class Order < ApplicationRecord
 
   accepts_nested_attributes_for :line_items, allow_destroy: true
 
+  def paid!
+    update(paid: true)
+  end
+
   def total_price
     @total_price ||= begin
       threshold = line_items.joins(:program).maximum(:threshold)
