@@ -144,6 +144,18 @@ ActiveRecord::Schema.define(version: 20160614235014) do
     t.index ["user_id"], name: "index_payment_cards_on_user_id", using: :btree
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "amount",                          null: false
+    t.boolean  "paid",            default: false
+    t.integer  "payment_card_id"
+    t.integer  "transaction_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["order_id"], name: "index_payments_on_order_id", using: :btree
+    t.index ["payment_card_id"], name: "index_payments_on_payment_card_id", using: :btree
+  end
+
   create_table "product_types", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false

@@ -1,0 +1,6 @@
+payment:
+  order: order
+  amount: 2
+  paid: false
+  payment_card: payment_card
+  transaction_id: 0
