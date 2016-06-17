@@ -1,0 +1,4 @@
+purchase:
+  order: order
+  user: foo
+  number_of_days: 10

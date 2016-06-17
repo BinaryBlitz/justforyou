@@ -18,6 +18,7 @@ class Order < ApplicationRecord
   belongs_to :user
 
   has_one :payment
+  has_many :purchases, dependent: :destroy
   has_many :line_items, dependent: :destroy, inverse_of: :order
 
   validates :comment, length: { maximum: 1000 }
