@@ -41,7 +41,9 @@ Rails.application.routes.draw do
 
     resources :payment_cards, only: [:index, :create, :destroy]
 
-    resources :purchases, only: :index
+    resources :purchases, only: :index do
+      resources :deliveries, only: :create
+    end
   end
 
   namespace :admin do

@@ -4,6 +4,19 @@ class API::DeliveriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @delivery = deliveries(:delivery)
     @new_delivery = deliveries(:new_delivery)
+    @purchase = @delivery.purchase
+  end
+
+  test 'should create delivery' do
+    @delivery.destroy
+
+    assert_difference 'Delivery.count' do
+      post api_purchase_deliveries_url(@purchase, api_token: api_token), params: {
+        delivery: @delivery.attributes
+      }
+    end
+
+    assert_response :created
   end
 
   test 'should not cancel delivery' do
