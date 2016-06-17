@@ -29,6 +29,7 @@ class User < ApplicationRecord
   has_many :substitutions, dependent: :destroy
   has_many :payment_cards, dependent: :destroy
   has_many :purchases, dependent: :destroy
+  has_many :programs, through: :purchases
 
   validates :first_name, :last_name, presence: true, length: { maximum: 20 }
   validates :email, email: true, uniqueness: { case_sensitive: false }

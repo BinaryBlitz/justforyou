@@ -164,11 +164,11 @@ ActiveRecord::Schema.define(version: 20160617145616) do
 
   create_table "purchases", force: :cascade do |t|
     t.integer  "number_of_days", null: false
-    t.integer  "order_id"
+    t.integer  "program_id"
     t.integer  "user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["order_id"], name: "index_purchases_on_order_id", using: :btree
+    t.index ["program_id"], name: "index_purchases_on_program_id", using: :btree
     t.index ["user_id"], name: "index_purchases_on_user_id", using: :btree
   end
 
@@ -214,7 +214,7 @@ ActiveRecord::Schema.define(version: 20160617145616) do
   add_foreign_key "payment_cards", "users"
   add_foreign_key "products", "product_types"
   add_foreign_key "programs", "blocks"
-  add_foreign_key "purchases", "orders"
+  add_foreign_key "purchases", "programs"
   add_foreign_key "purchases", "users"
   add_foreign_key "substitutions", "products"
   add_foreign_key "substitutions", "users"
