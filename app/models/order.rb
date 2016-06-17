@@ -19,34 +19,35 @@ class Order < ApplicationRecord
 
   has_one :payment
   has_many :line_items, dependent: :destroy, inverse_of: :order
+  has_many :programs, through: :line_items
 
   validates :comment, length: { maximum: 1000 }
   validates :line_items, presence: true
   validates :pending_balance, numericality: { greater_than_or_equal_to: 0 }
 
-  after_save :set_pending_balance
-  after_save :set_user_balance
+  after_create :set_pending_balance
 
   accepts_nested_attributes_for :line_items, allow_destroy: true
 
   def paid!
-    update(paid: true)
+    ActiveRecord::Base.transaction do
+      update(paid: true)
+      user.add_balance(pending_balance)
+
+      line_items.each do |item|
+        user.purchases.create(program: item.program, number_of_days: item.number_of_days)
+      end
+    end
   end
 
   def total_price
     @total_price ||= begin
-      threshold = line_items.joins(:program).maximum(:threshold)
+      threshold = programs.maximum(:threshold)
       line_items.inject(0) { |sum, item| sum + item.price_for_threshold(threshold) }
     end
   end
 
   def set_pending_balance
-    pending_balance = total_price * user.discount
-    update_column(:pending_balance, pending_balance)
-  end
-
-  def set_user_balance
-    return unless paid?
-    user.update_column(:balance, user.balance + pending_balance)
+    self.pending_balance = total_price * user.discount
   end
 end

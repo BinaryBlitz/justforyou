@@ -56,4 +56,8 @@ class User < ApplicationRecord
     return SMALL_DISCOUNT if total_number_of_days > SMALL_DISCOUNT_THRESHOLD
     0.0
   end
+
+  def add_balance(value)
+    update_column(:balance, balance + value)
+  end
 end

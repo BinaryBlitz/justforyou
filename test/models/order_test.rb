@@ -59,8 +59,7 @@ class OrderTest < ActiveSupport::TestCase
 
   test 'user balance' do
     @order.set_pending_balance
-    @order.paid = true
-    @order.set_user_balance
+    @order.paid!
     assert_equal 310, @order.user.balance
   end
 end
