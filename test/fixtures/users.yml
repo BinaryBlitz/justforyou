@@ -10,6 +10,8 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  api_token    :string
+#  balance      :integer          default(0)
+#  device_token :string
 #
 
 foo:
@@ -18,6 +20,7 @@ foo:
   phone_number: "+79998887766"
   email: foo@bar.com
   api_token: <%= SecureRandom.hex %>
+  device_token: <%= SecureRandom.hex %>
 
 baz:
   first_name: Baz
@@ -25,3 +28,4 @@ baz:
   phone_number: "+79991112233"
   email: baz@qux.com
   api_token: <%= SecureRandom.hex %>
+  device_token: <%= SecureRandom.hex %>

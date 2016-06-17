@@ -10,6 +10,8 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  api_token    :string
+#  balance      :integer          default(0)
+#  device_token :string
 #
 
 require 'test_helper'
