@@ -7,7 +7,6 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  product_type_id :integer
-#  day_id          :integer
 #
 
 product:

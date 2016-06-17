@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: items
+#
+#  id         :integer          not null, primary key
+#  content    :text             not null
+#  weight     :integer          not null
+#  calories   :float            not null
+#  starts_at  :time             not null
+#  ends_at    :time             not null
+#  day_id     :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'test_helper'
 
 class ItemTest < ActiveSupport::TestCase
