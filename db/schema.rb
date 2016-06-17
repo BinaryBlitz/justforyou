@@ -44,18 +44,6 @@ ActiveRecord::Schema.define(version: 20160614235014) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "balances", force: :cascade do |t|
-    t.integer  "lower_days_regular_threshold",       default: 31
-    t.integer  "upper_days_regular_threshold",       default: 101
-    t.integer  "lower_percentage_regular_threshold", default: 5
-    t.integer  "upper_percentage_regular_threshold", default: 10
-    t.integer  "lower_days_periodic_threshold",      default: 101
-    t.integer  "balance_period",                     default: 100
-    t.integer  "periodic_balance_sum",               default: 15000
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
-  end
-
   create_table "blocks", force: :cascade do |t|
     t.string   "name",                       null: false
     t.string   "image",                      null: false
@@ -79,7 +67,6 @@ ActiveRecord::Schema.define(version: 20160614235014) do
     t.datetime "updated_at",                null: false
     t.integer  "address_id"
     t.integer  "line_item_id"
-    t.integer  "day_position"
     t.index ["address_id"], name: "index_deliveries_on_address_id", using: :btree
     t.index ["line_item_id"], name: "index_deliveries_on_line_item_id", using: :btree
   end
@@ -104,23 +91,6 @@ ActiveRecord::Schema.define(version: 20160614235014) do
     t.datetime "updated_at",     null: false
     t.index ["order_id"], name: "index_line_items_on_order_id", using: :btree
     t.index ["program_id"], name: "index_line_items_on_program_id", using: :btree
-  end
-
-  create_table "managers", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_managers_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_managers_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "orders", force: :cascade do |t|

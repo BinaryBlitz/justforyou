@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
     resources :addresses, except: [:new, :edit, :update]
     resources :product_types, only: [:index, :show]
+    resources :payments, only: [:index]
 
     resources :orders, except: [:new, :edit] do
       resource :payment, only: [:create]

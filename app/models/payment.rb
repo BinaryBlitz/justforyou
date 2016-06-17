@@ -25,6 +25,8 @@ class Payment < ApplicationRecord
 
   delegate :user, to: :order
 
+  scope :paid, -> { where(paid: true) }
+
   def payment_url
     return if payment_card
     Payonline::PaymentGateway.new(payment_options).payment_url

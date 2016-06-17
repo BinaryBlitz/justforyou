@@ -1,6 +1,10 @@
 class API::PaymentsController < API::APIController
   before_action :set_order, only: [:create]
 
+  def index
+    @payments = current_user.payments.paid
+  end
+
   def create
     @payment = @order.payment || @order.create_payment(payment_card: payment_card)
     render status: :created
