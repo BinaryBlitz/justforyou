@@ -37,6 +37,7 @@ gem 'mini_magick'
 gem 'pundit'
 gem 'rollbar'
 gem 'nested_form_fields'
+gem 'houston'
 gem 'payonline', github: 'itsdn/payonline'
 
 group :development, :test do
