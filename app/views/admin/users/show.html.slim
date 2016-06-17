@@ -42,7 +42,14 @@ h1 Пользователь: #{ @user.full_name }
   strong Дата регистрации:
   = @user.created_at.strftime("%Y-%m-%d")
 
-h2 Заказы
+.form-group
+  strong Оплаченные заказы:
+  - @user.orders.each do |order|
+    - if order.paid == true
+      ul
+        li = link_to "Заказ № #{ order.id }", admin_order_path(order)
+
+h2 Доставки
 
 table.table
   thead

@@ -1,0 +1,17 @@
+h1 Заказ № #{ @order.id }
+
+.form-group
+  strong Время оплаты: 
+  = @order.payment.created_at
+
+.form-group
+  strong Сумма: 
+  = @order.payment.amount
+
+- @order.line_items.each do |line_item|
+  .form-group
+    strong Название блока: 
+    = line_item.program.block.name
+  .form-group
+    strong Название программы: 
+    = line_item.program.name
