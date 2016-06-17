@@ -42,3 +42,5 @@ order = Order.create!(
 product_type = ProductType.create!(name: 'Product type')
 
 product_type.products.create!(name: 'Product')
+
+promotion = Promotion.create!(name: 'Promotion', description: 'Description')
