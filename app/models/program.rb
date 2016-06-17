@@ -22,6 +22,7 @@ class Program < ApplicationRecord
   has_many :days, dependent: :destroy, inverse_of: :program
   has_many :items, through: :days
   has_many :line_items, dependent: :destroy
+  has_many :purchases, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 20 }
   validates :preview_image, :description, :prescription, :preview, :block, presence: true

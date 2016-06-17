@@ -40,6 +40,12 @@ Rails.application.routes.draw do
     resources :promotions, only: [:index, :show]
 
     resources :payment_cards, only: [:index, :create, :destroy]
+
+    resources :deliveries, only: :index
+
+    resources :purchases, only: :index do
+      resources :deliveries, only: [:create]
+    end
   end
 
   namespace :admin do
