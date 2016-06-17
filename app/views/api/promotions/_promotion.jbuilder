@@ -1,1 +1,1 @@
-json.extract! promotion, :id, :name, :description
+json.extract! promotion, :id, :name, :description, :created_at
