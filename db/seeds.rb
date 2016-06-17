@@ -3,6 +3,12 @@ user = User.create!(
   email: 'email@email.com'
 )
 
+address = user.addresses.create(
+  content: 'Content',
+  entrance: 1,
+  floor: 1
+)
+
 admin = Admin.create!(email: 'foo@bar.com', password: 'qwerty123')
 
 image = File.open(Rails.root.join('test', 'fixtures', 'files', 'blank.jpg'))
