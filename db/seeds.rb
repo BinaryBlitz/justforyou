@@ -38,3 +38,7 @@ order = Order.create!(
     { program: program, number_of_days: 10 }
   ]
 )
+
+product_type = ProductType.create!(name: 'Product type')
+
+product_type.products.create!(name: 'Product')
