@@ -8,11 +8,11 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  address_id    :integer
-#  line_item_id  :integer
+#  purchase_id   :integer
 #
 
 class Delivery < ApplicationRecord
-  belongs_to :line_item
+  belongs_to :purchase
   belongs_to :address
 
   validates :status, :scheduled_for, presence: true

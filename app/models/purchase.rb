@@ -13,6 +13,7 @@
 class Purchase < ApplicationRecord
   belongs_to :user
   belongs_to :order
+  has_many :deliveries, dependent: :destroy
 
   validates :number_of_days, numericality: { greater_than: 0 }
 end
