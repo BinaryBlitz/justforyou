@@ -17,4 +17,8 @@ class Day < ApplicationRecord
   validates :position, presence: true, numericality: { greater_than: 0 }
 
   accepts_nested_attributes_for :items, allow_destroy: true
+
+  def calories
+    items.sum(:calories)
+  end
 end

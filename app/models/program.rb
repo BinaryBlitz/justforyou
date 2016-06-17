@@ -30,8 +30,4 @@ class Program < ApplicationRecord
   validates :primary_price, :secondary_price, numericality: { greater_than: 0 }
 
   mount_uploader :preview_image, PreviewImageUploader
-
-  def calories
-    items.sum(:calories)
-  end
 end

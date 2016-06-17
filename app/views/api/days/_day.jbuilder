@@ -1,1 +1,1 @@
-json.extract! day, :id, :position
+json.extract! day, :id, :position, :calories
