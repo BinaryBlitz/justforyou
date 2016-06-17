@@ -2,7 +2,7 @@ class API::AddressesController < API::APIController
   before_action :set_address, only: [:show, :destroy]
 
   def index
-    @addreses = current_user.addresses
+    @addresses = current_user.addresses
   end
 
   def show
