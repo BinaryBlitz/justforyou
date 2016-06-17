@@ -2,6 +2,10 @@ class API::DeliveriesController < API::APIController
   before_action :set_delivery, only: [:cancel]
   before_action :set_purchase, only: [:create]
 
+  def index
+    @deliveries = current_user.deliveries
+  end
+
   def create
     @delivery = @purchase.deliveries.build(delivery_params)
 

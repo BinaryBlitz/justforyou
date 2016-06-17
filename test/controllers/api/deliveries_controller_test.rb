@@ -7,6 +7,11 @@ class API::DeliveriesControllerTest < ActionDispatch::IntegrationTest
     @purchase = @delivery.purchase
   end
 
+  test 'should get index' do
+    get api_deliveries_path(api_token: api_token)
+    assert_response :success
+  end
+
   test 'should create delivery' do
     @delivery.destroy
 
