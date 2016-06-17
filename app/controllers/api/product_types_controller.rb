@@ -1,4 +1,4 @@
-class API::ProductTypesController < ApplicationController
+class API::ProductTypesController < API::APIController
   def index
     @product_types = ProductType.all.includes(:products)
   end

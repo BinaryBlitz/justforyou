@@ -1,1 +1,1 @@
-json.extract! substitution, :product_id
+json.extract! substitution, :id, :created_at

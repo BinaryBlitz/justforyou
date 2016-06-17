@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     resource :user, only: [:show, :create, :update]
 
     resources :addresses, except: [:new, :edit, :update]
-    resources :product_types, only: [:index, :show]
     resources :payments, only: [:index]
 
     resources :orders, except: [:new, :edit] do
@@ -21,8 +20,10 @@ Rails.application.routes.draw do
       resources :programs, only: [:index, :show]
     end
 
-    resources :products, only: [:show] do
-      resources :substitutions, only: [:index, :create, :destroy], shallow: true
+    resources :product_types, only: [:index, :show]
+    resources :substitutions, only: [:index]
+    resources :products, only: [:index, :show] do
+      resources :substitutions, only: [:create, :destroy], shallow: true
     end
 
     resources :programs, only: [:index, :show] do
