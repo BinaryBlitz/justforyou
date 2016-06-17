@@ -3,6 +3,8 @@ user = User.create!(
   email: 'email@email.com'
 )
 
+user.update(api_token: 'foobar')
+
 address = user.addresses.create(
   content: 'Content',
   entrance: 1,
