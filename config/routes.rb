@@ -64,6 +64,8 @@ Rails.application.routes.draw do
     end
 
     resources :managers
+
+    resources :orders, only: :show
   end
 
   resources :payments, only: [] do
