@@ -45,9 +45,9 @@ h1 Пользователь: #{ @user.full_name }
 .form-group
   strong Оплаченные заказы:
   - @user.orders.each do |order|
-    - if order.paid == true
+    - if order.paid? == true
       ul
-        li = link_to "Заказ № #{ order.id }", admin_order_path(order)
+        li = link_to "Заказ № #{order.id}", admin_order_path(order)
 
 h2 Доставки
 
