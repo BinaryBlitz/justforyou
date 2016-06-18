@@ -45,7 +45,11 @@ class Payment < ApplicationRecord
   private
 
   def set_amount
-    self.amount = order.total_price
+    self.amount = if user.balance >= total_price && payment.balance?
+      order.balance_price
+    else
+      order.total_price
+    end
   end
 
   def rebill

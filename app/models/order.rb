@@ -33,11 +33,16 @@ class Order < ApplicationRecord
     ActiveRecord::Base.transaction do
       update(paid: true)
       user.add_balance(pending_balance)
+      user.update_column(:balance, user.balance - total_price) if user.balance >= total_price && payment.balance?
 
       line_items.each do |item|
         user.purchases.create(program: item.program, number_of_days: item.number_of_days)
       end
     end
+  end
+
+  def balance_price
+    1 if user.balance >= total_price && payment.balance?
   end
 
   def total_price
