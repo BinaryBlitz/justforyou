@@ -16,9 +16,11 @@ new_delivery:
   status: 0
   scheduled_for: <%= 3.days.from_now %>
   address: address
+  comment: Comment
 
 delivery:
   purchase: purchase
   status: 0
   scheduled_for: <%= 1.day.from_now %>
   address: address
+  comment: Comment

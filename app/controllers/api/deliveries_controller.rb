@@ -33,6 +33,6 @@ class API::DeliveriesController < API::APIController
   end
 
   def delivery_params
-    params.require(:delivery).permit(:scheduled_for, :address_id)
+    params.require(:delivery).permit(:scheduled_for, :address_id, :comment)
   end
 end

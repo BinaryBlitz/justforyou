@@ -1,1 +1,1 @@
-json.extract! delivery, :id, :scheduled_for
+json.extract! delivery, :id, :scheduled_for, :comment
