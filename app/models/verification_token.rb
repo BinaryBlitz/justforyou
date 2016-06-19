@@ -45,7 +45,7 @@ class VerificationToken < ApplicationRecord
     end
   end
 
-  def as_json(options)
+  def as_json(_)
     { phone_number: phone_number, token: token }
   end
 

@@ -24,7 +24,6 @@ class Admin::PromotionsControllerTest < ActionDispatch::IntegrationTest
         promotion: @promotion.attributes
       }
     end
-
   end
 
   test 'should update promotion' do

@@ -20,7 +20,7 @@ class UserPolicy < ApplicationPolicy
 
   private
 
-   def admin?
-      current_admin.type == 'Admin'
-   end
+  def admin?
+    current_admin.type == 'Admin'
+  end
 end

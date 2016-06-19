@@ -45,7 +45,8 @@ class Admin::DaysController < Admin::AdminController
   end
 
   def day_params
-    params.require(:day)
+    params
+      .require(:day)
       .permit(
         :position, items_attributes: [
           :id, :content, :weight, :calories, :starts_at, :ends_at, :_destroy

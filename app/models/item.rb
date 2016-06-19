@@ -16,6 +16,6 @@
 class Item < ApplicationRecord
   belongs_to :day, inverse_of: :items
 
-  validates :content, :starts_at, :ends_at,  presence: true
+  validates :content, :starts_at, :ends_at, presence: true
   validates :calories, :weight, numericality: { greater_than: 0 }
 end

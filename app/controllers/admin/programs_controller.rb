@@ -45,7 +45,8 @@ class Admin::ProgramsController < Admin::AdminController
   end
 
   def program_params
-    params.require(:program)
+    params
+      .require(:program)
       .permit(
         :name, :description, :threshold, :primary_price, :secondary_price,
         :preview_image, :preview, :block_id, prescription: []

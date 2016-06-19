@@ -8,10 +8,8 @@ class API::APIController < ApplicationController
   helper_method :current_user
 
   def restrict_access!
-    unless restrict_access
-      render json: { message: 'Invalid API Token' }, status: 401
-      return
-    end
+    return if restrict_access
+    render json: { message: 'Invalid API Token' }, status: 401
   end
 
   def restrict_access

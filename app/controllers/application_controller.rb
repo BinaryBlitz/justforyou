@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def after_sign_in_path_for(resource)
-    admin_users_path
+    admin_users_path if resource.is_a?(Admin)
   end
 
-  def after_sign_out_path_for(resource_or_scope)
+  def after_sign_out_path_for(_)
     new_admin_session_path
   end
 
