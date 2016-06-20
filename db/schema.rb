@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20160619104808) do
     t.datetime "updated_at",                      null: false
     t.boolean  "paid",            default: false
     t.integer  "pending_balance", default: 0
+    t.boolean  "option_balance",  default: true
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 

@@ -10,6 +10,7 @@
 #  updated_at      :datetime         not null
 #  paid            :boolean          default(FALSE)
 #  pending_balance :integer          default(0)
+#  option_balance  :boolean          default(TRUE)
 #
 
 class Order < ApplicationRecord
@@ -25,6 +26,7 @@ class Order < ApplicationRecord
   validates :line_items, presence: true
   validates :pending_balance, numericality: { greater_than_or_equal_to: 0 }
 
+  after_create :substract_balance
   after_create :set_pending_balance
 
   accepts_nested_attributes_for :line_items, allow_destroy: true
@@ -38,6 +40,18 @@ class Order < ApplicationRecord
         user.purchases.create(program: item.program, number_of_days: item.number_of_days)
       end
     end
+  end
+
+  def balance_price
+    1 if payment_with_balance?
+  end
+
+  def payment_with_balance?
+    user.balance >= total_price && option_balance?
+  end
+
+  def substract_balance
+    user.update_column(:balance, user.balance - total_price) if payment_with_balance?
   end
 
   def total_price

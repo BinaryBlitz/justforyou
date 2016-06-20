@@ -42,7 +42,7 @@ class API::OrdersController < API::APIController
       .require(:order)
       .permit(
         :comment, :phone_number, line_items_attributes: [
-          :order_id, :program_id, :number_of_days
+          :order_id, :program_id, :number_of_days, :option_balance
         ]
       )
   end
