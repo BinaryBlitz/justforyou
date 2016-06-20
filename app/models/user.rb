@@ -61,4 +61,12 @@ class User < ApplicationRecord
   def add_balance(value)
     update_column(:balance, balance + value)
   end
+
+  def redeem_balance(value)
+    if value >= balance
+      update_column(:balance, 0)
+    else
+      update_column(:balance, balance - value)
+    end
+  end
 end

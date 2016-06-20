@@ -10,6 +10,7 @@
 #  updated_at      :datetime         not null
 #  paid            :boolean          default(FALSE)
 #  pending_balance :integer          default(0)
+#  use_balance     :boolean          default(FALSE)
 #
 
 class Order < ApplicationRecord
@@ -25,14 +26,15 @@ class Order < ApplicationRecord
   validates :line_items, presence: true
   validates :pending_balance, numericality: { greater_than_or_equal_to: 0 }
 
-  after_create :set_pending_balance
+  after_create :set_pending_balance, unless: :use_balance?
 
   accepts_nested_attributes_for :line_items, allow_destroy: true
 
+  # Perform after paid callbacks
   def paid!
     ActiveRecord::Base.transaction do
       update(paid: true)
-      user.add_balance(pending_balance)
+      calculate_user_balance
 
       line_items.each do |item|
         user.purchases.create(program: item.program, number_of_days: item.number_of_days)
@@ -40,14 +42,36 @@ class Order < ApplicationRecord
     end
   end
 
+  # Price to be paid including user balance
   def total_price
     @total_price ||= begin
+      total_price = line_items_price
+      total_price -= user.balance if use_balance?
+      total_price > 0 ? total_price : 1
+    end
+  end
+
+  private
+
+  # Pending balance is applied after a successful payment
+  def set_pending_balance
+    self.pending_balance = total_price * user.discount
+  end
+
+  # Price before applying user balance
+  def line_items_price
+    @line_items_price ||= begin
       threshold = programs.maximum(:threshold)
       line_items.inject(0) { |sum, item| sum + item.price_for_threshold(threshold) }
     end
   end
 
-  def set_pending_balance
-    self.pending_balance = total_price * user.discount
+  # Calculate new balance after a successful payment
+  def calculate_user_balance
+    if use_balance?
+      user.redeem_balance(line_items_price)
+    else
+      user.add_balance(pending_balance)
+    end
   end
 end

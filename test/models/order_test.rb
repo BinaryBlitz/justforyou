@@ -55,12 +55,12 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test 'order balance' do
-    @order.set_pending_balance
+    @order.send(:set_pending_balance)
     assert_equal 310, @order.pending_balance
   end
 
   test 'user balance' do
-    @order.set_pending_balance
+    @order.send(:set_pending_balance)
     @order.paid!
     assert_equal 310, @order.user.balance
   end
