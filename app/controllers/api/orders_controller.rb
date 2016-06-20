@@ -41,7 +41,8 @@ class API::OrdersController < API::APIController
     params
       .require(:order)
       .permit(
-        :comment, :phone_number, line_items_attributes: [
+        :comment, :phone_number, :use_balance,
+        line_items_attributes: [
           :order_id, :program_id, :number_of_days
         ]
       )
