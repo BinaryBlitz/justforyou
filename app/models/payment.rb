@@ -45,7 +45,7 @@ class Payment < ApplicationRecord
   private
 
   def set_amount
-    self.amount = if user.balance >= order.total_price && payment.balance?
+    self.amount = if order.payment_with_balance?
       order.balance_price
     else
       order.total_price
