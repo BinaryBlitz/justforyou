@@ -18,4 +18,12 @@ class Purchase < ApplicationRecord
 
   validates :number_of_days, numericality: { greater_than: 0 }
   validates :program, uniqueness: { scope: :user }
+
+  def number_of_deliveries
+    deliveries.size
+  end
+
+  def number_of_remaining_days
+    number_of_days - deliveries.where.not(status: 2).count
+  end
 end
