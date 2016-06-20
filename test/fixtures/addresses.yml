@@ -16,3 +16,5 @@ address:
   content: Content
   floor: 4
   entrance: 1
+  latitude: 0.0
+  longitude: 0.0
