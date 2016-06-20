@@ -35,10 +35,7 @@ class Order < ApplicationRecord
     ActiveRecord::Base.transaction do
       update(paid: true)
       calculate_user_balance
-
-      line_items.each do |item|
-        user.purchases.create(program: item.program, number_of_days: item.number_of_days)
-      end
+      create_purchases
     end
   end
 
@@ -72,6 +69,20 @@ class Order < ApplicationRecord
       user.redeem_balance(line_items_price)
     else
       user.add_balance(pending_balance)
+    end
+  end
+
+  def create_purchases
+    line_items.each do |item|
+      purchase = user.purchases.find_or_initialize_by(program: item.program)
+
+      if purchase.new_record?
+        purchase.number_of_days = item.number_of_days
+      else
+        purchase.number_of_days += item.number_of_days
+      end
+
+      item.save
     end
   end
 end
