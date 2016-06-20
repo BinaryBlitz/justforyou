@@ -64,4 +64,16 @@ class OrderTest < ActiveSupport::TestCase
     @order.paid!
     assert_equal 310, @order.user.balance
   end
+
+  test 'order payment with balance' do
+    @order.user.balance = 6300
+    @order.paid!
+    assert_equal 100, @order.user.balance
+  end
+
+  test 'order payment without balance' do
+    @order.user.balance = 6000
+    @order.paid!
+    assert_equal 6000, @order.user.balance
+  end
 end
