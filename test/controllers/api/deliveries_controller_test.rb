@@ -17,7 +17,7 @@ class API::DeliveriesControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference 'Delivery.count' do
       post api_purchase_deliveries_url(@purchase, api_token: api_token), params: {
-        delivery: @delivery.attributes
+        deliveries: [@delivery.attributes]
       }
     end
 

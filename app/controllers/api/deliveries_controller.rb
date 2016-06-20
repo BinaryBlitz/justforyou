@@ -7,12 +7,13 @@ class API::DeliveriesController < API::APIController
   end
 
   def create
-    @delivery = @purchase.deliveries.build(delivery_params)
+    @deliveries = @purchase.deliveries.create(deliveries_params[:deliveries])
+    invalid_delivery = @deliveries.find(&:invalid?)
 
-    if @delivery.save
-      render :show, status: :created
+    if invalid_delivery.present?
+      render json: invalid_delivery.errors, status: 422
     else
-      render json: @delivery.errors, status: 422
+      render :index, status: :created
     end
   end
 
@@ -32,7 +33,7 @@ class API::DeliveriesController < API::APIController
     @delivery = Delivery.find(params[:id])
   end
 
-  def delivery_params
-    params.require(:delivery).permit(:scheduled_for, :address_id, :comment)
+  def deliveries_params
+    params.permit(deliveries: [:scheduled_for, :address_id, :comment])
   end
 end
