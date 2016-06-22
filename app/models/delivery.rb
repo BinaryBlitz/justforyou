@@ -10,6 +10,7 @@
 #  address_id    :integer
 #  purchase_id   :integer
 #  comment       :text
+#  day_position  :integer
 #
 
 class Delivery < ApplicationRecord
