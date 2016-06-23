@@ -19,4 +19,9 @@ class SubstitutionTest < ActiveSupport::TestCase
   test 'valid' do
     assert @substitution.valid?
   end
+
+  test 'uniqueness' do
+    substitution = @substitution.dup
+    assert substitution.invalid?
+  end
 end
