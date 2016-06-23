@@ -3,7 +3,7 @@ class API::ProgramsController < API::APIController
   before_action :set_block, only: [:index]
 
   def index
-    @programs = @block.programs.all
+    @programs = @block.programs
   end
 
   def show

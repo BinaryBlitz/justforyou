@@ -1,1 +1,1 @@
-json.array! @programs, partial: 'program', as: :program
+json.array! @programs, partial: 'api/programs/program', as: :program
