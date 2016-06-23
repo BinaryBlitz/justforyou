@@ -2,7 +2,7 @@ class API::OrdersController < API::APIController
   before_action :set_order, only: [:show, :update, :destroy]
 
   def index
-    @orders = current_user.orders
+    @orders = current_user.orders.includes(:programs)
   end
 
   def show
