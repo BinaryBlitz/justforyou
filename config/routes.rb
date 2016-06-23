@@ -66,6 +66,12 @@ Rails.application.routes.draw do
     resources :managers
 
     resources :orders, only: :show
+    
+    resources :exports, only: [] do
+      get 'kitchen', on: :collection
+      get 'courier', on: :collection
+      get 'manager', on: :collection
+    end
   end
 
   resources :payments, only: [] do
