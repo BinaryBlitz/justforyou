@@ -19,4 +19,6 @@ class Delivery < ApplicationRecord
   validates :status, :scheduled_for, presence: true
 
   enum status: %i(pending delivered canceled)
+
+  scope :not_canceled, -> { where.not(status: 'canceled') }
 end
