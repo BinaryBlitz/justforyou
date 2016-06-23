@@ -24,6 +24,6 @@ class Purchase < ApplicationRecord
   end
 
   def number_of_remaining_days
-    number_of_days - deliveries.where.not(status: 2).count
+    number_of_days - deliveries.not_canceled.size
   end
 end
