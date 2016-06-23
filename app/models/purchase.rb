@@ -26,4 +26,11 @@ class Purchase < ApplicationRecord
   def number_of_remaining_days
     number_of_days - deliveries.not_canceled.size
   end
+
+  def self.with_remaining_deliveries
+    joins(:deliveries)
+      .merge(Delivery.not_canceled)
+      .group('purchases.id')
+      .having('count(deliveries.id) < number_of_days')
+  end
 end
