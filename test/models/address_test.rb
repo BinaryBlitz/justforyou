@@ -9,6 +9,8 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  latitude   :float            not null
+#  longitude  :float            not null
 #
 
 require 'test_helper'

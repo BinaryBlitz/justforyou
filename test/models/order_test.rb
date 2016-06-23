@@ -10,6 +10,7 @@
 #  updated_at      :datetime         not null
 #  paid            :boolean          default(FALSE)
 #  pending_balance :integer          default(0)
+#  use_balance     :boolean          default(FALSE)
 #
 
 require 'test_helper'

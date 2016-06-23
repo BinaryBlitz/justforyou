@@ -9,6 +9,7 @@
 #  updated_at    :datetime         not null
 #  address_id    :integer
 #  purchase_id   :integer
+#  comment       :text
 #
 
 new_delivery:
