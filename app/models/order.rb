@@ -35,7 +35,7 @@ class Order < ApplicationRecord
     ActiveRecord::Base.transaction do
       update(paid: true)
       calculate_user_balance
-      create_purchases
+      configure_purchases
     end
   end
 
@@ -72,7 +72,7 @@ class Order < ApplicationRecord
     end
   end
 
-  def create_purchases
+  def configure_purchases
     line_items.each do |item|
       purchase = user.purchases.find_or_initialize_by(program: item.program)
 
