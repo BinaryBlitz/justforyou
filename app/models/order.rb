@@ -82,7 +82,7 @@ class Order < ApplicationRecord
         purchase.number_of_days += item.number_of_days
       end
 
-      item.save
+      purchase.save
     end
   end
 end
