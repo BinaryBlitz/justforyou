@@ -2,17 +2,17 @@ class Admin::ExportsController < Admin::AdminController
   before_action :set_export, only: [:kitchen, :courier, :manager]
 
   def kitchen
-    Export.new(@deliveries).kitchen
+    Kitchen.new(@deliveries).to_csv
     send_file('kitchen.csv')
   end
 
   def courier
-    Export.new(@deliveries).courier
+    Courier.new(@deliveries).to_csv
     send_file('courier.csv')
   end
 
   def manager
-    Export.new(@deliveries).manager
+    ExportManager.new(@deliveries).to_csv
     send_file('manager.csv')
   end
 
