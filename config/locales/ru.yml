@@ -37,6 +37,14 @@ ru:
       promotion:
         name: Название
         description: Описание
+      balance:
+        lower_days_regular_threshold: Нижняя граница получения постоянных бонусов в днях
+        upper_days_regular_threshold: Верхняя граница получения постоянных бонусов в днях
+        lower_percentage_regular_threshold: Нижняя граница получения постоянных бонусов в процентах
+        upper_percentage_regular_threshold: Верхняя граница получения постоянных бонусов в процентах
+        lower_days_periodic_threshold: Нижняя граница получения периодических бонусов в днях
+        balance_period: Период получения периодических бонусов в днях
+        periodic_balance_sum: Сумма периодических бонусов
   views:
     pagination:
       first: "&laquo; Первая"

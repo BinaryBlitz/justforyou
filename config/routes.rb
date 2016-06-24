@@ -66,6 +66,8 @@ Rails.application.routes.draw do
     resources :managers
 
     resources :orders, only: :show
+
+    resources :balances, only: [:edit, :update, :index]
   end
 
   resources :payments, only: [] do
