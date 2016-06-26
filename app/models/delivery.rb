@@ -13,10 +13,21 @@
 #
 
 class Delivery < ApplicationRecord
+  after_save :update_counter_cache
+  after_destroy :update_counter_cache
+
   belongs_to :purchase
   belongs_to :address
 
   validates :status, :scheduled_for, presence: true
 
   enum status: %i(pending delivered canceled)
+
+  scope :valid, -> { where.not(status: :canceled) }
+
+  private
+
+  def update_counter_cache
+    purchase.update(deliveries_count: purchase.deliveries.valid.count)
+  end
 end

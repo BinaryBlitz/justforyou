@@ -1,1 +1,1 @@
-json.extract! purchase, :id, :number_of_days, :created_at
+json.extract! purchase, :id, :number_of_days, :deliveries_count, :created_at

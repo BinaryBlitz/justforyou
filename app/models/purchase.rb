@@ -2,12 +2,13 @@
 #
 # Table name: purchases
 #
-#  id             :integer          not null, primary key
-#  number_of_days :integer          not null
-#  program_id     :integer
-#  user_id        :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id               :integer          not null, primary key
+#  number_of_days   :integer          not null
+#  program_id       :integer
+#  user_id          :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  deliveries_count :integer          default(0)
 #
 
 class Purchase < ApplicationRecord

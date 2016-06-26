@@ -17,9 +17,18 @@ require 'test_helper'
 class DeliveryTest < ActiveSupport::TestCase
   setup do
     @delivery = deliveries(:delivery)
+    @purchase = @delivery.purchase
   end
 
   test 'valid' do
     assert @delivery.valid?
+  end
+
+  test 'increases counter cache' do
+    @delivery.save
+
+    assert_difference -> { @purchase.reload.deliveries_count }, -1 do
+      @delivery.destroy
+    end
   end
 end
