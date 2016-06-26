@@ -19,4 +19,6 @@ class Purchase < ApplicationRecord
 
   validates :number_of_days, numericality: { greater_than: 0 }
   validates :program, uniqueness: { scope: :user }
+
+  scope :visible, -> { where('deliveries_count < number_of_days') }
 end
