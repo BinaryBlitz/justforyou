@@ -30,4 +30,9 @@ class Program < ApplicationRecord
   validates :primary_price, :secondary_price, numericality: { greater_than: 0 }
 
   mount_uploader :preview_image, PreviewImageUploader
+
+  def price(number_of_days)
+    price = number_of_days < threshold ? primary_price : secondary_price
+    price * number_of_days
+  end
 end

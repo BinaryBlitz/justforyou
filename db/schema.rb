@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160626222952) do
+ActiveRecord::Schema.define(version: 20160626225811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,19 @@ ActiveRecord::Schema.define(version: 20160626222952) do
     t.text     "comment"
     t.index ["address_id"], name: "index_deliveries_on_address_id", using: :btree
     t.index ["purchase_id"], name: "index_deliveries_on_purchase_id", using: :btree
+  end
+
+  create_table "exchanges", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "purchase_id"
+    t.integer  "program_id"
+    t.boolean  "paid",            default: false
+    t.integer  "pending_balance", default: 0
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["program_id"], name: "index_exchanges_on_program_id", using: :btree
+    t.index ["purchase_id"], name: "index_exchanges_on_purchase_id", using: :btree
+    t.index ["user_id"], name: "index_exchanges_on_user_id", using: :btree
   end
 
   create_table "items", force: :cascade do |t|
@@ -214,6 +227,9 @@ ActiveRecord::Schema.define(version: 20160626222952) do
   add_foreign_key "days", "programs"
   add_foreign_key "deliveries", "addresses"
   add_foreign_key "deliveries", "purchases"
+  add_foreign_key "exchanges", "programs"
+  add_foreign_key "exchanges", "purchases"
+  add_foreign_key "exchanges", "users"
   add_foreign_key "items", "days"
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "programs"

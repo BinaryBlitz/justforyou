@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: exchanges
+#
+#  id              :integer          not null, primary key
+#  user_id         :integer
+#  purchase_id     :integer
+#  program_id      :integer
+#  paid            :boolean          default(FALSE)
+#  pending_balance :integer          default(0)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+exchange:
+  user: foo
+  purchase: purchase
+  program: program
+  paid: false
+  pending_balance: 0

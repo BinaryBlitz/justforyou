@@ -21,4 +21,12 @@ class Purchase < ApplicationRecord
   validates :program, uniqueness: { scope: :user }
 
   scope :visible, -> { where('deliveries_count < number_of_days') }
+
+  def days_left
+    number_of_days - deliveries_count
+  end
+
+  def completed?
+    deliveries_count == number_of_days
+  end
 end
