@@ -58,7 +58,7 @@ class Payment < ApplicationRecord
 
   def payment_options
     {
-      order_id: order_id,
+      order_id: id,
       amount: amount,
       currency: CURRENCY
     }
