@@ -17,8 +17,9 @@ class Exchange < ApplicationRecord
   belongs_to :purchase
   belongs_to :program
 
-  has_one :payment, dependent: :destroy
+  has_one :payment, as: :payable
 
+  validates :purchase, uniqueness: { scope: :user }
   validate :not_completed
 
   def paid!
