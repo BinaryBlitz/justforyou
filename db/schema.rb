@@ -227,7 +227,6 @@ ActiveRecord::Schema.define(version: 20160626225811) do
   add_foreign_key "days", "programs"
   add_foreign_key "deliveries", "addresses"
   add_foreign_key "deliveries", "purchases"
-  add_foreign_key "exchanges", "programs"
   add_foreign_key "exchanges", "purchases"
   add_foreign_key "exchanges", "users"
   add_foreign_key "items", "days"
