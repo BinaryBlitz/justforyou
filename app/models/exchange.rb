@@ -20,6 +20,7 @@ class Exchange < ApplicationRecord
   has_one :payment, as: :payable
 
   validates :purchase, uniqueness: { scope: :user }
+  validate :different_program
   validate :not_completed
 
   def paid!
@@ -32,7 +33,7 @@ class Exchange < ApplicationRecord
 
   def total_price
     # Price of the new program
-    price = days_left * program.primary_price
+    price = purchase.days_left * program.primary_price
     # Add balance if the new price is cheaper
     if price <= original_price
       self.pending_balance = original_price - price
@@ -49,10 +50,14 @@ class Exchange < ApplicationRecord
     program.price(purchase.number_of_days)
   end
 
-  # Make sure there are deliveries left
   def not_completed
     return unless purchase
-    errors.add(:purchase, 'is completed') if purchase.completed?
+    errors.add(:purchase, "doesn't have any days left") if purchase.completed?
+  end
+
+  def different_program
+    return unless purchase && program
+    errors.add(:program, 'is identical') if purchase.program == program
   end
 
   def calculate_user_balance

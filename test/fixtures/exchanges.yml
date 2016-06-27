@@ -15,6 +15,6 @@
 exchange:
   user: foo
   purchase: purchase
-  program: program
+  program: program_two
   paid: false
   pending_balance: 0
