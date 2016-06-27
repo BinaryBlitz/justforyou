@@ -1,19 +1,23 @@
 class API::PaymentsController < API::APIController
-  before_action :set_order, only: [:create]
+  before_action :set_payable, only: [:create]
 
   def index
     @payments = current_user.payments.paid
   end
 
   def create
-    @payment = @order.payment || @order.create_payment(payment_card: payment_card)
+    @payment = @payable.payment || @payable.create_payment(payment_card: payment_card)
     render status: :created
   end
 
   private
 
-  def set_order
-    @order = Order.find(params[:order_id])
+  def set_payable
+    @payable = if params[:order_id].present?
+      Order.find(params[:order_id])
+    elsif params[:exchange_id].present?
+      Exchange.find(params[:exchange_id])
+    end
   end
 
   def payment_params

@@ -46,6 +46,11 @@ Rails.application.routes.draw do
 
     resources :purchases, only: :index do
       resources :deliveries, only: [:create]
+      resources :exchanges, only: [:create]
+    end
+
+    resources :exchanges, only: [] do
+      resource :payment, only: [:create]
     end
   end
 
