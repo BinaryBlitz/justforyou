@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160626225811) do
+ActiveRecord::Schema.define(version: 20160628150926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,12 +63,13 @@ ActiveRecord::Schema.define(version: 20160626225811) do
 
   create_table "deliveries", force: :cascade do |t|
     t.integer  "status",        default: 0
-    t.datetime "scheduled_for",             null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "scheduled_for",                 null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "address_id"
     t.integer  "purchase_id"
     t.text     "comment"
+    t.boolean  "paid",          default: false
     t.index ["address_id"], name: "index_deliveries_on_address_id", using: :btree
     t.index ["purchase_id"], name: "index_deliveries_on_purchase_id", using: :btree
   end

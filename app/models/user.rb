@@ -70,4 +70,8 @@ class User < ApplicationRecord
       update_column(:balance, balance - value)
     end
   end
+
+  def unpaid_deliveries
+    deliveries.unpaid.valid
+  end
 end

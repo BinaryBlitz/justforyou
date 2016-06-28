@@ -10,6 +10,7 @@
 #  address_id    :integer
 #  purchase_id   :integer
 #  comment       :text
+#  paid          :boolean          default(FALSE)
 #
 
 class Delivery < ApplicationRecord
@@ -20,14 +21,20 @@ class Delivery < ApplicationRecord
   belongs_to :address
 
   validates :status, :scheduled_for, presence: true
+  validate :past_deliveries_paid?
 
   enum status: %i(pending delivered canceled)
 
   scope :valid, -> { where.not(status: :canceled) }
+  scope :unpaid, -> { where(paid: false) }
 
   private
 
   def update_counter_cache
     purchase.update(deliveries_count: purchase.deliveries.valid.count)
+  end
+
+  def past_deliveries_paid?
+    errors.add(:base, 'unpaid deliveries are present') if user.unpaid_deliveries.any?
   end
 end

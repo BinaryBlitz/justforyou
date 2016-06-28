@@ -10,6 +10,7 @@
 #  address_id    :integer
 #  purchase_id   :integer
 #  comment       :text
+#  paid          :boolean          default(FALSE)
 #
 
 require 'test_helper'
