@@ -1,1 +1,1 @@
-json.extract! payment, :id, :order_id, :amount, :paid, :created_at
+json.extract! payment, :id, :payable_type, :payable_id, :amount, :paid, :created_at
