@@ -17,6 +17,8 @@ class API::PaymentsController < API::APIController
       Order.find(params[:order_id])
     elsif params[:exchange_id].present?
       Exchange.find(params[:exchange_id])
+    elsif params[:delivery_invoice_id].present?
+      DeliveryInvoice.find(params[:delivery_invoice_id])
     end
   end
 

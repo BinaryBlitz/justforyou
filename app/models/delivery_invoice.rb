@@ -18,6 +18,8 @@ class DeliveryInvoice < ApplicationRecord
 
   has_many :deliveries, dependent: :destroy
 
+  validate :unpaid_deliveries_are_present
+
   def paid!
     ActiveRecord::Base.transaction do
       update(paid: true)
@@ -29,6 +31,10 @@ class DeliveryInvoice < ApplicationRecord
   end
 
   private
+
+  def unpaid_deliveries_are_present
+    errors.add(:base, 'no unpaid deliveries found') if user.unpaid_deliveries.empty?
+  end
 
   def add_deliveries
     deliveries << user.unpaid_deliveries

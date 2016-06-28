@@ -14,9 +14,11 @@ require 'test_helper'
 class DeliveryInvoiceTest < ActiveSupport::TestCase
   setup do
     @delivery_invoice = delivery_invoices(:delivery_invoice)
+    @delivery = deliveries(:delivery)
   end
 
   test 'valid' do
+    @delivery.update(paid: false)
     assert @delivery_invoice.valid?
   end
 end

@@ -38,6 +38,10 @@ Rails.application.routes.draw do
       patch 'cancel', on: :member
     end
 
+    resources :delivery_invoices, only: [:create] do
+      resource :payment, only: [:create]
+    end
+
     resources :promotions, only: [:index, :show]
 
     resources :payment_cards, only: [:index, :create, :destroy]
