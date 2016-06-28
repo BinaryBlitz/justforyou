@@ -20,4 +20,8 @@ class Address < ApplicationRecord
   validates :content, presence: true
   validates :latitude, inclusion: { in: -90..90 }
   validates :longitude, inclusion: { in: -180..180 }
+
+  def to_location
+    [latitude, longitude]
+  end
 end
