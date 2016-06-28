@@ -13,7 +13,7 @@ class API::DeliveriesController < API::APIController
     if invalid_delivery.present?
       render json: invalid_delivery.errors, status: 422
     else
-      @purchase.save
+      @deliveries.each(&:save)
       render :index, status: :created
     end
   end
