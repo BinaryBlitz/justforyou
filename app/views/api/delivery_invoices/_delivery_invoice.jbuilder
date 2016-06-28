@@ -1,1 +1,1 @@
-json.extract! delivery_invoice, :id, :paid, :created_at
+json.extract! delivery_invoice, :id, :paid, :total_price, :created_at

@@ -27,7 +27,7 @@ class DeliveryInvoice < ApplicationRecord
   end
 
   def total_price
-    deliveries.map(&:price).inject(0, &:+)
+    @total_price ||= deliveries.map(&:price).inject(0, &:+)
   end
 
   private
