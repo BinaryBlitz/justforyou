@@ -14,6 +14,8 @@ class DeliveryInvoice < ApplicationRecord
 
   belongs_to :user
 
+  has_one :payment, as: :payable
+
   has_many :deliveries, dependent: :destroy
 
   def paid!
