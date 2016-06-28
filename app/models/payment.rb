@@ -38,7 +38,7 @@ class Payment < ApplicationRecord
 
     ActiveRecord::Base.transaction do
       update(paid: true)
-      order.paid!
+      payable.paid!
       user.payment_cards.create(payment_card_params) if payment_card_params.present?
     end
   end
