@@ -25,6 +25,7 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :line_items, through: :orders
   has_many :payments, through: :orders
+  has_many :exchanges, dependent: :destroy
   has_many :addresses, dependent: :destroy
   has_many :substitutions, dependent: :destroy
   has_many :payment_cards, dependent: :destroy

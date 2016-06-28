@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160626200617) do
+ActiveRecord::Schema.define(version: 20160626225811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,19 @@ ActiveRecord::Schema.define(version: 20160626200617) do
     t.index ["purchase_id"], name: "index_deliveries_on_purchase_id", using: :btree
   end
 
+  create_table "exchanges", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "purchase_id"
+    t.integer  "program_id"
+    t.boolean  "paid",            default: false
+    t.integer  "pending_balance", default: 0
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["program_id"], name: "index_exchanges_on_program_id", using: :btree
+    t.index ["purchase_id"], name: "index_exchanges_on_purchase_id", using: :btree
+    t.index ["user_id"], name: "index_exchanges_on_user_id", using: :btree
+  end
+
   create_table "items", force: :cascade do |t|
     t.text     "content",    null: false
     t.integer  "weight",     null: false
@@ -118,14 +131,15 @@ ActiveRecord::Schema.define(version: 20160626200617) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.integer  "order_id"
     t.integer  "amount",                          null: false
     t.boolean  "paid",            default: false
     t.integer  "payment_card_id"
     t.integer  "transaction_id"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.index ["order_id"], name: "index_payments_on_order_id", using: :btree
+    t.string   "payable_type"
+    t.integer  "payable_id"
+    t.index ["payable_type", "payable_id"], name: "index_payments_on_payable_type_and_payable_id", using: :btree
     t.index ["payment_card_id"], name: "index_payments_on_payment_card_id", using: :btree
   end
 
@@ -213,6 +227,8 @@ ActiveRecord::Schema.define(version: 20160626200617) do
   add_foreign_key "days", "programs"
   add_foreign_key "deliveries", "addresses"
   add_foreign_key "deliveries", "purchases"
+  add_foreign_key "exchanges", "purchases"
+  add_foreign_key "exchanges", "users"
   add_foreign_key "items", "days"
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "programs"

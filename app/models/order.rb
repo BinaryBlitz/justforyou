@@ -18,7 +18,7 @@ class Order < ApplicationRecord
 
   belongs_to :user
 
-  has_one :payment
+  has_one :payment, as: :payable
   has_many :line_items, dependent: :destroy, inverse_of: :order
   has_many :programs, through: :line_items
 
@@ -72,6 +72,7 @@ class Order < ApplicationRecord
     end
   end
 
+  # Create purchase for each program or add days if already present
   def configure_purchases
     line_items.each do |item|
       purchase = user.purchases.find_or_initialize_by(program: item.program)

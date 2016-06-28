@@ -16,9 +16,18 @@ class Purchase < ApplicationRecord
   belongs_to :program
 
   has_many :deliveries, dependent: :destroy
+  has_many :exchanges, dependent: :destroy
 
   validates :number_of_days, numericality: { greater_than: 0 }
   validates :program, uniqueness: { scope: :user }
 
   scope :visible, -> { where('deliveries_count < number_of_days') }
+
+  def days_left
+    number_of_days - deliveries_count
+  end
+
+  def completed?
+    deliveries_count == number_of_days
+  end
 end

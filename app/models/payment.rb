@@ -3,13 +3,14 @@
 # Table name: payments
 #
 #  id              :integer          not null, primary key
-#  order_id        :integer
 #  amount          :integer          not null
 #  paid            :boolean          default(FALSE)
 #  payment_card_id :integer
 #  transaction_id  :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  payable_type    :string
+#  payable_id      :integer
 #
 
 class Payment < ApplicationRecord
@@ -18,7 +19,7 @@ class Payment < ApplicationRecord
   before_validation :set_amount
   after_create :rebill, if: :payment_card
 
-  belongs_to :order
+  belongs_to :payable, polymorphic: true
   belongs_to :payment_card, optional: true
 
   validates :amount, numericality: { greater_than: 0 }
@@ -45,7 +46,7 @@ class Payment < ApplicationRecord
   private
 
   def set_amount
-    self.amount = order.total_price
+    self.amount = payable.total_price
   end
 
   def rebill
@@ -57,7 +58,7 @@ class Payment < ApplicationRecord
 
   def payment_options
     {
-      order_id: order_id,
+      order_id: id,
       amount: amount,
       currency: CURRENCY
     }
