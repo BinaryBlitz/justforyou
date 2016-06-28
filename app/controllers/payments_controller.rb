@@ -3,7 +3,7 @@ class PaymentsController < ApplicationController
   before_action :set_response, only: [:success]
 
   def success
-    @payment = Payment.find_by!(order_id: @response.order_id)
+    @payment = Payment.find(@response.order_id)
     @payment.paid!(payment_card_params) if @response.valid_payment?
 
     logger.debug("Payment #{@payment.id}: success callback")
