@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628150926) do
+ActiveRecord::Schema.define(version: 20160628153156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,16 +62,26 @@ ActiveRecord::Schema.define(version: 20160628150926) do
   end
 
   create_table "deliveries", force: :cascade do |t|
-    t.integer  "status",        default: 0
-    t.datetime "scheduled_for",                 null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "status",              default: 0
+    t.datetime "scheduled_for",                       null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "address_id"
     t.integer  "purchase_id"
     t.text     "comment"
-    t.boolean  "paid",          default: false
+    t.boolean  "paid",                default: false
+    t.integer  "delivery_invoice_id"
     t.index ["address_id"], name: "index_deliveries_on_address_id", using: :btree
+    t.index ["delivery_invoice_id"], name: "index_deliveries_on_delivery_invoice_id", using: :btree
     t.index ["purchase_id"], name: "index_deliveries_on_purchase_id", using: :btree
+  end
+
+  create_table "delivery_invoices", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "paid",       default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_delivery_invoices_on_user_id", using: :btree
   end
 
   create_table "exchanges", force: :cascade do |t|
@@ -228,6 +238,7 @@ ActiveRecord::Schema.define(version: 20160628150926) do
   add_foreign_key "days", "programs"
   add_foreign_key "deliveries", "addresses"
   add_foreign_key "deliveries", "purchases"
+  add_foreign_key "delivery_invoices", "users"
   add_foreign_key "exchanges", "purchases"
   add_foreign_key "exchanges", "users"
   add_foreign_key "items", "days"

@@ -7,12 +7,13 @@ class API::DeliveriesController < API::APIController
   end
 
   def create
-    @deliveries = @purchase.deliveries.create(deliveries_params[:deliveries])
+    @deliveries = @purchase.deliveries.build(deliveries_params[:deliveries])
     invalid_delivery = @deliveries.find(&:invalid?)
 
     if invalid_delivery.present?
       render json: invalid_delivery.errors, status: 422
     else
+      @purchase.save
       render :index, status: :created
     end
   end

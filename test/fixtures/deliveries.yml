@@ -2,15 +2,16 @@
 #
 # Table name: deliveries
 #
-#  id            :integer          not null, primary key
-#  status        :integer          default("pending")
-#  scheduled_for :datetime         not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  address_id    :integer
-#  purchase_id   :integer
-#  comment       :text
-#  paid          :boolean          default(FALSE)
+#  id                  :integer          not null, primary key
+#  status              :integer          default("pending")
+#  scheduled_for       :datetime         not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  address_id          :integer
+#  purchase_id         :integer
+#  comment             :text
+#  paid                :boolean          default(FALSE)
+#  delivery_invoice_id :integer
 #
 
 new_delivery:
@@ -19,6 +20,7 @@ new_delivery:
   scheduled_for: <%= 3.days.from_now %>
   address: address
   comment: Comment
+  paid: true
 
 delivery:
   purchase: purchase
@@ -26,3 +28,4 @@ delivery:
   scheduled_for: <%= 1.day.from_now %>
   address: address
   comment: Comment
+  paid: true

@@ -103,6 +103,7 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
+    geokit (1.10.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     highline (1.7.8)
@@ -269,6 +270,7 @@ DEPENDENCIES
   devise-i18n
   email_validator
   fog-aws
+  geokit
   houston
   httparty
   jbuilder (~> 2.0)
