@@ -3,7 +3,7 @@ class API::DeliveriesController < API::APIController
   before_action :set_purchase, only: [:create]
 
   def index
-    @deliveries = current_user.deliveries
+    @deliveries = current_user.deliveries.valid
   end
 
   def create
