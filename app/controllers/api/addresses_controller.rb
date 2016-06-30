@@ -2,7 +2,7 @@ class API::AddressesController < API::APIController
   before_action :set_address, only: [:show, :destroy]
 
   def index
-    @addresses = current_user.addresses
+    @addresses = current_user.addresses.active
   end
 
   def show
@@ -19,7 +19,11 @@ class API::AddressesController < API::APIController
   end
 
   def destroy
-    @address.destroy
+    if @address.deliveries.any?
+      @address.update(active: false)
+    else
+      @address.destroy
+    end
     head :no_content
   end
 
