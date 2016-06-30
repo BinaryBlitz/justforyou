@@ -54,7 +54,7 @@ class Delivery < ApplicationRecord
   end
 
   def update_counter_cache
-    purchase.update(deliveries_count: purchase.deliveries.valid.count)
+    purchase.update_column(:deliveries_count, purchase.deliveries.valid.count)
   end
 
   def past_deliveries_are_paid
