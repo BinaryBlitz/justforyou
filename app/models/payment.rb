@@ -24,7 +24,7 @@ class Payment < ApplicationRecord
 
   validates :amount, numericality: { greater_than: 0 }
 
-  delegate :user, to: :order
+  delegate :user, to: :payable
 
   scope :paid, -> { where(paid: true) }
 
