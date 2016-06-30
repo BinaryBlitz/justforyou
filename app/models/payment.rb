@@ -39,7 +39,7 @@ class Payment < ApplicationRecord
     ActiveRecord::Base.transaction do
       update_columns(paid: true)
       payable.paid!
-      user.payment_cards.create(payment_card_params) if payment_card_params.present?
+      create_payment_card(payment_card_params)
     end
   end
 
@@ -66,5 +66,14 @@ class Payment < ApplicationRecord
 
   def rebill_options
     payment_options.merge(rebill_anchor: payment_card.rebill_anchor)
+  end
+
+  def create_payment_card(payment_card_params)
+    # Skip if the current payment is a rebill
+    return if payment_card.present?
+    # Skip if params are empty
+    return unless payment_card_params.present?
+
+    user.payment_cards.create(payment_card_params)
   end
 end
