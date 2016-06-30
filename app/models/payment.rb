@@ -17,7 +17,7 @@ class Payment < ApplicationRecord
   CURRENCY = 'RUB'
 
   before_validation :set_amount
-  after_create :rebill, if: :payment_card
+  after_commit :rebill, on: :create, if: :payment_card
 
   belongs_to :payable, polymorphic: true
   belongs_to :payment_card, optional: true
