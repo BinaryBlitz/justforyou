@@ -23,11 +23,6 @@ class ExchangeTest < ActiveSupport::TestCase
     assert @exchange.valid?
   end
 
-  test 'uniqueness' do
-    exchange = @exchange.dup
-    assert exchange.invalid?
-  end
-
   test 'invalid with identical program' do
     @exchange.program = @exchange.purchase.program
     assert @exchange.invalid?
