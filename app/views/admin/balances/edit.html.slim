@@ -1,0 +1,33 @@
+= form_for [:admin, @balance] do |f|
+  = render 'shared/error_messages', object: @balance
+
+  .form-group
+    = f.label :lower_days_regular_threshold
+    = f.number_field :lower_days_regular_threshold, class: 'form-control'
+
+  .form-group
+    = f.label :upper_days_regular_threshold
+    = f.number_field :upper_days_regular_threshold, class: 'form-control'
+
+  .form-group
+    = f.label :lower_percentage_regular_threshold
+    = f.number_field :lower_percentage_regular_threshold, class: 'form-control'
+
+  .form-group
+    = f.label :upper_percentage_regular_threshold
+    = f.number_field :upper_percentage_regular_threshold, class: 'form-control'
+
+  .form-group
+    = f.label :lower_days_periodic_threshold
+    = f.number_field :lower_days_periodic_threshold, class: 'form-control'
+
+  .form-group
+    = f.label :balance_period
+    = f.number_field :balance_period, class: 'form-control'
+
+  .form-group
+    = f.label :periodic_balance_sum
+    = f.number_field :periodic_balance_sum, class: 'form-control'
+
+  .actions
+    = f.submit class: 'btn btn-default'

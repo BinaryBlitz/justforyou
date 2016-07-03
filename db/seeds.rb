@@ -46,3 +46,5 @@ product_type = ProductType.create!(name: 'Product type')
 product_type.products.create!(name: 'Product')
 
 Promotion.create!(name: 'Promotion', description: 'Description')
+
+balance = Balance.create!

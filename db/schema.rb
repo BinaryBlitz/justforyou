@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(version: 20160628153156) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "balances", force: :cascade do |t|
+    t.integer  "lower_days_regular_threshold",       default: 31
+    t.integer  "upper_days_regular_threshold",       default: 101
+    t.integer  "lower_percentage_regular_threshold", default: 5
+    t.integer  "upper_percentage_regular_threshold", default: 10
+    t.integer  "lower_days_periodic_threshold",      default: 101
+    t.integer  "balance_period",                     default: 100
+    t.integer  "periodic_balance_sum",               default: 15000
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+  end
+
   create_table "blocks", force: :cascade do |t|
     t.string   "name",                       null: false
     t.string   "image",                      null: false

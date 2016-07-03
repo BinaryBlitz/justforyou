@@ -1,0 +1,33 @@
+.container 
+  h1 Настройки бонусов
+  
+  .form-group
+    strong Нижняя граница получения постоянных бонусов в днях: 
+    p = @balance.lower_days_regular_threshold
+
+  .form-group
+    strong Верхняя граница получения постоянных бонусов в днях:
+    p = @balance.upper_days_regular_threshold
+
+  .form-group
+    strong Нижняя граница получения постоянных бонусов в процентах:
+    p = @balance.lower_percentage_regular_threshold
+
+  .form-group
+    strong Верхняя граница получения постоянных бонусов в процентах:
+    p = @balance.upper_percentage_regular_threshold
+
+  .form-group
+    strong Нижняя граница получения периодических бонусов в днях:
+    p = @balance.lower_days_periodic_threshold
+
+  .form-group
+    strong Период получения периодических бонусов в днях:
+    p = @balance.balance_period
+
+  .form-group
+    strong Сумма периодических бонусов:
+    p = @balance.periodic_balance_sum
+
+  .form-group
+    = link_to 'Изменить', edit_admin_balance_path(@balance), class: 'btn btn-primary'
