@@ -23,7 +23,7 @@ class Exchange < ApplicationRecord
   validate :not_completed
 
   after_create :set_pending_balance, if: :free?
-  after_create :set_paid, if: :free?
+  after_create :paid!, if: :free?
 
   def paid!
     ActiveRecord::Base.transaction do
@@ -42,10 +42,6 @@ class Exchange < ApplicationRecord
 
   def set_pending_balance
     update_column(:pending_balance, original_price - new_program_price)
-  end
-
-  def set_paid
-    update_column(:paid, true)
   end
 
   def free?
