@@ -82,14 +82,7 @@ class Exchange < ApplicationRecord
   # Create purchase or find an existing one and add days
   def configure_purchases
     new_purchase = user.purchases.find_or_initialize_by(program: program)
-
-    if new_purchase.new_record?
-      new_purchase.number_of_days = purchase.days_left
-    else
-      new_purchase.number_of_days += purchase.days_left
-    end
-
-    new_purchase.save
+    new_purchase.add_days(purchase.days_left)
 
     # Subtract all remaining days from the original purchase
     purchase.update(number_of_days: purchase.deliveries_count)

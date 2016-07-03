@@ -30,4 +30,13 @@ class Purchase < ApplicationRecord
   def completed?
     deliveries_count == number_of_days
   end
+
+  # Add days to current purchase of set value if new record
+  def add_days(value)
+    if new_record?
+      update(number_of_days: value)
+    else
+      update(number_of_days: number_of_days + value)
+    end
+  end
 end
