@@ -33,14 +33,15 @@ class Payment < ApplicationRecord
     Payonline::PaymentGateway.new(payment_options).payment_url
   end
 
-  def paid!(payment_card_params = {})
+  def paid!(payment_card_params = nil)
     logger.debug("Payment #{id}: paid")
 
     ActiveRecord::Base.transaction do
-      update_columns(paid: true)
+      update_column(:paid, true)
       payable.paid!
-      create_payment_card(payment_card_params)
     end
+
+    create_payment_card(payment_card_params)
   end
 
   private
