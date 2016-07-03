@@ -1,1 +1,1 @@
-json.extract! program, :id, :name, :preview, :preview_image_url, :block_id
+json.extract! program, :id, :name, :block_id, :primary_price, :secondary_price, :threshold
