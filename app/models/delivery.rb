@@ -35,7 +35,7 @@ class Delivery < ApplicationRecord
   scope :valid, -> { where.not(status: :canceled) }
   scope :unpaid, -> { where(paid: false) }
 
-  delegate :user, to: :purchase
+  delegate :user, :program, to: :purchase
 
   def price
     center_location = Geokit::LatLng.new(*ORIGIN)
