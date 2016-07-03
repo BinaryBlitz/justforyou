@@ -47,6 +47,13 @@ class Delivery < ApplicationRecord
     ((distance - FREE_DELIVERY_DISTANCE) * PRICE_PER_KM).round
   end
 
+  def position
+    purchase.deliveries
+      .valid
+      .order(scheduled_for: :asc)
+      .find_index(self)
+  end
+
   private
 
   def set_paid
