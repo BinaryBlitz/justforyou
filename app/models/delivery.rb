@@ -35,7 +35,7 @@ class Delivery < ApplicationRecord
   scope :valid, -> { where.not(status: :canceled) }
   scope :unpaid, -> { where(paid: false) }
 
-  delegate :user, to: :purchase
+  delegate :user, :program, to: :purchase
 
   def price
     center_location = Geokit::LatLng.new(*ORIGIN)
@@ -45,6 +45,13 @@ class Delivery < ApplicationRecord
     return 0 if distance <= FREE_DELIVERY_DISTANCE
 
     ((distance - FREE_DELIVERY_DISTANCE) * PRICE_PER_KM).round
+  end
+
+  def position
+    purchase.deliveries
+      .valid
+      .order(scheduled_for: :asc)
+      .find_index(self)
   end
 
   private
