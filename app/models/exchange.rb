@@ -22,6 +22,9 @@ class Exchange < ApplicationRecord
   validate :different_program
   validate :not_completed
 
+  after_create :set_pending_balance, if: :free?
+  after_create :set_paid, if: :free?
+
   def paid!
     ActiveRecord::Base.transaction do
       update(paid: true)
@@ -31,22 +34,32 @@ class Exchange < ApplicationRecord
   end
 
   def total_price
-    # Price of the new program
-    price = purchase.days_left * program.primary_price
-    # Set pending balance if the new price is cheaper
-    if price <= original_price
-      self.pending_balance = original_price - price
-      1
-    else
-      price - original_price
-    end
+    return if free?
+    new_program_price - original_price
   end
 
   private
 
+  def set_pending_balance
+    update_column(:pending_balance, original_price - new_program_price)
+  end
+
+  def set_paid
+    update_column(:paid, true)
+  end
+
+  def free?
+    new_program_price <= original_price
+  end
+
   # Total price of the original program
   def original_price
-    program.price(purchase.number_of_days)
+    purchase.program.price(purchase.days_left)
+  end
+
+  # Price of the new program
+  def new_program_price
+    program.price(purchase.days_left)
   end
 
   # Exchange is invalid if no more days are left in a purchase
