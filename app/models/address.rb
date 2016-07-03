@@ -11,6 +11,7 @@
 #  updated_at :datetime         not null
 #  latitude   :float            not null
 #  longitude  :float            not null
+#  active     :boolean          default(TRUE)
 #
 
 class Address < ApplicationRecord
@@ -24,4 +25,6 @@ class Address < ApplicationRecord
   def to_location
     [latitude, longitude]
   end
+
+  scope :active, -> { where(active: true) }
 end
