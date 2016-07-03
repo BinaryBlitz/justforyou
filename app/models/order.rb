@@ -52,7 +52,7 @@ class Order < ApplicationRecord
 
   # Pending balance is applied after a successful payment
   def set_pending_balance
-    self.pending_balance = total_price * user.discount
+    update_column(:pending_balance, total_price * user.discount)
   end
 
   # Price before applying user balance
