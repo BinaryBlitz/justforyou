@@ -7,7 +7,12 @@ class API::PaymentsController < API::APIController
 
   def create
     @payment = @payable.payment || @payable.create_payment(payment_card: payment_card)
-    render status: :created
+
+    if @payment.valid?
+      render :show, status: :created
+    else
+      head :unprocessable_entity
+    end
   end
 
   private
