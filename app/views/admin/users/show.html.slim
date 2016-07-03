@@ -1,14 +1,5 @@
 h1 Пользователь: #{ @user.full_name }
 
-- if current_admin.type == 'Admin'
-  .form-group.pull-right
-    = form_for([:admin, @user], url: admin_user_path(@user), method: :patch) do |f|
-      .form-group.col-sm-10
-        = f.label :balance
-        = f.number_field :balance, class: 'form-control'
-      .actions.col-sm-10
-        = f.submit "Начислить бонусы", class: 'btn btn-primary'
-
 .form-group
   strong Имя: 
   = @user.first_name
@@ -35,10 +26,6 @@ h1 Пользователь: #{ @user.full_name }
     strong Замены отсутствуют
 
 .form-group
-  strong Бонусы: 
-  = @user.balance
-
-.form-group
   strong Дата регистрации:
   = @user.created_at.strftime("%Y-%m-%d")
 
@@ -48,6 +35,16 @@ h1 Пользователь: #{ @user.full_name }
     - if order.paid? == true
       ul
         li = link_to "Заказ № #{order.id}", admin_order_path(order)
+
+- if current_admin.type == 'Admin'
+  = form_for([:admin, @user], html: { class: 'form-inline' }) do |f|
+    .form-group
+      = f.label :balance, class: 'sr-only'
+      .input-group
+        .input-group-addon ₽
+        = f.number_field :balance, placeholder: 'Баланс', class: 'form-control'
+    | &nbsp;
+    = f.submit "Назначить бонусы", class: 'btn btn-primary'
 
 h2 Доставки
 
