@@ -14,12 +14,12 @@ class API::PaymentsController < API::APIController
 
   def set_payable
     @payable = if params[:order_id].present?
-      Order.find(params[:order_id])
-    elsif params[:exchange_id].present?
-      Exchange.find(params[:exchange_id])
-    elsif params[:delivery_invoice_id].present?
-      DeliveryInvoice.find(params[:delivery_invoice_id])
-    end
+                 Order.find(params[:order_id])
+               elsif params[:exchange_id].present?
+                 Exchange.find(params[:exchange_id])
+               elsif params[:delivery_invoice_id].present?
+                 DeliveryInvoice.find(params[:delivery_invoice_id])
+               end
   end
 
   def payment_params
