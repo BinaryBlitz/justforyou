@@ -19,7 +19,11 @@ class API::AddressesController < API::APIController
   end
 
   def destroy
-    @address.destroy
+    if @address.deliveries.present?
+      @address.update(deleted_at: Time.zone.now)
+    else
+      @address.destroy
+    end
     head :no_content
   end
 
