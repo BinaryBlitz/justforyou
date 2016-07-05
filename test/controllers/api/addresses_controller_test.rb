@@ -3,6 +3,7 @@ require 'test_helper'
 class API::AddressesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @address = addresses(:address)
+    @new_address = addresses(:new_address)
   end
 
   test 'should get index' do
@@ -29,7 +30,16 @@ class API::AddressesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should destroy address' do
     assert_difference 'Address.count', -1 do
+      delete api_address_url(@new_address, api_token: api_token)
+    end
+
+    assert_response :no_content
+  end
+
+  test 'should not destroy address with deliveries' do
+    assert_difference 'Address.unscoped.count', 0 do
       delete api_address_url(@address, api_token: api_token)
+      assert_in_delta Time.zone.now, @address.reload.deleted_at, 1
     end
 
     assert_response :no_content
