@@ -37,7 +37,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true, length: { maximum: 20 }
   validates :email, email: true, uniqueness: { case_sensitive: false }
   validates :phone_number, uniqueness: true
-  validates :balance, numericality: { greater_than_or_equal_to: 0 }
+  validates :balance, numericality: { greater_than_or_equal_to: 0, less_than: 1_000_000 }
 
   has_secure_token :api_token
 
