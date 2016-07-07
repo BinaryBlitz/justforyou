@@ -28,7 +28,7 @@ class Purchase < ApplicationRecord
   end
 
   def completed?
-    deliveries_count == number_of_days
+    deliveries_count >= number_of_days
   end
 
   # Add days to current purchase of set value if new record
