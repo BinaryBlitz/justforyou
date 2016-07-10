@@ -20,7 +20,7 @@ ru:
         threshold: Пороговое значение
         primary_price: Первая цена
         secondary_price: Вторая цена
-        preview_image: Фотография меню
+        image: Фотография меню
         preview: Короткое описание
         block: Блок
       block:

@@ -8,7 +8,7 @@
 #  threshold       :integer          not null
 #  primary_price   :integer          not null
 #  secondary_price :integer          not null
-#  preview_image   :string           not null
+#  image           :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  block_id        :integer
@@ -25,11 +25,11 @@ class Program < ApplicationRecord
   has_many :purchases, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 20 }
-  validates :preview_image, :description, :prescription, :preview, :block, presence: true
+  validates :image, :description, :prescription, :preview, :block, presence: true
   validates :threshold, numericality: { greater_than: 0 }
   validates :primary_price, :secondary_price, numericality: { greater_than: 0 }
 
-  mount_uploader :preview_image, PreviewImageUploader
+  mount_uploader :image, ImageUploader
 
   def price(number_of_days)
     price = number_of_days < threshold ? primary_price : secondary_price

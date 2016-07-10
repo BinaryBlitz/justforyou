@@ -41,7 +41,7 @@ h1 Программа: #{@program.name}
 
 .form-group
   strong Фотография меню:
-  p = image_tag @program.preview_image
+  p = image_tag @program.image.thumb
 
 .form-group
   strong Пример меню на #{ @program.days.count } дней:
