@@ -13,5 +13,10 @@ module Justforyou
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.time_zone = 'Moscow'
+
+    config.generators do |g|
+      g.helper = false
+      g.assets = false
+    end
   end
 end
