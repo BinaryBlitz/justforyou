@@ -80,7 +80,7 @@ class Exchange < ApplicationRecord
     new_purchase = user.purchases.find_or_initialize_by(program: program)
     new_purchase.add_days(purchase.days_left)
 
-    # Subtract all remaining days from the original purchase
-    purchase.update(number_of_days: purchase.deliveries_count)
+    # Subtract all remaining days from the original purchase, skip validations
+    purchase.update_attribute(:number_of_days, purchase.deliveries_count)
   end
 end
