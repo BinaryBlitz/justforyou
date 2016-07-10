@@ -1,0 +1,19 @@
+h1 Продукты
+
+.form-group
+  = link_to 'Новый продукт', new_admin_product_type_product_path(@product_type), class: 'btn btn-primary'
+
+table.table
+  thead
+    tr
+      th Название
+      th
+      th
+  tbody
+    - @products.each do |product|
+      tr
+        td = link_to product.name, '#'
+        td = link_to 'Изменить', edit_admin_product_path(product), class: 'btn btn-warning'
+        td = link_to 'Удалить', admin_product_path(product), method: :delete, data: { confirm: 'Вы действительно хотите удалить тип продукта?' }, class: 'btn btn-danger'
+
+= paginate @products

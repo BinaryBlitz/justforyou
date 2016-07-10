@@ -69,6 +69,7 @@ Rails.application.routes.draw do
     resources :promotions
 
     resources :product_types, except: [:show] do
+      resources :products, except: [:show], shallow: true
     end
 
     resources :deliveries, only: :cancel do

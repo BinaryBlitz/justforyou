@@ -1,0 +1,9 @@
+= form_for [:admin, @product_type, @product] do |f|
+  = render 'shared/error_messages', object: @product
+
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+
+  .form-group
+    = f.submit class: 'btn btn-default'
