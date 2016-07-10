@@ -11,6 +11,7 @@
 #  updated_at :datetime         not null
 #  latitude   :float            not null
 #  longitude  :float            not null
+#  deleted_at :datetime
 #
 
 class Address < ApplicationRecord
@@ -20,6 +21,8 @@ class Address < ApplicationRecord
   validates :content, presence: true
   validates :latitude, inclusion: { in: -90..90 }
   validates :longitude, inclusion: { in: -180..180 }
+
+  default_scope { where(deleted_at: nil) }
 
   def to_location
     [latitude, longitude]
