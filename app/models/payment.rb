@@ -34,6 +34,8 @@ class Payment < ApplicationRecord
   end
 
   def paid!(payment_card_params = nil)
+    return if paid?
+
     logger.debug("Payment #{id}: paid")
 
     ActiveRecord::Base.transaction do
@@ -54,6 +56,8 @@ class Payment < ApplicationRecord
     logger.debug("Payment #{id}: rebill")
 
     return false unless Payonline::RebillGateway.new(rebill_options).rebill
+    # Success callback may have already been called by PayOnline
+    reload
     paid!
   end
 

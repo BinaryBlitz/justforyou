@@ -32,6 +32,8 @@ class Order < ApplicationRecord
 
   # Perform after paid callbacks
   def paid!
+    return if paid?
+
     ActiveRecord::Base.transaction do
       update(paid: true)
       calculate_user_balance
