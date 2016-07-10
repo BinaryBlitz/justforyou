@@ -23,7 +23,7 @@ program:
   threshold: 10
   primary_price: 300
   secondary_price: 200
-  preview_image: image
+  image: image
   preview: Preview
   block: block
 
@@ -34,6 +34,6 @@ program_two:
   threshold: 10
   primary_price: 300
   secondary_price: 200
-  preview_image: image
+  image: image
   preview: Preview
   block: block

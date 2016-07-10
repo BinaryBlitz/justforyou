@@ -21,7 +21,7 @@ class Admin::ProgramsControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference 'Program.count' do
       post admin_programs_url(@program), params: {
-        program: @program.attributes.merge(preview_image: fixture_file_upload('public/blank.jpg'))
+        program: @program.attributes.merge(image: fixture_file_upload('public/blank.jpg'))
       }
     end
 
