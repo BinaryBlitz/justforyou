@@ -2,16 +2,26 @@ h1 Заказ № #{ @order.id }
 
 .form-group
   strong Время оплаты: 
-  = @order.payment.created_at
+  = @order.payment.created_at.to_formatted_s(:short)
 
 .form-group
   strong Сумма: 
-  = @order.payment.amount
+  = "#{@order.payment.amount} ₽"
 
-- @order.line_items.each do |line_item|
-  .form-group
-    strong Название блока: 
-    = line_item.program.block.name
-  .form-group
-    strong Название программы: 
-    = line_item.program.name
+h2 Программы
+
+table.table
+  thead
+    tr
+      th Программа
+      th Блок
+      th Количество дней
+      th Стоимость
+  tbody
+    - @order.line_items.each do |line_item|
+      tr
+        td = line_item.program.name
+        td = line_item.program.block.name
+        td = line_item.number_of_days
+        td = "#{line_item.price} ₽"
+      

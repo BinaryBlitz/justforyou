@@ -17,24 +17,8 @@ h1 Пользователь: #{ @user.full_name }
   = @user.email
 
 .form-group
-  - if @user.substitutions.any?
-    strong Замены:
-    - @user.substitutions.each do |sub|
-      ul
-        li = sub.product.name
-  - else
-    strong Замены отсутствуют
-
-.form-group
-  strong Дата регистрации:
-  = @user.created_at.strftime("%Y-%m-%d")
-
-.form-group
-  strong Оплаченные заказы:
-  - @user.orders.each do |order|
-    - if order.paid? == true
-      ul
-        li = link_to "Заказ № #{order.id}", admin_order_path(order)
+  strong Дата регистрации: 
+  = @user.created_at.to_formatted_s(:short)
 
 - if current_admin.type == 'Admin'
   = form_for([:admin, @user], html: { class: 'form-inline' }) do |f|
@@ -46,16 +30,45 @@ h1 Пользователь: #{ @user.full_name }
     | &nbsp;
     = f.submit "Назначить бонусы", class: 'btn btn-primary'
 
+- if @user.substitutions.any?
+  h2 Замены
+  table.table
+    thead
+      tr
+        th Продукт
+        th Тип продукта
+    tbody
+      - @user.substitutions.each do |substitution|
+        tr
+          td = substitution.product.name
+          td = substitution.product.product_type.name
+
+h2 Оплаченные заказы
+
+table.table
+  thead
+    tr
+     th №
+     th Сумма
+     th Дата создания
+  tbody
+    - @user.orders.paid.each do |order|
+      tr
+        td = link_to order.id, [:admin, order]
+        td = "#{order.total_price} ₽"
+        td = order.created_at.to_formatted_s(:short)
+
 h2 Доставки
 
 table.table
   thead
-    th Время
-    th Блок
-    th Программа
-    th
-      - if current_admin.type == 'Admin'
-        | Действия
+    tr
+      th Время
+      th Блок
+      th Программа
+      th
+        - if current_admin.type == 'Admin'
+          | Действия
   tbody
     - @user.deliveries.each do |delivery|
       = render 'delivery', delivery: delivery

@@ -17,6 +17,10 @@ class LineItem < ApplicationRecord
   validates :number_of_days, numericality: { greater_than: 0 }
   validates :program, uniqueness: { scope: :order }
 
+  def price
+    price_for_threshold(program.threshold)
+  end
+
   def price_for_threshold(threshold)
     price = number_of_days < threshold ? program.primary_price : program.secondary_price
     price * number_of_days

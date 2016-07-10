@@ -30,6 +30,8 @@ class Order < ApplicationRecord
 
   accepts_nested_attributes_for :line_items, allow_destroy: true
 
+  scope :paid, -> { where(paid: true) }
+
   # Perform after paid callbacks
   def paid!
     return if paid?
