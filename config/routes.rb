@@ -68,6 +68,9 @@ Rails.application.routes.draw do
     resources :blocks
     resources :promotions
 
+    resources :product_types, except: [:show] do
+    end
+
     resources :deliveries, only: :cancel do
       patch 'cancel', on: :member
     end
