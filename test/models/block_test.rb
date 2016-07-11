@@ -20,4 +20,14 @@ class BlockTest < ActiveSupport::TestCase
   test 'valid' do
     assert @block.valid?
   end
+
+  test 'color is valid' do
+    @block.color = '#11aa22'
+    assert @block.valid?
+  end
+
+  test 'color is invalid' do
+    @block.color = 'aaazzz'
+    assert @block.invalid?
+  end
 end

@@ -26,6 +26,7 @@ ru:
       block:
         name: Название
         image: Изображение
+        color: Цвет блока
       day:
         position: Порядок дня
       item:
