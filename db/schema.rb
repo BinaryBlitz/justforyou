@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160710232121) do
+ActiveRecord::Schema.define(version: 20160713145723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160710232121) do
     t.datetime "updated_at",                 null: false
     t.integer  "programs_count", default: 0
     t.string   "color"
+    t.index ["color"], name: "index_blocks_on_color", unique: true, using: :btree
   end
 
   create_table "days", force: :cascade do |t|
