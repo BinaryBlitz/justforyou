@@ -51,11 +51,12 @@ class User < ApplicationRecord
 
   def discount
     if total_number_of_days >= Configurable.big_discount_threshold
-      return Configurable.big_discount * 0.01
+      Configurable.big_discount * 0.01
     elsif total_number_of_days >= Configurable.small_discount_threshold
-      return Configurable.small_discount * 0.01
+      Configurable.small_discount * 0.01
+    else
+      0.0
     end
-    0.0
   end
 
   def add_balance(value)
