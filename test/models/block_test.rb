@@ -30,4 +30,17 @@ class BlockTest < ActiveSupport::TestCase
     @block.color = 'aaazzz'
     assert @block.invalid?
   end
+
+  test 'color is downcased' do
+    @block.color = '#FFF'
+    @block.save
+
+    assert @block.valid?
+    assert_equal '#fff', @block.color
+  end
+
+  test 'color is unique' do
+    block = @block.dup
+    assert block.invalid?
+  end
 end
