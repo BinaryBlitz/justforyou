@@ -1,0 +1,11 @@
+h1 Дополнительные настройки
+
+.form-group
+  = link_to 'Изменить', admin_configurable_path, class: 'btn btn-default'
+
+- @configurables.each do |configurable|
+  - options = Configurable.defaults[configurable]
+
+  .form-group
+    strong = options[:name]
+    p = Configurable.send(configurable)

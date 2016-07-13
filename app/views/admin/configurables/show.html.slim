@@ -1,0 +1,12 @@
+h1 Изменить дополнительные настройки
+
+= form_tag(admin_configurable_path, method: :put) do
+  - @keys.each do |key|
+    - options = Configurable.defaults[key]
+
+    .form-group
+      = label_tag key, options[:name]
+      = text_field_tag key, Configurable.send(key), class: 'form-control'
+
+  .actions
+    = submit_tag 'Сохранить', class: 'btn btn-default'

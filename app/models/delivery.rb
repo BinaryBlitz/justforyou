@@ -15,8 +15,6 @@
 #
 
 class Delivery < ApplicationRecord
-  FREE_DELIVERY_DISTANCE = 30
-  PRICE_PER_KM = 10
   ORIGIN = [55.755833, 37.617778]
 
   after_create :set_paid
@@ -43,9 +41,9 @@ class Delivery < ApplicationRecord
     address_location = Geokit::LatLng.new(*address.to_location)
     distance = center_location.distance_to(address_location)
 
-    return 0 if distance <= FREE_DELIVERY_DISTANCE
+    return 0 if distance <= Configurable.free_delivery_distance
 
-    ((distance - FREE_DELIVERY_DISTANCE) * PRICE_PER_KM).round
+    ((distance - Configurable.free_delivery_distance) * Configurable.price_per_km).round
   end
 
   def position

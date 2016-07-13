@@ -1,0 +1,36 @@
+small_discount_threshold:
+  name: Нижняя граница получения постоянных бонусов в днях
+  default: 31
+  type: integer
+big_discount_threshold:
+  name: Верхняя граница получения постоянных бонусов в днях
+  default: 101
+  type: integer
+small_discount:
+  name: Нижняя граница получения постоянных бонусов в процентах
+  default: 5
+  type: integer
+big_discount:
+  name: Верхняя граница получения постоянных бонусов в процентах
+  default: 10
+  type: integer
+recurrent_bonus_threshold:
+  name: Нижняя граница получения периодических бонусов в днях
+  default: 101
+  type: integer
+recurrent_bonus_interval:
+  name: Период получения периодических бонусов в днях
+  default: 100
+  type: integer
+recurrent_bonus:
+  name: Сумма периодических бонусов
+  default: 15_000
+  type: integer
+price_per_km:
+  name: Цена за километр доставки за МКАД
+  default: 10
+  type: integer
+free_delivery_distance:
+  name: Радиус бесплатной доставки
+  default: 30
+  type: integer

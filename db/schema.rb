@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(version: 20160713145723) do
     t.index ["color"], name: "index_blocks_on_color", unique: true, using: :btree
   end
 
+  create_table "configurables", force: :cascade do |t|
+    t.string   "name"
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_configurables_on_name", using: :btree
+  end
+
   create_table "days", force: :cascade do |t|
     t.integer  "position",   null: false
     t.integer  "program_id"

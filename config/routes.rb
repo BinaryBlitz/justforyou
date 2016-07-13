@@ -83,6 +83,8 @@ Rails.application.routes.draw do
     resources :exports, only: [] do
       get 'kitchen', 'courier', 'manager', on: :collection
     end
+
+    resources :configurables, only: [:index]
   end
 
   resources :payments, only: [] do
