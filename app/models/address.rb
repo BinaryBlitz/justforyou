@@ -11,9 +11,12 @@
 #  updated_at :datetime         not null
 #  latitude   :float            not null
 #  longitude  :float            not null
+#  deleted_at :datetime
 #
 
 class Address < ApplicationRecord
+  default_scope { where(deleted_at: nil) }
+
   has_many :deliveries, dependent: :destroy
   belongs_to :user
 
