@@ -17,7 +17,9 @@ class Block < ApplicationRecord
   has_many :programs, dependent: :destroy
 
   validates :name, :image, presence: true
-  validates :color, format: { with: HEX_COLOR_FORMAT }
+  validates :color, uniqueness: { case_sensitive: false }, format: { with: HEX_COLOR_FORMAT }
+
+  before_save { color.downcase! }
 
   mount_uploader :image, ImageUploader
 end
