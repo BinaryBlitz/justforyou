@@ -6,6 +6,7 @@
       tr
         th Название
         th Изображение
+        th Цвет блока
         th
         th
     tbody
@@ -13,6 +14,7 @@
         tr
           td = link_to block.name, admin_block_path(block)
           td = image_tag(block.image)
+          td = block.color
           td = link_to 'Изменить', edit_admin_block_path(block), class: 'btn btn-warning'
           td = link_to 'Удалить', admin_block_path(block), method: :delete, data: { confirm: 'Вы действительно хотите удалить блок из системы?' }, class: 'btn btn-danger'
 

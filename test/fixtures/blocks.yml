@@ -13,3 +13,4 @@
 block:
   name: Block
   image: Image
+  color: '#aaabbb'

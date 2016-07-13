@@ -15,7 +15,7 @@ Admin.create!(email: 'foo@bar.com', password: 'qwerty123')
 
 image = File.open(Rails.root.join('test', 'fixtures', 'files', 'blank.jpg'))
 
-block = Block.create!(name: 'Block', image: image)
+block = Block.create!(name: 'Block', image: image, color: '#fff')
 
 program = Program.create!(
   name: 'Program', description: 'Description', preview: 'Preview', prescription: ['Prescription'],
