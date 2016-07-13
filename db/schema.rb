@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20160713145723) do
     t.datetime "updated_at", null: false
     t.float    "latitude",   null: false
     t.float    "longitude",  null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_addresses_on_deleted_at", using: :btree
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
