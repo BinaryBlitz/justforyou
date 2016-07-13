@@ -17,11 +17,6 @@
 class User < ApplicationRecord
   include Phonable
 
-  SMALL_DISCOUNT = 0.05
-  SMALL_DISCOUNT_THRESHOLD = 30
-  BIG_DISCOUNT = 0.1
-  BIG_DISCOUNT_THRESHOLD = 100
-
   has_many :orders, dependent: :destroy
   has_many :line_items, through: :orders
   has_many :payments, through: :orders
@@ -55,8 +50,11 @@ class User < ApplicationRecord
   end
 
   def discount
-    return BIG_DISCOUNT if total_number_of_days > BIG_DISCOUNT_THRESHOLD
-    return SMALL_DISCOUNT if total_number_of_days > SMALL_DISCOUNT_THRESHOLD
+    if total_number_of_days >= Configurable.big_discount_threshold
+      return Configurable.big_discount * 0.01
+    elsif total_number_of_days >= Configurable.small_discount_threshold
+      return Configurable.small_discount * 0.01
+    end
     0.0
   end
 
