@@ -1,17 +1,19 @@
 .container 
   h1 Менеджеры
   = link_to 'Добавить аккаунт', new_admin_manager_path, class: 'btn btn-primary'
-  table.table
-    thead
-      tr
-        th Почта
-        th
-        th
-    tbody
-      - @managers.each do |manager|
+
+  .table-responsive
+    table.table
+      thead
         tr
-          td = link_to manager.email, admin_manager_path(manager)
-          td = link_to 'Изменить', edit_admin_manager_path(manager), class: 'btn btn-warning'
-          td = link_to 'Удалить', admin_manager_path(manager), method: :delete, data: { confirm: 'Удалить аккаунт?' }, class: 'btn btn-danger'
+          th Почта
+          th
+          th
+      tbody
+        - @managers.each do |manager|
+          tr
+            td = link_to manager.email, admin_manager_path(manager)
+            td = link_to 'Изменить', edit_admin_manager_path(manager), class: 'btn btn-warning'
+            td = link_to 'Удалить', admin_manager_path(manager), method: :delete, data: { confirm: 'Удалить аккаунт?' }, class: 'btn btn-danger'
 
 = paginate @managers

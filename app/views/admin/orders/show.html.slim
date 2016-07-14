@@ -10,18 +10,18 @@ h1 Заказ № #{ @order.id }
 
 h2 Программы
 
-table.table
-  thead
-    tr
-      th Программа
-      th Блок
-      th Количество дней
-      th Стоимость
-  tbody
-    - @order.line_items.each do |line_item|
+.table-responsive
+  table.table
+    thead
       tr
-        td = line_item.program.name
-        td = line_item.program.block.name
-        td = line_item.number_of_days
-        td = "#{line_item.price} ₽"
-      
+        th Программа
+        th Блок
+        th Количество дней
+        th Стоимость
+    tbody
+      - @order.line_items.each do |line_item|
+        tr
+          td = line_item.program.name
+          td = line_item.program.block.name
+          td = line_item.number_of_days
+          td = "#{line_item.price} ₽"

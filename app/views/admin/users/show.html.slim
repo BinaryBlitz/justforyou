@@ -32,43 +32,46 @@ h1 Пользователь: #{ @user.full_name }
 
 - if @user.substitutions.any?
   h2 Замены
-  table.table
-    thead
-      tr
-        th Продукт
-        th Тип продукта
-    tbody
-      - @user.substitutions.each do |substitution|
+  .table-responsive
+    table.table
+      thead
         tr
-          td = substitution.product.name
-          td = substitution.product.product_type.name
+          th Продукт
+          th Тип продукта
+      tbody
+        - @user.substitutions.each do |substitution|
+          tr
+            td = substitution.product.name
+            td = substitution.product.product_type.name
 
 h2 Оплаченные заказы
 
-table.table
-  thead
-    tr
-     th №
-     th Сумма
-     th Дата создания
-  tbody
-    - @user.orders.paid.each do |order|
+.table-responsive
+  table.table
+    thead
       tr
-        td = link_to order.id, [:admin, order]
-        td = "#{order.total_price} ₽"
-        td = order.created_at.to_formatted_s(:short)
+       th №
+       th Сумма
+       th Дата создания
+    tbody
+      - @user.orders.paid.each do |order|
+        tr
+          td = link_to order.id, [:admin, order]
+          td = "#{order.total_price} ₽"
+          td = order.created_at.to_formatted_s(:short)
 
 h2 Доставки
 
-table.table
-  thead
-    tr
-      th Время
-      th Блок
-      th Программа
-      th
-        - if current_admin.type == 'Admin'
-          | Действия
-  tbody
-    - @user.deliveries.each do |delivery|
-      = render 'delivery', delivery: delivery
+.table-responsive
+  table.table
+    thead
+      tr
+        th Время
+        th Блок
+        th Программа
+        th
+          - if current_admin.type == 'Admin'
+            | Действия
+    tbody
+      - @user.deliveries.each do |delivery|
+        = render 'delivery', delivery: delivery
