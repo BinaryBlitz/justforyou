@@ -1,31 +1,33 @@
 .container 
   h1 Программы
   = link_to 'Добавить программу', new_admin_program_path, class: 'btn btn-primary'
-  table.table
-    thead
-      tr
-        th Название
-        th Блок
-        th Описание
-        th Короткое описание
-        th Первая цена
-        th Вторая цена
-        th Длительность первой цены
-        th Фотография меню
-        th
-        th
-    tbody
-      - @programs.each do |program|
+
+  .table-responsive
+    table.table
+      thead
         tr
-          td = link_to program.name, admin_program_path(program)
-          td = program.block.name
-          td = program.description.truncate(140)
-          td = program.preview
-          td = program.primary_price
-          td = program.secondary_price
-          td = program.threshold
-          td = image_tag(program.image.thumb)
-          td = link_to 'Изменить', edit_admin_program_path(program), class: 'btn btn-warning'
-          td = link_to 'Удалить', admin_program_path(program), method: :delete, data: { confirm: 'Вы действительно хотите удалить программу из системы?' }, class: 'btn btn-danger'
+          th Название
+          th Блок
+          th Описание
+          th Короткое описание
+          th Первая цена
+          th Вторая цена
+          th Длительность первой цены
+          th Фотография меню
+          th
+          th
+      tbody
+        - @programs.each do |program|
+          tr
+            td = link_to program.name, admin_program_path(program)
+            td = program.block.name
+            td = program.description.truncate(140)
+            td = program.preview
+            td = program.primary_price
+            td = program.secondary_price
+            td = program.threshold
+            td = image_tag(program.image.thumb)
+            td = link_to 'Изменить', edit_admin_program_path(program), class: 'btn btn-warning'
+            td = link_to 'Удалить', admin_program_path(program), method: :delete, data: { confirm: 'Вы действительно хотите удалить программу из системы?' }, class: 'btn btn-danger'
 
 = paginate @programs
