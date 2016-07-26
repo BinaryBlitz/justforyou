@@ -10,6 +10,7 @@
 #  pending_balance :integer          default(0)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  total_price     :integer
 #
 
 class Exchange < ApplicationRecord
@@ -22,6 +23,7 @@ class Exchange < ApplicationRecord
   validate :different_program
   validate :not_completed
 
+  after_create :set_total_price, unless: :free?
   after_create :set_pending_balance, if: :free?
   after_create :paid!, if: :free?
 
@@ -33,12 +35,11 @@ class Exchange < ApplicationRecord
     end
   end
 
-  def total_price
-    return if free?
-    new_program_price - original_price
-  end
-
   private
+
+  def set_total_price
+    update_column(:total_price, new_program_price - original_price)
+  end
 
   def set_pending_balance
     update_column(:pending_balance, original_price - new_program_price)

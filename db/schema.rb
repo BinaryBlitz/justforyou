@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160713145723) do
+ActiveRecord::Schema.define(version: 20160726133338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20160713145723) do
     t.integer  "pending_balance", default: 0
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.integer  "total_price"
     t.index ["program_id"], name: "index_exchanges_on_program_id", using: :btree
     t.index ["purchase_id"], name: "index_exchanges_on_purchase_id", using: :btree
     t.index ["user_id"], name: "index_exchanges_on_user_id", using: :btree
