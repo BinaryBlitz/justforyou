@@ -11,7 +11,7 @@ class API::PaymentsController < API::APIController
     if @payment.valid?
       render :show, status: :created
     else
-      head :unprocessable_entity
+      render json: @payment.errors, status: :unprocessable_entity
     end
   end
 
