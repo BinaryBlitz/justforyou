@@ -11,6 +11,9 @@
 #  updated_at :datetime         not null
 #  latitude   :float            not null
 #  longitude  :float            not null
+#  deleted_at :datetime
+#  apartment  :integer
+#  house      :integer
 #
 
 require 'test_helper'

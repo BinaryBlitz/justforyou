@@ -34,6 +34,8 @@ class API::AddressesController < API::APIController
   end
 
   def order_params
-    params.require(:address).permit(:content, :floor, :entrance, :latitude, :longitude)
+    params
+    .require(:address)
+    .permit(:content, :floor, :entrance, :house, :apartment, :latitude, :longitude)
   end
 end

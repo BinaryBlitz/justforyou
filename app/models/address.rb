@@ -12,6 +12,8 @@
 #  latitude   :float            not null
 #  longitude  :float            not null
 #  deleted_at :datetime
+#  apartment  :integer
+#  house      :integer
 #
 
 class Address < ApplicationRecord

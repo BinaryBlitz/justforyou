@@ -5,7 +5,7 @@ class ManagerExport < Export
         csv << [
           delivery.id, delivery.user.full_name,
           substitutions_for(delivery.user), block_for(delivery), delivery.user.phone_number,
-          delivery.address.content, delivery.scheduled_for, delivery.comment
+          address_for(delivery), delivery.scheduled_for, delivery.comment
         ]
       end
     end

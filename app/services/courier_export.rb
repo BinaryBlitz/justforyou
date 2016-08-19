@@ -4,7 +4,7 @@ class CourierExport < Export
       @deliveries.each do |delivery|
         csv << [
           delivery.id, delivery.user.full_name,
-          delivery.user.phone_number, delivery.address.content,
+          delivery.user.phone_number, address_for(delivery),
           format_time_interval(delivery.scheduled_for), delivery.comment
         ]
       end
