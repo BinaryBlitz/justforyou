@@ -11,19 +11,27 @@
 #  updated_at :datetime         not null
 #  latitude   :float            not null
 #  longitude  :float            not null
+#  deleted_at :datetime
+#  apartment  :integer
+#  house      :integer
 #
 
 address:
   user: foo
   content: Content
-  floor: 4
+  house: 1
+  apartment: 1
   entrance: 1
+  floor: 1
   latitude: 0.0
   longitude: 0.0
+
 address_without_deliveries:
   user: foo
-  content: New content
-  floor: 4
+  content: Content
+  house: 1
+  apartment: 1
   entrance: 1
+  floor: 1
   latitude: 0.0
   longitude: 0.0

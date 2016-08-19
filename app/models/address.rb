@@ -12,19 +12,31 @@
 #  latitude   :float            not null
 #  longitude  :float            not null
 #  deleted_at :datetime
+#  apartment  :integer
+#  house      :integer
 #
 
 class Address < ApplicationRecord
+  ATTRIBUTES = { house: 'дом', entrance: 'подъезд', apartment: 'квартира', floor: 'этаж' }
+
   default_scope { where(deleted_at: nil) }
 
   has_many :deliveries, dependent: :destroy
   belongs_to :user
 
   validates :content, presence: true
+  validates :house, :apartment, numericality: { greater_than: 0 }
+  validates :entrance, :floor, numericality: { greater_than: 0 }, allow_nil: true
   validates :latitude, inclusion: { in: -90..90 }
   validates :longitude, inclusion: { in: -180..180 }
 
   def to_location
     [latitude, longitude]
+  end
+
+  def to_s
+    "#{content}, " + ATTRIBUTES.select { |attribute, _| self[attribute].present? }
+      .map { |attribute, prefix| "#{prefix} #{self[attribute]}" }
+      .join(', ')
   end
 end

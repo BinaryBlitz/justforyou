@@ -1,1 +1,2 @@
-json.extract! address, :id, :content, :floor, :entrance, :latitude, :longitude
+json.extract! address,
+              :id, :content, :floor, :entrance, :apartment, :house, :latitude, :longitude
