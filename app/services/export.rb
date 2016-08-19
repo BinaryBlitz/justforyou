@@ -34,12 +34,4 @@ class Export
   def substitutions_for(user)
     user.substitutions.map { |substitution| substitution.product.name }.join(', ')
   end
-
-  def address_for(delivery)
-    address = delivery.address.content
-    address << ", дом #{delivery.address.house}" if delivery.address.house.present?
-    address << ", подъезд #{delivery.address.entrance}" if delivery.address.entrance.present?
-    address << ", этаж #{delivery.address.floor}" if delivery.address.floor.present?
-    address << ", квартира #{delivery.address.apartment}" if delivery.address.apartment.present?
-  end
 end

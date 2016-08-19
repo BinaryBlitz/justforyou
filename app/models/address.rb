@@ -17,6 +17,8 @@
 #
 
 class Address < ApplicationRecord
+  ATTRIBUTES = { house: 'дом', entrance: 'подъезд', apartment: 'квартира', floor: 'этаж' }
+
   default_scope { where(deleted_at: nil) }
 
   has_many :deliveries, dependent: :destroy
@@ -28,5 +30,11 @@ class Address < ApplicationRecord
 
   def to_location
     [latitude, longitude]
+  end
+
+  def to_s
+    "#{content}, " + ATTRIBUTES.select { |attribute, _| self[attribute].present? }
+      .map { |attribute, prefix| "#{prefix} #{self[attribute]}" }
+      .join(', ')
   end
 end
