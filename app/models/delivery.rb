@@ -15,6 +15,7 @@
 #
 
 class Delivery < ApplicationRecord
+  # Moscow Kilometre Zero
   ORIGIN = [55.755833, 37.617778]
 
   after_create :set_paid
@@ -36,6 +37,7 @@ class Delivery < ApplicationRecord
 
   delegate :user, :program, to: :purchase
 
+  # Based on distance from city center, return 0 if below threshold
   def price
     center_location = Geokit::LatLng.new(*ORIGIN)
     address_location = Geokit::LatLng.new(*address.to_location)
@@ -46,6 +48,7 @@ class Delivery < ApplicationRecord
     ((distance - Configurable.free_delivery_distance) * Configurable.price_per_km).round
   end
 
+  # The number of the day in program
   def position
     purchase.deliveries
       .valid
