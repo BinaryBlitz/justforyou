@@ -12,7 +12,7 @@ class ManagerExport < Export
   end
 
   def filename
-    "Экспорт для менеджеров #{Time.zone.now}.csv"
+    "Экспорт для менеджеров #{format_time(Time.zone.now)}.csv"
   end
 
   private

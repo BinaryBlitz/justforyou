@@ -5,14 +5,14 @@ class CourierExport < Export
         csv << [
           delivery.id, delivery.user.full_name,
           delivery.user.phone_number, delivery.address.content,
-          delivery.scheduled_for, delivery.comment
+          format_time_interval(delivery.scheduled_for), delivery.comment
         ]
       end
     end
   end
 
   def filename
-    "Экспорт для курьеров #{Time.zone.now}.csv"
+    "Экспорт для курьеров #{format_time(Time.zone.now)}.csv"
   end
 
   private
