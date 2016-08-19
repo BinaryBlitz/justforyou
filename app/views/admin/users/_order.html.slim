@@ -1,0 +1,4 @@
+tr
+  td = link_to order.id, [:admin, order]
+  td = "#{order.total_price} ₽"
+  td = order.created_at.to_formatted_s(:short)

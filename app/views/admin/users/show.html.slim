@@ -54,11 +54,8 @@ h2 Оплаченные заказы
        th Сумма
        th Дата создания
     tbody
-      - @user.orders.paid.each do |order|
-        tr
-          td = link_to order.id, [:admin, order]
-          td = "#{order.total_price} ₽"
-          td = order.created_at.to_formatted_s(:short)
+      - @user.orders.order(created_at: :desc).paid.each do |order|
+        = render 'order', order: order
 
 h2 Доставки
 
@@ -73,5 +70,5 @@ h2 Доставки
           - if current_admin.type == 'Admin'
             | Действия
     tbody
-      - @user.deliveries.each do |delivery|
+      - @user.deliveries.order(scheduled_for: :desc).each do |delivery|
         = render 'delivery', delivery: delivery
