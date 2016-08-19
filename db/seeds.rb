@@ -3,12 +3,12 @@ user = User.create!(
   email: 'email@email.com'
 )
 
-user.update(api_token: 'foobar')
+user.update!(api_token: 'foobar')
 
-address = user.addresses.create(
+address = user.addresses.create!(
   content: 'Content',
-  entrance: 1,
-  floor: 1
+  house: 1, apartment: 1, entrance: 1, floor: 1,
+  latitude: 0.0, longitude: 0.0
 )
 
 Admin.create!(email: 'foo@bar.com', password: 'qwerty123')

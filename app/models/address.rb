@@ -25,6 +25,8 @@ class Address < ApplicationRecord
   belongs_to :user
 
   validates :content, presence: true
+  validates :house, :apartment, numericality: { greater_than: 0 }
+  validates :entrance, :floor, numericality: { greater_than: 0 }, allow_nil: true
   validates :latitude, inclusion: { in: -90..90 }
   validates :longitude, inclusion: { in: -180..180 }
 
