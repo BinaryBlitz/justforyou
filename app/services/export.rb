@@ -28,7 +28,7 @@ class Export
   end
 
   def block_for(delivery)
-    "#{delivery.program.block.name} / #{delivery.position + 1}"
+    "#{delivery.program.block.name} / #{delivery.program.name} / #{delivery.position + 1}"
   end
 
   def substitutions_for(user)
