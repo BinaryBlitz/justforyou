@@ -80,8 +80,8 @@ Rails.application.routes.draw do
 
     resources :orders, only: :show
 
-    resources :exports, only: [] do
-      get 'kitchen', 'courier', 'manager', on: :collection
+    resources :exports, only: :index do
+      post 'download', on: :collection
     end
 
     resources :configurables, only: [:index]
