@@ -1,6 +1,7 @@
 class Export
-  def initialize(deliveries)
+  def initialize(deliveries, date)
     @deliveries = deliveries
+    @date = date
   end
 
   def to_csv

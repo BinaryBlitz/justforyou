@@ -12,7 +12,7 @@ class CourierExport < Export
   end
 
   def filename
-    "Экспорт для курьеров #{format_time(Time.zone.now)}.csv"
+    "Экспорт для курьеров #{format_time(@date)}.csv"
   end
 
   private

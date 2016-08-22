@@ -11,7 +11,7 @@ class KitchenExport < Export
   end
 
   def filename
-    "Экспорт для кухни #{format_time(Time.zone.now)}.csv"
+    "Экспорт для кухни #{format_time(@date)}.csv"
   end
 
   private
