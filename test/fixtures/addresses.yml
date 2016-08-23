@@ -19,7 +19,7 @@
 address:
   user: foo
   content: Content
-  house: 1
+  house: '1'
   apartment: 1
   entrance: 1
   floor: 1
@@ -29,7 +29,7 @@ address:
 address_without_deliveries:
   user: foo
   content: Content
-  house: 1
+  house: '1'
   apartment: 1
   entrance: 1
   floor: 1

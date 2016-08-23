@@ -13,7 +13,7 @@
 #  longitude  :float            not null
 #  deleted_at :datetime
 #  apartment  :integer
-#  house      :integer
+#  house      :string
 #
 
 class Address < ApplicationRecord
@@ -24,8 +24,8 @@ class Address < ApplicationRecord
   has_many :deliveries, dependent: :destroy
   belongs_to :user
 
-  validates :content, presence: true
-  validates :house, :apartment, numericality: { greater_than: 0 }
+  validates :content, :house, presence: true
+  validates :apartment, numericality: { greater_than: 0 }
   validates :entrance, :floor, numericality: { greater_than: 0 }, allow_nil: true
   validates :latitude, inclusion: { in: -90..90 }
   validates :longitude, inclusion: { in: -180..180 }
