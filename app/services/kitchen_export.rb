@@ -1,6 +1,6 @@
 class KitchenExport < Export
   def to_csv
-    CSV.generate(super) do |csv|
+    CSV.generate(super, col_sep: ';') do |csv|
       @deliveries.each do |delivery|
         csv << [
           delivery.id, delivery.user.full_name,

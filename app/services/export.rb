@@ -5,7 +5,7 @@ class Export
   end
 
   def to_csv
-    CSV.generate(headers: true) do |csv|
+    CSV.generate(headers: true, encoding: 'cp1251', col_sep: ';') do |csv|
       csv << header
     end
   end
