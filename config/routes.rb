@@ -80,9 +80,7 @@ Rails.application.routes.draw do
 
     resources :orders, only: :show
 
-    resources :exports, only: :index do
-      post 'download', on: :collection
-    end
+    resources :exports, only: [:new, :create]
 
     resources :configurables, only: [:index]
   end

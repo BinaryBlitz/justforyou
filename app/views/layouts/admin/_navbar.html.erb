@@ -21,7 +21,7 @@
           </ul>
         </li>
         <li><%= link_to 'Упрвление менеджерами', admin_managers_path unless current_admin.type == 'Manager' %></li>
-        <li><%= link_to 'Экспорт', admin_exports_path %></li>
+        <li><%= link_to 'Экспорт', new_admin_export_path %></li>
         <li><%= link_to 'Дополнительные настройки', admin_configurables_path %></li>
       </ul>
     </div>

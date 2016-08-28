@@ -1,7 +1,7 @@
 class Export
-  def initialize(deliveries, date)
-    @deliveries = deliveries
+  def initialize(date)
     @date = date
+    @deliveries = Delivery.on_date(date).valid
   end
 
   def to_csv

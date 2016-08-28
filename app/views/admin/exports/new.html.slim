@@ -1,4 +1,4 @@
-= form_tag(download_admin_exports_path(format: :csv)) do
+= form_tag(admin_exports_path(format: :csv)) do
   .input-group.col-xs-2.date.datepicker
     = text_field_tag :date, params[:date], class: 'form-control'
     span.input-group-addon
