@@ -16,12 +16,10 @@ class Admin::ExportsController < Admin::AdminController
   end
 
   def set_export
-    @export = if params[:kitchen].present?
-                KitchenExport.new(@date)
-              elsif params[:courier].present?
-                CourierExport.new(@date)
-              elsif params[:manager].present?
-                ManagerExport.new(@date)
+    @export = case params[:commit]
+              when 'Для кухни' then KitchenExport.new(@date)
+              when 'Для курьеров' then CourierExport.new(@date)
+              when 'Для менеджеров' then ManagerExport.new(@date)
               end
   end
 end
