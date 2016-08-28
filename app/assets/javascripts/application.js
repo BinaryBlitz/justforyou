@@ -15,4 +15,6 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require nested_form_fields
+//= require bootstrap-datepicker
+//= require datepicker
 //= require_tree .

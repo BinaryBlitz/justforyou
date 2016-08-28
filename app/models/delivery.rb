@@ -34,6 +34,7 @@ class Delivery < ApplicationRecord
 
   scope :valid, -> { where.not(status: :canceled) }
   scope :unpaid, -> { where(paid: false) }
+  scope :on_date, -> (date) { where(created_at: date.beginning_of_day..date.end_of_day) }
 
   delegate :user, :program, to: :purchase
 

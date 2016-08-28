@@ -5,18 +5,18 @@ class Admin::ExportsControllerTest < ActionDispatch::IntegrationTest
     sign_in_admin
   end
 
-  test 'should get kitchen exports' do
-    get kitchen_admin_exports_path
+  test 'should create kitchen exports' do
+    post admin_exports_path(commit: 'Для кухни')
     assert_response :success
   end
 
-  test 'should get courier exports' do
-    get courier_admin_exports_path
+  test 'should create courier exports' do
+    post admin_exports_path(commit: 'Для курьеров')
     assert_response :success
   end
 
-  test 'should get manager exports' do
-    get manager_admin_exports_path
+  test 'should create manager exports' do
+    post admin_exports_path(commit: 'Для менеджеров')
     assert_response :success
   end
 end

@@ -1,0 +1,15 @@
+= form_tag(admin_exports_path(format: :csv)) do
+  .input-group.col-xs-2.date.datepicker
+    = text_field_tag :date, Date.today, class: 'form-control'
+    span.input-group-addon
+      i.glyphicon.glyphicon-calendar
+  | &nbsp;
+
+  .form-group
+    = submit_tag 'Для кухни', class: 'btn btn-primary', 'data-disable-with': false
+
+  .form-group
+    = submit_tag 'Для курьеров', class: 'btn btn-primary', 'data-disable-with': false
+
+  .form-group
+    = submit_tag 'Для менеджеров', class: 'btn btn-primary', 'data-disable-with': false

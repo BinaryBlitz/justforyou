@@ -1,10 +1,11 @@
 class Export
-  def initialize(deliveries)
-    @deliveries = deliveries
+  def initialize(date)
+    @date = date
+    @deliveries = Delivery.on_date(date).valid
   end
 
   def to_csv
-    CSV.generate(headers: true) do |csv|
+    CSV.generate(headers: true, encoding: 'cp1251', col_sep: ';') do |csv|
       csv << header
     end
   end
