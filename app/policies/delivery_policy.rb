@@ -1,12 +1,20 @@
 class DeliveryPolicy < ApplicationPolicy
-  attr_reader :delivery
-
-  def initialize(current_user, delivery)
-    @current_user = current_user
+  def initialize(user, delivery)
+    @user = user
     @delivery = delivery
   end
 
   def cancel?
-    ((delivery.scheduled_for - Time.zone.now) / 1.hour).round > 36
+    create? && @delivery.cancelable?
+  end
+
+  def create?
+    owner?
+  end
+
+  private
+
+  def owner?
+    @user == @delivery.user
   end
 end

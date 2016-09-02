@@ -8,6 +8,9 @@ class API::DeliveriesController < API::APIController
 
   def create
     @deliveries = @purchase.deliveries.build(deliveries_params[:deliveries])
+
+    @deliveries.each { |delivery| authorize delivery }
+
     invalid_delivery = @deliveries.find(&:invalid?)
 
     if invalid_delivery.present?

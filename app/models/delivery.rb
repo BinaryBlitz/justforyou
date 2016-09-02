@@ -17,6 +17,7 @@
 class Delivery < ApplicationRecord
   # Moscow Kilometre Zero
   ORIGIN = [55.755833, 37.617778]
+  CANCELABLE_HOURS = 36
 
   after_create :set_paid
   after_save :update_counter_cache
@@ -55,6 +56,10 @@ class Delivery < ApplicationRecord
       .valid
       .order(scheduled_for: :asc)
       .find_index(self)
+  end
+
+  def cancelable?
+    ((scheduled_for - Time.zone.now) / 1.hour).round > CANCELABLE_HOURS
   end
 
   private
