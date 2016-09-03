@@ -10,6 +10,7 @@ class API::OrdersController < API::APIController
 
   def create
     @order = current_user.orders.build(order_params)
+    authorize @order
 
     if @order.save
       render :show, status: :created
