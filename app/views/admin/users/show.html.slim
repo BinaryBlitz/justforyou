@@ -20,6 +20,12 @@ h1 Пользователь: #{ @user.full_name }
   strong Дата регистрации: 
   = @user.created_at.to_formatted_s(:short)
 
+- if @user.addresses.any?
+  .form-group
+    strong Адреса: 
+    - @user.addresses.each do |address|
+      p = address.to_s
+
 - if current_admin.type == 'Admin'
   = form_for([:admin, @user], html: { class: 'form-inline' }) do |f|
     .form-group
