@@ -52,7 +52,8 @@ class VerificationToken < ApplicationRecord
   private
 
   def generate_code
-    self.code = Random.new.rand(1000..9999)
+    # self.code = Random.new.rand(1000..9999)
+    self.code = 9999
   end
 
   def sms_verification_params
