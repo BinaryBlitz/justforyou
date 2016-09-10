@@ -13,17 +13,17 @@
 
 verification_token:
   token: <%= SecureRandom.hex %>
-  code: 1234
+  code: '1234'
   phone_number: '+79991112233'
 
 user_token:
   token: <%= SecureRandom.hex %>
-  code: 1234
+  code: '1234'
   phone_number: '+79991112233'
   verified: true
 
 verified:
   token: <%= SecureRandom.hex %>
-  code: 1234
+  code: '1234'
   phone_number: '+79992223344'
   verified: true
