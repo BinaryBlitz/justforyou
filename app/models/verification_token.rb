@@ -26,7 +26,7 @@ class VerificationToken < ApplicationRecord
   scope :verified, -> { where(verified: true) }
 
   def verify(code)
-    return false unless self.code == code
+    return false unless self.code == code || demo?(code)
     update(verified: true)
   end
 
@@ -35,6 +35,8 @@ class VerificationToken < ApplicationRecord
   end
 
   def send_verification_code
+    return true if phone_number == Rails.application.secrets.demo_phone_number
+
     response = HTTParty.post(SMS_VERIFICATION_URL, body: sms_verification_params).parsed_response
 
     if response.lines.first.try(:chomp) == '100'
@@ -61,5 +63,10 @@ class VerificationToken < ApplicationRecord
       text: "Код верификации: #{code}",
       to: phone_number
     }
+  end
+
+  def demo?(code)
+    phone_number == Rails.application.secrets.demo_phone_number &&
+      code == Rails.application.secrets.demo_code
   end
 end

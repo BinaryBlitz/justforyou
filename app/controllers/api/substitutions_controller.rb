@@ -8,6 +8,7 @@ class API::SubstitutionsController < API::APIController
 
   def create
     @substitution = current_user.substitutions.build(product: @product)
+    authorize @substitution
 
     if @substitution.save
       render :show, status: :created

@@ -29,4 +29,9 @@ class VerificationTokenTest < ActiveSupport::TestCase
     assert_not_nil token.code
     assert_not_nil token.token
   end
+
+  test 'demo token' do
+    @verification_token.phone_number = Rails.application.secrets.demo_phone_number
+    assert @verification_token.verify(Rails.application.secrets.demo_code)
+  end
 end
