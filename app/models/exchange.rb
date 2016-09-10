@@ -73,7 +73,7 @@ class Exchange < ApplicationRecord
 
   # Add pending balance if any
   def calculate_user_balance
-    user.add_balance(pending_balance) if pending_balance > 0
+    user.add_balance(pending_balance) if pending_balance.positive?
   end
 
   # Create purchase or find an existing one and add days

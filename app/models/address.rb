@@ -35,8 +35,9 @@ class Address < ApplicationRecord
   end
 
   def to_s
-    "#{content}, " + ATTRIBUTES.select { |attribute, _| self[attribute].present? }
-      .map { |attribute, prefix| "#{prefix} #{self[attribute]}" }
-      .join(', ')
+    "#{content}, " +
+      ATTRIBUTES.select { |attribute, _| self[attribute].present? }
+                .map { |attribute, prefix| "#{prefix} #{self[attribute]}" }
+                .join(', ')
   end
 end

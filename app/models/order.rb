@@ -48,7 +48,7 @@ class Order < ApplicationRecord
     @total_price ||= begin
       total_price = line_items_price
       total_price -= user.balance if use_balance?
-      total_price > 0 ? total_price : 1
+      total_price.positive? ? total_price : 1
     end
   end
 

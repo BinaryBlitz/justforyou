@@ -51,7 +51,8 @@ class Delivery < ApplicationRecord
 
   # The number of the day in program
   def position
-    purchase.deliveries
+    purchase
+      .deliveries
       .valid
       .order(scheduled_for: :asc)
       .find_index(self)
@@ -60,7 +61,7 @@ class Delivery < ApplicationRecord
   private
 
   def set_paid
-    update(paid: true) if price == 0
+    update(paid: true) if price.zero?
   end
 
   def update_counter_cache
