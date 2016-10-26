@@ -14,8 +14,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -23,25 +21,38 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
-gem 'devise', '~> 4.1'
-gem 'rails-i18n'
-gem 'devise-i18n'
+# Front-end
 gem 'bootstrap-sass'
 gem 'slim-rails'
-gem 'kaminari'
-gem 'phonelib'
-gem 'httparty'
-gem 'email_validator'
+gem 'nested_form_fields'
+gem 'bootstrap-datepicker-rails'
+
+# Auth
+gem 'devise', '~> 4.1'
+gem 'pundit'
+
+# I18n
+gem 'rails-i18n'
+gem 'devise-i18n'
+
+# Image processing
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'pundit'
-gem 'rollbar'
-gem 'nested_form_fields'
-gem 'houston'
-gem 'payonline', github: 'itsdn/payonline'
+
+# Utilities
+gem 'phonelib'
+gem 'email_validator'
+gem 'kaminari'
 gem 'geokit'
+gem 'httparty'
 gem 'configurable_engine'
-gem 'bootstrap-datepicker-rails'
+
+# Push notifications
+gem 'houston'
+# Payments
+gem 'payonline', github: 'itsdn/payonline'
+# Analytics
+gem 'rollbar'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
