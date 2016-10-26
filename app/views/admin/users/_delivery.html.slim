@@ -1,8 +1,7 @@
 tr
-  td = delivery.scheduled_for
+  td = l(delivery.scheduled_for, format: :long)
   td = delivery.purchase.program.block.name
   td = delivery.purchase.program.name
   td
     - if current_admin.type == 'Admin'
       = link_to 'Отменить', '#', data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger'
-  
