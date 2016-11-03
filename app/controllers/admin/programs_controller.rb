@@ -49,7 +49,7 @@ class Admin::ProgramsController < Admin::AdminController
       .require(:program)
       .permit(
         :name, :description, :threshold, :primary_price, :secondary_price,
-        :image, :preview, :block_id, prescription: []
+        :image, :preview, :block_id, :individual_price, prescription: []
       )
   end
 end
