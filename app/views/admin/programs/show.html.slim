@@ -48,6 +48,10 @@ h1 Программа: #{@program.name}
   p = image_tag @program.image.thumb
 
 .form-group
+  strong Единицы измерения: 
+  = t(@program.unit)
+
+.form-group
   strong Пример меню на #{ @program.days.count } дней:
 
 h2 Дни
