@@ -26,6 +26,7 @@ program:
   secondary_price: 200
   image: image
   preview: Preview
+  unit: 'day'
   block: block
 
 program_two:
@@ -37,4 +38,5 @@ program_two:
   secondary_price: 200
   image: image
   preview: Preview
+  unit: 'piece'
   block: block

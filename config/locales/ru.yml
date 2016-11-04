@@ -22,6 +22,7 @@ ru:
         secondary_price: Вторая цена
         image: Фотография меню
         preview: Короткое описание
+        unit: Единицы измерения
         block: Блок
       block:
         name: Название
