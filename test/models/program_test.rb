@@ -52,4 +52,15 @@ class ProgramTest < ActiveSupport::TestCase
     @program.secondary_price = 1
     assert @program.valid?
   end
+
+  test 'units of measurement from list' do
+    valid_units = %w(piece day)
+    valid_units.each do |unit|
+      @program.unit = unit
+      assert @program.valid?
+    end
+
+    @program.unit = 'a'
+    assert @program.invalid?
+  end
 end
