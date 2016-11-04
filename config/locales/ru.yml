@@ -1,4 +1,6 @@
 ru:
+  piece: Штуки
+  day: Дни
   activerecord:
     models:
       program: Программа
