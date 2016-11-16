@@ -18,6 +18,7 @@
             <li><%= link_to 'Блоки', admin_blocks_path %></li>
             <li><%= link_to 'Акции', admin_promotions_path %></li>
             <li><%= link_to 'Продукты', admin_product_types_path %></li>
+            <li><%= link_to 'Заказы', admin_orders_path %></li>
           </ul>
         </li>
         <li><%= link_to 'Упрвление менеджерами', admin_managers_path unless current_admin.type == 'Manager' %></li>
