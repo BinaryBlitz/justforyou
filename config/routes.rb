@@ -78,7 +78,7 @@ Rails.application.routes.draw do
 
     resources :managers
 
-    resources :orders, only: :show
+    resources :orders, only: [:index, :show]
 
     resources :exports, only: [:new, :create]
 

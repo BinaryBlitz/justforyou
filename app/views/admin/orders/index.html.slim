@@ -1,0 +1,20 @@
+.container 
+  h1 Заказы
+
+  .table-responsive
+    table.table
+      thead
+        tr
+          th №
+          th Пользователь
+          th Сумма
+          th Дата создания
+      tbody
+        - @orders.each do |order|
+          tr
+            td = link_to order.id, [:admin, order]
+            td = order.user.full_name
+            td = order.payment.amount
+            td = order.payment.created_at.to_formatted_s(:short)
+
+= paginate @orders
