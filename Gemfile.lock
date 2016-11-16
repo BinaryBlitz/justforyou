@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/itsdn/payonline.git
+  remote: https://github.com/dankimio/payonline.git
   revision: 7289ed1ff2dd575115cc4d9e90c5ff9235c8eeef
   specs:
     payonline (0.1.0)
@@ -48,7 +48,7 @@ GEM
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
     arel (7.1.4)
-    autoprefixer-rails (6.5.1.1)
+    autoprefixer-rails (6.5.3)
       execjs
     bcrypt (3.1.11)
     bootstrap-datepicker-rails (1.6.4.1)
@@ -84,7 +84,7 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.1.0)
+    devise-i18n (1.1.1)
     email_validator (1.6.0)
       activemodel
     erubis (2.7.0)
@@ -155,7 +155,7 @@ GEM
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
     pg (0.19.0)
-    phonelib (0.6.5)
+    phonelib (0.6.6)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -247,7 +247,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     warden (1.2.6)
       rack (>= 1.0)
-    web-console (3.3.1)
+    web-console (3.4.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       debug_inspector
@@ -300,7 +300,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 2.3.0p0
+   ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.5
+   1.13.6

@@ -50,7 +50,7 @@ gem 'configurable_engine'
 # Push notifications
 gem 'houston'
 # Payments
-gem 'payonline', github: 'itsdn/payonline'
+gem 'payonline', git: 'https://github.com/dankimio/payonline.git'
 # Analytics
 gem 'rollbar'
 
