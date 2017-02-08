@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '~> 2.3.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
@@ -21,22 +21,31 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
-gem 'devise', '~> 4.1'
-gem 'rails-i18n'
-gem 'devise-i18n'
+# Front-end
 gem 'bootstrap-sass'
 gem 'slim-rails'
-gem 'kaminari'
-gem 'phonelib'
-gem 'httparty'
-gem 'email_validator'
+gem 'nested_form_fields'
+gem 'bootstrap-datepicker-rails'
+
+# Auth
+gem 'devise', '~> 4.1'
+gem 'pundit'
+
+# I18n
+gem 'rails-i18n'
+gem 'devise-i18n'
+
+# Image processing
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'pundit'
-gem 'nested_form_fields'
+
+# Utilities
+gem 'phonelib'
+gem 'email_validator'
+gem 'kaminari'
 gem 'geokit'
+gem 'httparty'
 gem 'configurable_engine'
-gem 'bootstrap-datepicker-rails'
 
 # Push notifications
 gem 'houston'
