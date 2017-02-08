@@ -22,4 +22,8 @@
 # OS X
 .DS_Store
 
+# Environment
 .env
+
+# rbenv
+.ruby-version
