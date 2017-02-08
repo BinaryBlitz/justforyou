@@ -19,7 +19,7 @@ block = Block.create!(name: 'Block', image: image, color: '#fff')
 
 program = Program.create!(
   name: 'Program', description: 'Description', preview: 'Preview', prescription: ['Prescription'],
-  threshold: 10, primary_price: 2, secondary_price: 2,
+  threshold: 10, primary_price: 2, secondary_price: 2, unit: 'day',
   block: block, image: image
 )
 

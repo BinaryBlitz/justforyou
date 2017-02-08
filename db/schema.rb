@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910225237) do
+ActiveRecord::Schema.define(version: 20161104173545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -184,17 +184,19 @@ ActiveRecord::Schema.define(version: 20160910225237) do
   end
 
   create_table "programs", force: :cascade do |t|
-    t.string   "name",                         null: false
-    t.text     "description",                  null: false
-    t.integer  "threshold",                    null: false
-    t.integer  "primary_price",                null: false
-    t.integer  "secondary_price",              null: false
-    t.string   "image",                        null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.string   "name",                             null: false
+    t.text     "description",                      null: false
+    t.integer  "threshold",                        null: false
+    t.integer  "primary_price",                    null: false
+    t.integer  "secondary_price",                  null: false
+    t.string   "image",                            null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "block_id"
-    t.text     "prescription",    default: [],              array: true
+    t.text     "prescription",     default: [],                 array: true
     t.string   "preview"
+    t.boolean  "individual_price", default: false
+    t.string   "unit",                             null: false
     t.index ["block_id"], name: "index_programs_on_block_id", using: :btree
   end
 

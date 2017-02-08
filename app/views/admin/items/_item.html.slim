@@ -2,5 +2,5 @@ tr
   td = item.content
   td = item.weight
   td = item.calories
-  td = item.starts_at
-  td = item.ends_at
+  td = l(item.starts_at, format: :long)
+  td = l(item.ends_at, format: :long)

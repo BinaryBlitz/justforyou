@@ -1,9 +1,8 @@
 # README
 
 - Ruby version: 2.3.1
-- System dependencies: PostgreSQL, ImageMagick
+- System dependencies: `brew install postgresql imagemagick`
 - Configuration: `secrets.yml`
-- Database initialization: `$ rails db:setup`
-- How to run the test suite: `$ rails test`
-- Services (job queues, cache servers, search engines, etc.)
-- Deployment instructions: automatic deployment from master branch
+- Database initialization: `rails db:setup`
+- How to run the test suite: `rails test`
+- Deployment instructions: deploys automatically from development (staging) and master (production)

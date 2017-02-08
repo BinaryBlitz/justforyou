@@ -41,6 +41,14 @@
     = f.number_field :threshold, class: 'form-control'
 
   .form-group
+    = f.label :unit
+    = f.select :unit, [['Штуки', 'piece'], ['Дни', 'day']], { include_blank: false }, { class: 'form-control' }
+
+  .form-group
+    = f.label :individual_price
+    = f.check_box :individual_price, class: 'checkbox'
+
+  .form-group
     = f.label :image
     = f.file_field :image
 

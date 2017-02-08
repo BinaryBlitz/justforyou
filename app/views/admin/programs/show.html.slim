@@ -40,8 +40,16 @@ h1 Программа: #{@program.name}
   = @program.threshold
 
 .form-group
+  strong Индивидульная цена 
+  = check_box_tag :individual_price, 1, @program.individual_price
+
+.form-group
   strong Фотография меню:
   p = image_tag @program.image.thumb
+
+.form-group
+  strong Единицы измерения: 
+  = t(@program.unit)
 
 .form-group
   strong Пример меню на #{ @program.days.count } дней:

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '~> 2.3.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
@@ -21,29 +21,38 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
-gem 'devise', '~> 4.1'
-gem 'rails-i18n'
-gem 'devise-i18n'
-gem 'bootstrap-sass'
-gem 'slim-rails'
-gem 'kaminari'
-gem 'phonelib'
-gem 'httparty'
-gem 'email_validator'
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'pundit'
-gem 'nested_form_fields'
-gem 'geokit'
-gem 'configurable_engine'
-gem 'bootstrap-datepicker-rails'
+# Front-end
+gem 'bootstrap-sass', '~> 3.3'
+gem 'slim-rails', '~> 3.1'
+gem 'nested_form_fields', '~> 0.8'
+gem 'bootstrap-datepicker-rails', '~> 1.6'
+
+# Auth
+gem 'devise', '~> 4.2'
+gem 'pundit', '~> 1.1'
+
+# I18n
+gem 'rails-i18n', '~> 5.0.0'
+gem 'devise-i18n', '~> 1.1'
+
+# Image processing
+gem 'carrierwave', '~> 0.11'
+gem 'mini_magick', '~> 4.5'
+
+# Utilities
+gem 'phonelib', '~> 0.6'
+gem 'email_validator', '~> 1.6'
+gem 'kaminari', '~> 0.17'
+gem 'geokit', '~> 1.10'
+gem 'httparty', '~> 0.14'
+gem 'configurable_engine', '~> 0.4'
 
 # Push notifications
-gem 'houston'
+gem 'houston', '~> 2.2'
 # Payments
 gem 'payonline', git: 'https://github.com/dankimio/payonline.git'
 # Analytics
-gem 'rollbar'
+gem 'rollbar', '~> 2.13'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -63,7 +72,7 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'fog-aws'
+  gem 'fog-aws', '~> 0.12'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
