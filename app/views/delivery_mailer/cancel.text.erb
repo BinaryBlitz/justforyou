@@ -1,0 +1,5 @@
+В мобильном приложении Just For You назначена доставка:
+
+Пользователь: <%= @delivery.purchase.user.full_name %>
+
+Отменена доставка: <%= l(@delivery.scheduled_for, format: :long) %>
