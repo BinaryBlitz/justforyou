@@ -1,0 +1,13 @@
+В мобильном приложении Just For You заменена программа:
+
+Пользователь: <%= @exchange.purchase.user.full_name %>
+
+Старая программа: <%= @exchange.program.name %>
+
+Кол-во: <%= @exchange.purchase.days_left %>
+
+Новая программа: <%= @exchange.purchase.program.name %>
+
+Начислено бонусов в результате замены: <%= @exchange.pending_balance %>
+
+Доплачено за данную программу: <%= @exchange.total_price %>

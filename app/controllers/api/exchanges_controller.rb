@@ -5,6 +5,7 @@ class API::ExchangesController < API::APIController
     @exchange = @purchase.exchanges.build(exchange_params)
 
     if @exchange.save
+      ExchangeMailer.new_exchange(@exchange).deliver
       render :show, status: :created
     else
       render json: @exchange.errors, status: 422
