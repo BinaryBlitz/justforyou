@@ -13,6 +13,7 @@ class API::OrdersController < API::APIController
     authorize @order
 
     if @order.save
+      OrderMailer.new_order(@order).deliver
       render :show, status: :created
     else
       render json: @order.errors, status: 422
