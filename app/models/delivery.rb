@@ -30,6 +30,7 @@ class Delivery < ApplicationRecord
   validates :status, :scheduled_for, presence: true
   validate :past_deliveries_are_paid, on: :create
   validate :purchase_not_completed, on: :create
+  validate :possible_to_cancel, on: :create
 
   enum status: %i(pending delivered canceled)
 
@@ -71,6 +72,10 @@ class Delivery < ApplicationRecord
 
   def update_counter_cache
     purchase.update_column(:deliveries_count, purchase.deliveries.valid.count)
+  end
+
+  def possible_to_cancel
+    errors.add(:base, 'delivery is not cancelable') unless cancelable?
   end
 
   def past_deliveries_are_paid
