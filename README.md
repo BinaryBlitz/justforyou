@@ -1,6 +1,6 @@
 # README
 
-- Ruby version: 2.3.1
+- Ruby version: 2.4.0
 - System dependencies: `brew install postgresql imagemagick`
 - Configuration: `secrets.yml`
 - Database initialization: `rails db:setup`
