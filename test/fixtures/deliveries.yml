@@ -25,6 +25,14 @@ new_delivery:
 delivery:
   purchase: purchase
   status: 0
+  scheduled_for: <%= 2.day.from_now %>
+  address: address
+  comment: Comment
+  paid: true
+
+invalid_delivery:
+  purchase: purchase
+  status: 0
   scheduled_for: <%= 1.day.from_now %>
   address: address
   comment: Comment
