@@ -2,7 +2,7 @@ h1 Заказ № #{ @order.id }
 
 .form-group
   strong Время оплаты: 
-  = @order.payment.created_at.to_formatted_s(:short)
+  = l(@order.payment.created_at, format: :long)
 
 .form-group
   strong Сумма: 
