@@ -4,7 +4,7 @@
 
 Пользователь: <%= @order.user.full_name %>
 
-Дата покупки: <%= l(@order.created_at, format: :long) %>
+Дата покупки: <%= l(@order.created_at.to_date) %>
 
 Время покупки: <%= @order.created_at.strftime('%H:%M') %>
 

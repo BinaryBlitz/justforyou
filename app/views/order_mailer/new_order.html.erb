@@ -9,7 +9,7 @@
 </p>
 
 <p>
-  Дата покупки: <%= l(@order.created_at, format: :long) %>
+  Дата покупки: <%= l(@order.created_at.to_date) %>
 </p>
 
 <p>
