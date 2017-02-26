@@ -30,7 +30,7 @@ class Program < ApplicationRecord
   validates :image, :description, :prescription, :preview, :block, presence: true
   validates :threshold, numericality: { greater_than: 0 }
   validates :primary_price, :secondary_price, numericality: { greater_than: 0 }
-  validates :unit, inclusion: { in: %w(piece day) }
+  validates :unit, inclusion: { in: %w(day piece) }
 
   mount_uploader :image, ImageUploader
 
