@@ -18,7 +18,7 @@ h1 Пользователь: #{ @user.full_name }
 
 .form-group
   strong Дата регистрации: 
-  = @user.created_at.to_formatted_s(:short)
+  = l(@user.created_at, format: :long)
 
 - if @user.addresses.any?
   .form-group

@@ -1,0 +1,11 @@
+В мобильном приложении Just For You назначена доставка:
+
+Пользователь: <%= @purchase.user.full_name %>
+
+Желаемые даты доставки:
+<%- @deliveries.each do |delivery| %>
+  <%= l(delivery.scheduled_for, format: :long) %>
+<% end %>
+
+Состав заказа:
+<%= "#{@purchase.program.name} x #{@purchase.number_of_days} #{t(@purchase.program.unit)}" %>

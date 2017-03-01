@@ -1,25 +1,25 @@
 source 'https://rubygems.org'
 
-ruby '~> 2.3.3'
+ruby '~> 2.4.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.0.1'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+gem 'pg', '~> 0.19'
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '~> 3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+gem 'turbolinks', '~> 5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder', '~> 2.6'
 
 # Front-end
 gem 'bootstrap-sass', '~> 3.3'
@@ -32,12 +32,12 @@ gem 'devise', '~> 4.2'
 gem 'pundit', '~> 1.1'
 
 # I18n
-gem 'rails-i18n', '~> 5.0.0'
+gem 'rails-i18n', '~> 5.0'
 gem 'devise-i18n', '~> 1.1'
 
 # Image processing
 gem 'carrierwave', '~> 0.11'
-gem 'mini_magick', '~> 4.5'
+gem 'mini_magick', '~> 4.6'
 
 # Utilities
 gem 'phonelib', '~> 0.6'
@@ -52,7 +52,7 @@ gem 'houston', '~> 2.2'
 # Payments
 gem 'payonline', git: 'https://github.com/dankimio/payonline.git'
 # Analytics
-gem 'rollbar', '~> 2.13'
+gem 'rollbar', '~> 2.14'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -71,7 +71,6 @@ group :development do
 end
 
 group :production do
-  gem 'rails_12factor'
   gem 'fog-aws', '~> 0.12'
 end
 

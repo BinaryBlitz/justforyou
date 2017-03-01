@@ -1,0 +1,35 @@
+<h1>В мобильном приложении Just For You сделан заказ:</h1>
+
+<p>
+  Номер заказа: <%= @order.id %>
+</p>
+
+<p>
+  Пользователь: <%= @order.user.full_name %>
+</p>
+
+<p>
+  Дата покупки: <%= l(@order.created_at.to_date) %>
+</p>
+
+<p>
+  Время покупки: <%= @order.created_at.strftime('%H:%M') %>
+</p>
+
+<p>
+  Сумма покупки: <%= "#{@order.total_price} руб." %>
+</p>
+
+<p>
+  Использовано бонусов: <%= @order.pending_balance %>
+</p>
+
+<p>
+  Состав заказа:
+</p>
+
+<p>
+  <% @order.line_items.each do |li| %>
+    <%= "#{li.program.name} x #{li.number_of_days} #{t(li.program.unit)}" %>
+  <% end %>
+</p>
