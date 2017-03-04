@@ -34,7 +34,7 @@ class Order < ApplicationRecord
 
   def self.search(from, to)
     return all unless from.present? && to.present?
-    where(created_at: from.beginning_of_day..to.end_of_day)
+    where(created_at: from..to.end_of_day)
   end
 
   # Perform after paid callbacks
