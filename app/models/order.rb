@@ -32,6 +32,11 @@ class Order < ApplicationRecord
 
   scope :paid, -> { where(paid: true) }
 
+  def self.search(from, to)
+    return all unless from.present? && to.present?
+    where(created_at: from.beginning_of_day..to.end_of_day)
+  end
+
   # Perform after paid callbacks
   def paid!
     return if paid?
