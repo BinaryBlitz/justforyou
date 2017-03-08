@@ -1,6 +1,22 @@
 .container 
   h1 Заказы
 
+  = form_tag admin_orders_path, method: :get do
+    .form-inline.form-group
+      .input-group.col-xs-2.date.datepicker
+        = text_field_tag :from, params[:from], placeholder: 'Начало', class: 'form-control'
+        span.input-group-addon
+          i.glyphicon.glyphicon-calendar
+      | &nbsp;
+
+      .input-group.col-xs-2.date.datepicker
+        = text_field_tag :to, params[:to], placeholder: 'Конец', class: 'form-control'
+        span.input-group-addon
+          i.glyphicon.glyphicon-calendar
+      | &nbsp;
+
+      = submit_tag 'Поиск', class: 'btn btn-primary'
+
   .table-responsive
     table.table
       thead

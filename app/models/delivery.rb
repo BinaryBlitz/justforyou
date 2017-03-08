@@ -18,6 +18,7 @@ class Delivery < ApplicationRecord
   # Moscow Kilometre Zero
   ORIGIN = [55.755833, 37.617778]
   CANCELABLE_HOURS = 36
+  CANCELABLE_BEFORE = '11:00'
 
   after_create :set_paid
   after_save :update_counter_cache
@@ -60,7 +61,14 @@ class Delivery < ApplicationRecord
   end
 
   def cancelable?
-    ((scheduled_for - Time.zone.now) / 1.hour).round > CANCELABLE_HOURS
+    # Deliveries scheduled for today or earlier cannot be canceled
+    return false if scheduled_for < Time.zone.now.end_of_day
+    # Deliveries scheduled for two days from now can be canceled
+    return true if scheduled_for > 2.days.from_now.beginning_of_day
+    # Deliveries for tomorrow can be canceled before 11:00 of the current day
+    return true if Time.zone.now < Time.zone.parse(CANCELABLE_BEFORE)
+
+    false
   end
 
   private
@@ -74,6 +82,8 @@ class Delivery < ApplicationRecord
   end
 
   def not_too_late
+    return unless scheduled_for.present?
+
     errors.add(:base, 'delivery is not cancelable') unless cancelable?
   end
 
