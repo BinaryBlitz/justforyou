@@ -1,7 +1,7 @@
 class DeliveryMailer < ApplicationMailer
   def new_delivery(purchase)
     @purchase = purchase
-    @deliveries = purchase.deliveries
+    @deliveries = purchase.deliveries.latest
     mail(to: 'info@justforyou.ru')
   end
 

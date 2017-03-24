@@ -38,6 +38,7 @@ class Delivery < ApplicationRecord
   scope :valid, -> { where.not(status: :canceled) }
   scope :unpaid, -> { where(paid: false) }
   scope :on_date, -> (date) { where(scheduled_for: date.beginning_of_day..date.end_of_day) }
+  scope :latest, -> { where('scheduled_for > ?', Time.zone.now) }
 
   delegate :user, :program, to: :purchase
 
