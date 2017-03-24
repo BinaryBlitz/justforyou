@@ -72,6 +72,10 @@ class Delivery < ApplicationRecord
     false
   end
 
+  def formatted_scheduled_for
+    "#{I18n.l(scheduled_for, format: :long)} - #{(scheduled_for + 1.hour).strftime('%H:%M')}"
+  end
+
   private
 
   def set_paid
