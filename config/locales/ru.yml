@@ -48,3 +48,6 @@ ru:
       previous: "&lsaquo; Предыдущая"
       next: "Следющая &rsaquo;"
       truncate: "&hellip;"
+  time:
+    formats:
+      long: '%d %B %Y, %H:%M - %{ends_at}'
