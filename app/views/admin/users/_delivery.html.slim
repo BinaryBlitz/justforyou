@@ -1,5 +1,5 @@
 tr
-  td = l(delivery.scheduled_for, format: :long)
+  td = delivery.formatted_scheduled_for
   td = delivery.purchase.program.block.name
   td = delivery.purchase.program.name
   td

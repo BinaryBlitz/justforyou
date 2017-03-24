@@ -11,7 +11,7 @@
 <p>
   <%- @deliveries.each do |delivery| %>
     <p>
-      <%= l(delivery.scheduled_for, format: :long) %>
+      <%= delivery.formatted_scheduled_for %>
       <%= delivery.address.to_s %>
     </p>
   <% end %>
