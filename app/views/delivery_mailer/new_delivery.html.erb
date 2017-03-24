@@ -10,7 +10,10 @@
 
 <p>
   <%- @deliveries.each do |delivery| %>
-    <%= l(delivery.scheduled_for, format: :long) %>
+    <p>
+      <%= l(delivery.scheduled_for, format: :long) %>
+      <%= delivery.address.to_s %>
+    </p>
   <% end %>
 </p>
 
