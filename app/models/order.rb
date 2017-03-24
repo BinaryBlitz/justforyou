@@ -66,10 +66,7 @@ class Order < ApplicationRecord
 
   # Price before applying user balance
   def line_items_price
-    @line_items_price ||= begin
-      threshold = programs.maximum(:threshold)
-      line_items.inject(0) { |sum, item| sum + item.price_for_threshold(threshold) }
-    end
+    @line_items_price ||= line_items.inject(0) { |sum, item| sum + item.price }
   end
 
   # Calculate new balance after a successful payment
