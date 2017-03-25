@@ -72,6 +72,10 @@ class Delivery < ApplicationRecord
     false
   end
 
+  def ends_at
+    scheduled_for + 1.hour
+  end
+
   private
 
   def set_paid
