@@ -11,7 +11,7 @@
 <p>
   <%- @deliveries.each do |delivery| %>
     <p>
-      <%= formatted_scheduled_for(delivery) %>
+      <%= time_interval_for_delivery(delivery) %>
       <%= delivery.address.to_s %>
     </p>
   <% end %>

@@ -73,7 +73,7 @@ class Delivery < ApplicationRecord
   end
 
   def ends_at
-    (scheduled_for + 1.hour).strftime('%H:%M')
+    scheduled_for + 1.hour
   end
 
   private
