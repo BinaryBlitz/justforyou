@@ -4,7 +4,7 @@
 
 Желаемые даты доставки:
 <%- @deliveries.each do |delivery| %>
-  <%= "#{delivery.formatted_scheduled_for} #{delivery.address}" %>
+  <%= "#{formatted_scheduled_for(delivery)} #{delivery.address}" %>
 <% end %>
 
 Состав заказа:

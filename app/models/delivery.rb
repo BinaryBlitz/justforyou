@@ -72,10 +72,8 @@ class Delivery < ApplicationRecord
     false
   end
 
-  def formatted_scheduled_for
-    I18n.l(
-      scheduled_for, format: :with_ends_at_time, ends_at: (scheduled_for + 1.hour).strftime('%H:%M')
-    )
+  def ends_at
+    (scheduled_for + 1.hour).strftime('%H:%M')
   end
 
   private
