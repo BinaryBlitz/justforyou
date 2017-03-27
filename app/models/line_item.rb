@@ -21,6 +21,9 @@ class LineItem < ApplicationRecord
     price_for_threshold(program.threshold)
   end
 
+  private
+
+  # Price with custom threshold
   def price_for_threshold(threshold)
     price = number_of_days < threshold ? program.primary_price : program.secondary_price
     price * number_of_days

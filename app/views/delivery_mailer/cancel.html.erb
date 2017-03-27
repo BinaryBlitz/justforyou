@@ -5,5 +5,5 @@
 </p>
 
 <p>
-  Отменена доставка: <%= l(@delivery.scheduled_for, format: :long) %>
+  Отменена доставка: <%= time_interval_for_delivery(@delivery) %>
 </p>
