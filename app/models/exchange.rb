@@ -33,6 +33,8 @@ class Exchange < ApplicationRecord
       calculate_user_balance
       configure_purchases
     end
+
+    ExchangeMailer.new_exchange(self).deliver
   end
 
   private

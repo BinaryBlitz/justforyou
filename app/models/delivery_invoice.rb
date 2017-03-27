@@ -24,6 +24,8 @@ class DeliveryInvoice < ApplicationRecord
     ActiveRecord::Base.transaction do
       update(paid: true)
     end
+
+    deliveries.each { |delivery| DeliveryMailer.new_delivery(develiry.purchase).deliver }
   end
 
   def total_price
