@@ -45,6 +45,7 @@ class Order < ApplicationRecord
       update(paid: true)
       calculate_user_balance
       configure_purchases
+      OrderMailer.new_order(self).deliver
     end
   end
 
