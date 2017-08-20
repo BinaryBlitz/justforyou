@@ -29,7 +29,6 @@ class Delivery < ApplicationRecord
   belongs_to :delivery_invoice, optional: true
 
   validates :status, :scheduled_for, presence: true
-  validate :past_deliveries_are_paid, on: :create
   validate :purchase_not_completed, on: :create
   validate :not_too_late, on: :create
 
