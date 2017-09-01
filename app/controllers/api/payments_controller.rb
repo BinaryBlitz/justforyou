@@ -5,6 +5,10 @@ class API::PaymentsController < API::APIController
     @payments = current_user.payments.paid
   end
 
+  def show
+    @payment = current_user.payments.find(params[:id])
+  end
+
   def create
     @payment = @payable.payment || @payable.create_payment(payment_card: payment_card)
 

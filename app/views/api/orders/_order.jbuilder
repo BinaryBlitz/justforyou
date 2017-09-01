@@ -1,1 +1,1 @@
-json.extract! order, :id, :comment, :phone_number, :total_price, :created_at
+json.extract! order, :id, :comment, :phone_number, :total_price, :paid, :created_at

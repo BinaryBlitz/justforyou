@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resource :user, only: [:show, :create, :update]
 
     resources :addresses, except: [:new, :edit, :update]
-    resources :payments, only: [:index]
+    resources :payments, only: [:index, :show]
 
     resources :orders, except: [:new, :edit] do
       resource :payment, only: [:create]
