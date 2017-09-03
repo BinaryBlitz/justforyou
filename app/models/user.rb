@@ -12,10 +12,13 @@
 #  api_token    :string
 #  balance      :integer          default(0)
 #  device_token :string
+#  platform     :integer
 #
 
 class User < ApplicationRecord
   include Phonable
+
+  enum platform: %i[ios android]
 
   has_many :orders, dependent: :destroy
   has_many :line_items, through: :orders

@@ -12,6 +12,7 @@
 #  api_token    :string
 #  balance      :integer          default(0)
 #  device_token :string
+#  platform     :integer
 #
 
 require 'test_helper'

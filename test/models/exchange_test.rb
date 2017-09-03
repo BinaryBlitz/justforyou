@@ -10,6 +10,7 @@
 #  pending_balance :integer          default(0)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  total_price     :integer
 #
 
 require 'test_helper'

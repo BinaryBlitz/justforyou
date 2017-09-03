@@ -13,7 +13,7 @@
 #  longitude  :float            not null
 #  deleted_at :datetime
 #  apartment  :integer
-#  house      :integer
+#  house      :string
 #
 
 address:

@@ -8,6 +8,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  programs_count :integer          default(0)
+#  color          :string
 #
 
 require 'test_helper'

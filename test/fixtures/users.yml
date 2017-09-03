@@ -12,6 +12,7 @@
 #  api_token    :string
 #  balance      :integer          default(0)
 #  device_token :string
+#  platform     :integer
 #
 
 foo:
@@ -21,6 +22,7 @@ foo:
   email: foo@bar.com
   api_token: <%= SecureRandom.hex %>
   device_token: <%= SecureRandom.hex %>
+  platform: ios
 
 baz:
   first_name: Baz
@@ -29,3 +31,4 @@ baz:
   email: baz@qux.com
   api_token: <%= SecureRandom.hex %>
   device_token: <%= SecureRandom.hex %>
+  platform: android

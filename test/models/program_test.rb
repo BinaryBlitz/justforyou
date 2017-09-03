@@ -15,6 +15,7 @@
 #  prescription     :text             default([]), is an Array
 #  preview          :string
 #  individual_price :boolean          default(FALSE)
+#  unit             :string           not null
 #
 
 require 'test_helper'

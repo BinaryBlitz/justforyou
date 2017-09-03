@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104173545) do
+ActiveRecord::Schema.define(version: 20170903165936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -238,6 +238,7 @@ ActiveRecord::Schema.define(version: 20161104173545) do
     t.string   "api_token"
     t.integer  "balance",      default: 0
     t.string   "device_token"
+    t.integer  "platform"
     t.index ["api_token"], name: "index_users_on_api_token", unique: true, using: :btree
   end
 
