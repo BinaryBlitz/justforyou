@@ -21,6 +21,7 @@ class Order < ApplicationRecord
   has_one :payment, as: :payable
   has_many :line_items, dependent: :destroy, inverse_of: :order
   has_many :programs, through: :line_items
+  has_many :purchases
 
   validates :comment, length: { maximum: 1000 }
   validates :line_items, presence: true
@@ -45,7 +46,6 @@ class Order < ApplicationRecord
       update(paid: true)
       calculate_user_balance
       configure_purchases
-      OrderMailer.new_order(self).deliver
     end
   end
 
@@ -82,7 +82,7 @@ class Order < ApplicationRecord
   # Create purchase for each program or add days if already present
   def configure_purchases
     line_items.each do |item|
-      purchase = user.purchases.find_or_initialize_by(program: item.program)
+      purchase = user.purchases.find_or_initialize_by(program: item.program, order: self)
 
       if purchase.new_record?
         purchase.number_of_days = item.number_of_days

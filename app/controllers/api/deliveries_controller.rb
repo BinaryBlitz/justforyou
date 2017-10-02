@@ -17,6 +17,7 @@ class API::DeliveriesController < API::APIController
       render json: invalid_delivery.errors, status: 422
     else
       @deliveries.each(&:save)
+      PurchaseMailer.new_purchase(@purchase).deliver_now
       render :index, status: :created
     end
   end
