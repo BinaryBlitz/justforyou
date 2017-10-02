@@ -31,14 +31,14 @@ day.items.create!(
   calories: 100, weight: 100
 )
 
-Order.create!(
+order = Order.create!(
   user: user, phone_number: '+79998887766',
   line_items_attributes: [
     { program: program, number_of_days: 10 }
   ]
 )
 
-purchase = user.purchases.create!(program: program, number_of_days: 5)
+purchase = user.purchases.create!(order: order, program: program, number_of_days: 5)
 
 purchase.deliveries.create!(address: address, scheduled_for: 1.month.from_now)
 

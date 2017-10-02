@@ -9,6 +9,7 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  deliveries_count :integer          default(0)
+#  order_id         :integer
 #
 
 require 'test_helper'

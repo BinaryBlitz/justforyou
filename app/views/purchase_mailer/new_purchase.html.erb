@@ -1,0 +1,72 @@
+<h1>В мобильном приложении Just For You сделан заказ:</h1>
+
+<p>
+  Номер заказа: <%= @order.id %>
+</p>
+
+<p>
+  Пользователь: <%= @order.user.full_name %>
+</p>
+
+<p>
+  Стоимость заказа: <%= "#{@order.total_price} руб." %>
+</p>
+
+<p>
+  <strong>Состав заказа:</strong>
+</p>
+
+<ul>
+  <% @order.line_items.each do |li| %>
+    <li style="text-decoration:underline;font-weight:bold">
+      <%= "#{li.program.name} x #{li.number_of_days} #{t(li.program.unit)}" %>
+    </li>
+  <% end %>
+</ul>
+
+<br>
+
+<p>
+  <strong>Данные покупателя:</strong>
+</p>
+
+<p>
+  Способ оплаты: payonline.ru
+</p>
+
+<p>
+  ФИО: <%= @order.user.full_name %>
+</p>
+
+<p>
+  Email: <%= @order.user.email %>
+</p>
+
+<p>
+  Телефон: <%= @order.user.phone_number %>
+</p>
+
+<br>
+
+<p>
+  <strong>Доставка:</strong>
+</p>
+
+
+<ol>
+  <% @purchase.deliveries.each do |delivery| %>
+    <li>
+      <p>
+        Желаемая дата доставки: <%= delivery.scheduled_for.to_date.to_formatted_s(:long) %>
+      </p>
+
+      <p>
+        Желаемое время доставки: <%= delivery.scheduled_for.strftime('%H:%M') %>
+      </p>
+
+      <p>
+        Адрес: <%= delivery.address.content %>
+      </p>
+    </li>
+  <% end %>
+</ol>

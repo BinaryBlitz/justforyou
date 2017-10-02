@@ -9,11 +9,13 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  deliveries_count :integer          default(0)
+#  order_id         :integer
 #
 
 class Purchase < ApplicationRecord
   belongs_to :user
   belongs_to :program
+  belongs_to :order
 
   has_many :deliveries, dependent: :destroy
   has_many :exchanges, dependent: :destroy
