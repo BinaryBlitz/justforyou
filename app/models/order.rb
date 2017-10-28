@@ -58,6 +58,18 @@ class Order < ApplicationRecord
     end
   end
 
+  def goods
+    line_items.map do |line_item|
+      {
+        description: line_item.program.preview,
+        quantity: 1,
+        amount: format('%.2f', line_item.price),
+        tax: 'none',
+        email: user.email,
+      }
+    end
+  end
+
   private
 
   # Pending balance is applied after a successful payment
