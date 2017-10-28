@@ -69,6 +69,18 @@ class Payment < ApplicationRecord
     }
   end
 
+  def fiscal_options
+    {
+      request_body: {
+        operation: 'Benefit',
+        transactionId: transaction_id,
+        paymentSystemType: 'card',
+        totalAmount: amount,
+        goods: payable.goods
+      }
+    }
+  end
+
   def rebill_options
     payment_options.merge(rebill_anchor: payment_card.rebill_anchor)
   end
