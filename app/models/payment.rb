@@ -15,6 +15,8 @@
 
 class Payment < ApplicationRecord
   CURRENCY = 'RUB'
+  OPERATION_TYPE = 'Benefit'
+  PAYMENT_SYSTEM_TYPE = 'card'
 
   before_validation :set_amount
   after_commit :rebill, on: :create, if: :payment_card
@@ -72,9 +74,9 @@ class Payment < ApplicationRecord
   def fiscal_options
     {
       request_body: {
-        operation: 'Benefit',
+        operation: OPERATION_TYPE,
         transactionId: transaction_id,
-        paymentSystemType: 'card',
+        paymentSystemType: PAYMENT_SYSTEM_TYPE,
         totalAmount: amount,
         goods: payable.goods
       }
