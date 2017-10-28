@@ -59,13 +59,12 @@ class Order < ApplicationRecord
   end
 
   def goods
-    line_items.map do |line_item|
+    line_items.map do |item|
       {
-        description: line_item.program.preview,
+        description: item.program.preview,
         quantity: 1,
-        amount: format('%.2f', line_item.price),
+        amount: format('%.2f', item.price),
         tax: 'none',
-        email: user.email,
       }
     end
   end
