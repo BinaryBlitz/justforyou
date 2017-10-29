@@ -54,6 +54,12 @@ class Payment < ApplicationRecord
     self.amount = payable.total_price
   end
 
+  def fiscalize
+    logger.debug("Payment #{id}: fisacalize")
+
+    return false unless PayOnline::FiscalGateway.new(fiscal_options).fiscalization
+  end
+
   def rebill
     logger.debug("Payment #{id}: rebill")
 

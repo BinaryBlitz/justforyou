@@ -17,6 +17,8 @@ class Order < ApplicationRecord
   include Phonable
 
   MAX_NAME_LENGTH = 128
+  GOODS_TAX = 'none'
+  GOODS_QUANTITY = 1
 
   belongs_to :user
 
@@ -64,9 +66,9 @@ class Order < ApplicationRecord
     line_items.map do |item|
       {
         description: item.program.name[0...MAX_NAME_LENGTH],
-        quantity: 1,
+        quantity: GOODS_QUANTITY,
         amount: format('%.2f', item.price),
-        tax: 'none'
+        tax: GOODS_TAX
       }
     end
   end
