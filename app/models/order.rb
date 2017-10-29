@@ -17,7 +17,7 @@ class Order < ApplicationRecord
   include Phonable
 
   MAX_NAME_LENGTH = 128
-  GOODS_TAX = 'none'
+  GOODS_TAX = 'vat0'
   GOODS_QUANTITY = 1
 
   belongs_to :user
