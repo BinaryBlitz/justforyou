@@ -59,7 +59,7 @@ class Payment < ApplicationRecord
     return unless payable_type == 'Order'
     logger.debug("Payment #{id}: fisacalize")
 
-    return false unless PayOnline::FiscalGateway.new(fiscal_options).fiscalization
+    return false unless Payonline::FiscalGateway.new(fiscal_options).fiscalization
   end
 
   def rebill
