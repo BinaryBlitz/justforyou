@@ -16,6 +16,10 @@
 class Order < ApplicationRecord
   include Phonable
 
+  MAX_NAME_LENGTH = 128
+  GOODS_TAX = 'vat0'
+  GOODS_QUANTITY = 1
+
   belongs_to :user
 
   has_one :payment, as: :payable
@@ -55,6 +59,17 @@ class Order < ApplicationRecord
       total_price = line_items_price
       total_price -= user.balance if use_balance?
       total_price.positive? ? total_price : 1
+    end
+  end
+
+  def goods
+    line_items.map do |item|
+      {
+        description: item.program.name[0...MAX_NAME_LENGTH],
+        quantity: GOODS_QUANTITY,
+        amount: format('%.2f', item.price),
+        tax: GOODS_TAX
+      }
     end
   end
 

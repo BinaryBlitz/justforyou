@@ -4,6 +4,7 @@ class PaymentsController < ApplicationController
 
   def success
     @payment = Payment.find(@response.order_id)
+    @payment.update_attribute(transaction_id: @response.transaction_id)
     @payment.paid!(payment_card_params) if @response.valid_payment? && !@payment.paid?
 
     logger.debug("Payment #{@payment.id}: success callback")
