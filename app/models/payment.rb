@@ -46,6 +46,7 @@ class Payment < ApplicationRecord
     end
 
     create_payment_card(payment_card_params)
+    fiscalize
   end
 
   private
@@ -55,6 +56,7 @@ class Payment < ApplicationRecord
   end
 
   def fiscalize
+    return unless payable_type == 'Order'
     logger.debug("Payment #{id}: fisacalize")
 
     return false unless PayOnline::FiscalGateway.new(fiscal_options).fiscalization
