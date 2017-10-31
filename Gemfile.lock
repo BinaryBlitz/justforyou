@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dankimio/payonline.git
-  revision: 7289ed1ff2dd575115cc4d9e90c5ff9235c8eeef
+  revision: c7c6e46ba32fc0bdd48cc781dafa0ad30884a20f
   specs:
     payonline (0.1.0)
 
