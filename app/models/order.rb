@@ -97,7 +97,8 @@ class Order < ApplicationRecord
   # Create purchase for each program or add days if already present
   def configure_purchases
     line_items.each do |item|
-      purchase = user.purchases.find_or_initialize_by(program: item.program, order: self)
+      purchase = user.purchases.find_or_initialize_by(program: item.program)
+      purchase.order = self
 
       if purchase.new_record?
         purchase.number_of_days = item.number_of_days
