@@ -15,6 +15,8 @@
 
 class Payment < ApplicationRecord
   CURRENCY = 'RUB'
+  OPERATION_TYPE = 'Benefit'
+  PAYMENT_SYSTEM_TYPE = 'card'
 
   before_validation :set_amount
   after_commit :rebill, on: :create, if: :payment_card
@@ -44,12 +46,20 @@ class Payment < ApplicationRecord
     end
 
     create_payment_card(payment_card_params)
+    fiscalize
   end
 
   private
 
   def set_amount
     self.amount = payable.total_price
+  end
+
+  def fiscalize
+    return unless payable_type == 'Order'
+    logger.debug("Payment #{id}: fisacalize")
+
+    return false unless Payonline::FiscalGateway.new(fiscal_options).fiscalization
   end
 
   def rebill
@@ -66,6 +76,18 @@ class Payment < ApplicationRecord
       order_id: id,
       amount: amount,
       currency: CURRENCY
+    }
+  end
+
+  def fiscal_options
+    {
+      request_body: {
+        operation: OPERATION_TYPE,
+        transactionId: transaction_id,
+        paymentSystemType: PAYMENT_SYSTEM_TYPE,
+        totalAmount: amount,
+        goods: payable.goods
+      }
     }
   end
 

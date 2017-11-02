@@ -16,6 +16,10 @@
 class Order < ApplicationRecord
   include Phonable
 
+  MAX_NAME_LENGTH = 128
+  GOODS_TAX = 'vat0'
+  GOODS_QUANTITY = 1
+
   belongs_to :user
 
   has_one :payment, as: :payable
@@ -58,6 +62,17 @@ class Order < ApplicationRecord
     end
   end
 
+  def goods
+    line_items.map do |item|
+      {
+        description: item.program.name[0...MAX_NAME_LENGTH],
+        quantity: GOODS_QUANTITY,
+        amount: format('%.2f', item.price),
+        tax: GOODS_TAX
+      }
+    end
+  end
+
   private
 
   # Pending balance is applied after a successful payment
@@ -82,7 +97,8 @@ class Order < ApplicationRecord
   # Create purchase for each program or add days if already present
   def configure_purchases
     line_items.each do |item|
-      purchase = user.purchases.find_or_initialize_by(program: item.program, order: self)
+      purchase = user.purchases.find_or_initialize_by(program: item.program)
+      purchase.order = self
 
       if purchase.new_record?
         purchase.number_of_days = item.number_of_days
