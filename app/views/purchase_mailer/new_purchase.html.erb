@@ -56,9 +56,8 @@
   <strong>Доставка:</strong>
 </p>
 
-
 <ol>
-  <% @purchase.deliveries.each do |delivery| %>
+  <% @deliveries.each do |delivery| %>
     <li>
       <p>
         Желаемая дата доставки: <%= delivery.scheduled_for.to_date.to_formatted_s(:long) %>
